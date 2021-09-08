@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
-  <link rel="icon" href="images/70214-apple-format-grey-logo-macintosh-icon_48x48.ico" type="image/gif" sizes="16x16">
+  <link rel="icon" href="/images/70214-apple-format-grey-logo-macintosh-icon_48x48.jpg" type="image/gif" sizes="16x16">
   <title>Apple (India)</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -14,13 +14,15 @@
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-  <body>
-    {{{>user-header}}}
+  <body onresize="screenSize()">
+    {{>user-header}}
+
     {{{body}}}
-    {{{>user-footer}}}
+    
+    {{>user-footer}}
 
   </body>
-  <script src="js/script.js"></script>
+  <script src="/js/script.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
