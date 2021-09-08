@@ -1,0 +1,1614 @@
+body {
+    background-color: white;
+    min-width: 320px;
+    font-size: 17px;
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: -.022em;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    background-color: #fff;
+    color: #1d1d1f;
+    font-style: normal;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.nav-bg {
+    opacity: 0.8;
+    background-color: black;
+}
+
+.content {
+    max-width: 980px;
+    pointer-events: auto
+}
+
+.nav-item-box {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-left: 25px;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    text-align: center;
+}
+
+.ribbon {
+    background-color: #f5f5f7;
+    margin-top: 60px;
+}
+
+.ribbon-covid-19 {
+    background-color: #f5f5f7;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.ribbon-text {
+    font-size: 12px;
+}
+
+@media screen and (max-width: 1333px) {
+    .nav-item-box {
+        margin-left: 15px;
+        margin-right: 15px;
+        padding-left: 15px;
+    }
+}
+
+@media screen and (max-width: 1250px) {
+    .nav-item-box {
+        margin-left: 16px;
+        margin-right: 16px;
+        padding-left: 16px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .nav-item-box {
+        margin-left: 14px;
+        margin-right: 14px;
+        padding-left: 14px;
+    }
+}
+
+@media screen and (max-width: 1160px) {
+    .nav-item-box {
+        margin-left: 12px;
+        margin-right: 12px;
+        padding-left: 12px;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .nav-item-box {
+        margin-left: 8px;
+        margin-right: 8px;
+        padding-left: 8px;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .nav-item-box {
+        margin-left: 5px;
+        margin-right: 5px;
+        padding-left: 5px;
+    }
+}
+
+@media screen and (max-width: 977px) {
+    .nav-item-box {
+        margin-left: 3px;
+        margin-right: 3px;
+        padding-left: 3px;
+    }
+}
+
+.banner {
+    background-color: black;
+}
+
+.banner-header-text {
+    font-size: 54px;
+    font-weight: 550;
+    line-height: 1.07143;
+    letter-spacing: -.005em;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.banner-text {
+    font-size: 28px;
+    line-height: 1.10722;
+    font-weight: 400;
+    letter-spacing: .004em;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    margin-top: 6px;
+}
+
+.banner-links {
+    display: inline-block;
+    font-size: 17px;
+    line-height: 1.381;
+    font-weight: 400;
+    letter-spacing: .011em;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.banner-links-icons {
+    font-size: 14px;
+}
+
+.banner-image {
+    width: 100%;
+}
+
+.banners-header-text {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 470px;
+    color: black;
+    font-size: 54px;
+    font-weight: 550;
+    line-height: 1.07143;
+    letter-spacing: -.005em;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.banners-text {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 337px;
+    color: black;
+    font-size: 28px;
+    line-height: 1.10722;
+    font-weight: 400;
+    letter-spacing: .004em;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.banners-sub-text {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 244px;
+    color: #86868b;
+    font-size: 17px;
+    line-height: 1.07143;
+    letter-spacing: -.005em;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.banners-links {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 175px;
+    display: inline-block;
+    font-size: 18px;
+    line-height: 1.381;
+    font-weight: 400;
+    letter-spacing: .011em;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.banner-image {
+    height: 590px;
+}
+
+@media screen and (max-width: 735px) {
+    .banner-text {
+        font-size: 18px;
+    }
+    .banner-header-text {
+        font-size: 32px;
+    }
+    .banner-links {
+        font-size: 14px;
+    }
+    .banner-links-icons {
+        font-size: 8px;
+    }
+    .banners-header-text {
+        font-size: 32px;
+        height: 438px;
+        ;
+    }
+    .banners-text {
+        font-size: 18px;
+        height: 343px;
+    }
+    .banners-sub-text {
+        font-size: 15px;
+        height: 261px;
+    }
+    .banners-links {
+        height: 186px;
+        font-size: 15px;
+    }
+    .banners-image {
+        height: 488px;
+    }
+}
+
+@media (min-width:768px) {
+    #mySidenav {
+        display: none;
+    }
+}
+
+/* hamburger menu for small devices */
+
+.sidenav {
+    height: 0;
+    /* 100% Full-height */
+    width: 100%;
+    /* 0 width - change this with JavaScript */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Stay on top */
+    top: 0;
+    /* Stay at the top */
+    right: 0;
+    opacity: 0.8;
+    background-color: black;
+    /* Black*/
+    overflow-x: hidden;
+    /* Disable horizontal scroll */
+    padding-top: 60px;
+    /* Place content 60px from the top */
+    transition: 0.5s;
+    /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+
+/* When you mouse over the navigation links, change their color */
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 7px;
+    /* right: 25px; */
+    font-size: 32px;
+    margin-left: -19px;
+}
+
+.bag {
+    position: absolute;
+    top: 9px;
+    right: 9px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.apple-logo {
+    position: absolute;
+    top: -4px;
+    right: 47%;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 17px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+.search-bar {
+    align-items: center;
+    width: 93%;
+    height: 5%;
+    border-radius: 6px;
+    background: #1d1d1d;
+    font-size: 14px;
+    line-height: 1.23536;
+    font-weight: 400;
+    letter-spacing: 0.122em;
+    font-family: "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    border: 0px;
+}
+
+hr.hamburger-hr {
+    border-top: 0.2px solid #343434;
+}
+
+/* navbar for md and xl devices */
+
+@media (max-width:768px) {
+    #navbar {
+        display: none;
+    }
+}
+
+.wrapper {
+    background-color: black;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.logo-wrapper {
+    padding: 34px;
+}
+
+.wwdc-text {
+    text-align: center;
+    color: white;
+    font-size: 21px;
+    line-height: 1.2381;
+    font-weight: 400;
+    letter-spacing: .016em;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.wwdc-video {
+    transform: scale(1.7);
+    height: 367px;
+}
+
+.wwdc-logo-image {
+    height: 90px;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 49px;
+    background-image: url(images/promo_tile_logo__fois684wh1ym_large.png);
+}
+
+.wwdc-link {
+    font-size: 17px;
+    line-height: 1.2381;
+    font-weight: 400;
+    letter-spacing: .016em;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.watch-logo {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 450px;
+    height: 50px;
+}
+
+.watch-content {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: black;
+    font-size: 28px;
+    line-height: 1.10722;
+    font-weight: 400;
+    letter-spacing: .004em;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.watch-text {
+    height: 380px;
+}
+
+.watch-links {
+    font-size: 17px;
+    text-align: center;
+    height: 307px;
+}
+
+.watch-header-content {
+    margin-right: 10px;
+}
+
+.box-margin {
+    margin-left: 10px;
+}
+
+.box-header-content {
+    margin-right: 10px;
+}
+
+.box-logo {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 434px;
+    height: 39px;
+}
+
+.tv-text {
+    font-size: 40px;
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: 0em;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.privacy-box-text {
+    font-size: 37px;
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: 0em;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    margin-top: 53px;
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper {
+        margin-left: 0px;
+        margin-bottom: 13px;
+    }
+    .watch-header-content {
+        margin-right: 0px;
+    }
+    .banners-image {
+        height: 544px;
+    }
+    .wwdc-text {
+        font-size: 18px;
+    }
+    .wwdc-video {
+        height: 340px;
+    }
+    .box-margin {
+        margin-left: 0px;
+    }
+    .box-header-content {
+        margin-right: 0px;
+    }
+    .box-logo {
+        height: 34px;
+    }
+    .tv-text {
+        font-size: 32px
+    }
+    .privacy-box-text {
+        font-size: 31px;
+    }
+}
+
+.footer-bg {
+    background-color: #f5f5f7;
+}
+
+.footer-head-text {
+    font-size: 12px;
+    line-height: 1.33337;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    font-family: "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "Apple Legacy Chevron", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    background-color: #f5f5f7;
+    color: #8a8a8a;
+    overflow: hidden;
+    position: relative;
+}
+
+.directory-column-section-head {
+    font-size: 13px;
+    letter-spacing: -.01em;
+    font-family: "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "Apple Legacy Chevron", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-weight: 600;
+    margin-bottom: .8em;
+}
+
+.column-list {
+    list-style: none;
+    direction: rtl;
+}
+
+.column-list-item {
+    color: #515154;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 7px;
+}
+
+.more-shop {
+    font-size: 12px;
+    color: #515154;
+}
+
+.copyright {
+    font-size: 12px;
+    color: #515154;
+}
+
+@media screen and (max-width: 768px) {
+    .column-list {
+        display: none;
+    }
+    .directory-column-section-head {
+        font-weight: 100;
+    }
+    .section-hr {
+        display: none
+    }
+    .wwdc-video {
+        transform: scale(2.4);
+    }
+}
+
+.list-items {
+    position: absolute;
+    right: 26px;
+    font-size: 8px;
+    color: #888888;
+}
+
+@media screen and (min-width: 768px) {
+    .column-hr {
+        display: none;
+    }
+    .list-items {
+        color: #f5f5f7;
+    }
+}
+
+/* bag */
+
+/* The container <div> - needed to position the dropdown content */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 290px;
+    box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
+    z-index: 1;
+    margin-top: 26px;
+    margin-left: -135px;
+    border-radius: 17px;
+}
+
+.content-align {
+    text-align: left;
+}
+
+/* Links inside the dropdown */
+
+.dropdown-content a {
+    color: black;
+    font-size: 15px;
+    color: #06c;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content-sm {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
+    z-index: 1;
+    margin-top: 60px;
+    width: 100%;
+    position: fixed;
+}
+
+.bag-items-list {
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .content-align {
+        font-size: 14px;
+    }
+}
+
+/* imac page */
+
+.imac-promo-title {
+    font-size: 17px;
+    color: #f56300;
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0);
+    border-color: #bf4800;
+}
+
+.imac-header-text {
+    color: black;
+    font-size: 56px;
+    line-height: 1.07143;
+    font-weight: 600;
+    letter-spacing: -.005em;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.imac-sub-text {
+    font-size: 26px;
+    line-height: 1.14286;
+    font-weight: 600;
+    letter-spacing: .007em;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.imac-price {
+    color: black;
+    font-size: 17px;
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: -.022em;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.buy-btn {
+    width: 64px;
+    border-radius: 20px;
+    background-color: #0071e3;
+    border-color: #0071e3;
+}
+
+@media screen and (max-width: 768px) {
+    .imac-image {
+        width: 100%;
+    }
+    .imac-header-text {
+        font-size: 32px;
+    }
+    .imac-sub-text {
+        font-size: 21px;
+    }
+}
+
+/* imac page - product listing css */
+
+/* headline font style */
+
+.typography-headline {
+    font-size: 48px;
+    line-height: 1.08349;
+    font-weight: 600;
+    letter-spacing: -.003em;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.product-listing {
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 100px;
+}
+
+.tabnav-items {
+    padding: 0px 0px 0px 0px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    font-size: 17px;
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: -.021em;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    color: #6e6e73;
+}
+
+.tabnav-item {
+    list-style: none;
+    display: inline-block;
+    border-bottom: 1px solid #d2d2d7;
+    padding-bottom: 8px;
+    cursor: pointer;
+}
+
+.product-trigger {
+    color: #6e6e73;
+    padding: .5em 2em;
+}
+
+@media screen and (max-width: 768px) {
+    .product-listing {
+        padding: 32px
+    }
+    .typography-headline {
+        font-size: 32px;
+    }
+}
+
+.product-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 46px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.device-name {
+    font-size: 22px;
+    line-height: 1.16667;
+    font-weight: 600;
+    letter-spacing: 0.019em;
+}
+
+.device-price-spec {
+    color: #565656;
+    font-size: 14px;
+    line-height: 1.42859;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.device-colors {
+    margin-top: -15px;
+}
+
+.device-buy-btn {
+    font-size: 11px;
+    margin-bottom: auto;
+    padding-bottom: 22px;
+    width: 46px;
+    letter-spacing: 0.01em;
+    border-radius: 20px;
+    background-color: #0071e3;
+    border-color: #0071e3;
+    height: 23px;
+}
+
+.product-buy {
+    border-bottom: 1px solid #d2d2d7;
+    padding: 13px;
+    padding-bottom: 27px;
+}
+
+.device-details-head {
+    font-size: 21px;
+    line-height: 1.19048;
+    font-weight: 600;
+    letter-spacing: .011em;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.device-details-text {
+    font-size: 14px;
+    line-height: 1.42859;
+    font-weight: 400;
+    letter-spacing: .03em;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    color: #383838;
+    margin-bottom: 0px;
+}
+
+.device-subtext {
+    font-size: 14px;
+    line-height: 1.42859;
+    font-weight: 400;
+    letter-spacing: -.016em;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    color: #a3a3a3;
+    padding-left: 23%;
+    padding-right: 23%;
+}
+
+.product-link {
+    padding: 23px;
+    margin-top: 45px;
+    border-top: 1px solid #d2d2d7;
+}
+
+.product-image-outer {
+    margin-bottom: 88px;
+}
+
+.device-accessories-section {
+    background-color: #f2f2f2;
+}
+
+@media screen and (max-width: 768px) {
+    .product-image {
+        width: 137px;
+        margin-bottom: 33px;
+    }
+    .device-name {
+        font-size: 19px;
+        font-weight: 500;
+    }
+    .device-colors {
+        margin-top: -12px;
+    }
+    .device-subtext {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .accessories-head-text {
+        font-size: 21px;
+    }
+}
+
+/* mac accessories section */
+
+.accessories-head-text {
+    font-size: 25px;
+    letter-spacing: .02em;
+}
+
+.accessories-text {
+    font-size: 46px;
+    letter-spacing: .02em;
+}
+
+.macos {
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    letter-spacing: .02em;
+    padding: 74px;
+}
+
+.macos-outer {
+    padding: 60px;
+    letter-spacing: .02em;
+}
+
+.accessories-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .accessories-head-text {
+        font-size: 21px;
+    }
+    .accessories-text {
+        font-size: 30px;
+        letter-spacing: .0em;
+    }
+    .accessories-image {
+        object-fit: cover;
+        width: 100%;
+        height: 240px
+    }
+    .macos-outer {
+        padding: 0px;
+    }
+    .macos {
+        margin-top: 25px;
+        padding: 15px;
+    }
+}
+
+/* macos section */
+
+.macos-section {
+    background-color: #f2f2f2;
+}
+
+.macos-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (max-width: 768px) {
+    .macos-image {
+        height: 200px;
+    }
+    .accessories-head-text {
+        font-size: 20px;
+    }
+}
+
+/* chapter nav */
+
+.chapternav {}
+
+.chapter-icon {
+    width: 52px;
+    height: 54px;
+    background-size: 52px 54px;
+    background-repeat: no-repeat;
+    object-fit: cover;
+}
+
+.chapter-label {
+    font-size: 12px;
+    line-height: 1.33337;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    display: block;
+    margin: 0;
+}
+
+.chapternav-link {
+    text-decoration: none;
+    color: black;
+}
+
+.chapternav-link :hover {
+    color: #0071e3;
+}
+
+.chapter-item {
+    list-style-type: none;
+    display: inline-block;
+}
+
+.chapternav-item-imac-24 {
+    width: 45px;
+    height: 54px;
+    background-size: 45px 54px;
+    background-repeat: no-repeat;
+}
+
+.chapternav-item-macbook-pro-13 {
+    width: 51px;
+    height: 54px;
+    background-size: 51px 54px;
+    background-repeat: no-repeat;
+}
+
+.chapternav-item-imac-27 {
+    width: 48px;
+    height: 54px;
+    background-size: 48px 54px;
+    background-repeat: no-repeat;
+}
+
+.chapternav-item-mac-pro {
+    width: 35px;
+    height: 54px;
+    background-size: 35px 54px;
+    background-repeat: no-repeat;
+}
+
+.chapternav-item-mac-mini {
+    width: 28px;
+    height: 54px;
+    background-size: 28px 54px;
+    background-repeat: no-repeat;
+}
+
+.chapternav-item-compare {
+    width: 74px;
+    height: 54px;
+    background-size: 74px 54px;
+    background-repeat: no-repeat;
+}
+
+.chapternav-item-pro-display-xdr {
+    width: 46px;
+    height: 54px;
+    background-size: 46px 54px;
+    background-repeat: no-repeat;
+}
+
+.chapternav-item-accessories {
+    width: 33px;
+    height: 54px;
+    background-size: 33px 54px;
+    background-repeat: no-repeat;
+}
+
+.chapternav-item-macos {
+    width: 35px;
+    height: 54px;
+    background-size: 35px 54px;
+    background-repeat: no-repeat;
+}
+
+/* scrollbar */
+
+.scrollmenu {
+    overflow: auto;
+    white-space: nowrap;
+    margin-top: 60px;
+}
+
+.scrollmenu::-webkit-scrollbar {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .chapternav-list-sm-margin {
+        margin-right: 50px !important;
+    }
+}
+
+.chpater {
+    scroll-behavior: smooth
+}
+
+/* //buttons */
+
+.paddle {
+    font-size: 17px;
+    line-height: 1.76471;
+    font-weight: 300;
+    letter-spacing: 0em;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    border: 0 solid #d2d2d7;
+    border-radius: 0;
+    color: #1d1d1f;
+    opacity: 1;
+    text-align: center;
+    width: 33px;
+    transition: opacity 150ms ease-out;
+}
+
+.right-paddle {
+    right: 0;
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    width: 2em;
+    height: 119px;
+    background-image: linear-gradient(90deg, #ffffff, #e0e0e0);
+}
+
+.left-paddle {
+    left: 0;
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    width: 2em;
+    height: 119px;
+    background-image: linear-gradient(90deg, #e0e0e0, #ffffff);
+}
+
+.chapter-iphone-12-pro {
+    background-size: 37px 54px;
+    background-repeat: no-repeat;
+    width: 37px;
+}
+
+.chapter-iphone-12 {
+    background-size: 36px 54px;
+    background-repeat: no-repeat;
+    width: 36px;
+}
+
+.chapter-iphone-se {
+    background-size: 19px 54px;
+    background-repeat: no-repeat;
+    width: 20px;
+}
+
+.chapter-iphone-11 {
+    background-size: 22px 54px;
+    background-repeat: no-repeat;
+    width: 22px;
+}
+
+.chapter-iphone-xr {
+    background-size: 22px 54px;
+    background-repeat: no-repeat;
+    width: 22px;
+}
+
+.chapter-ios {
+    background-size: 32px 54px;
+    background-repeat: no-repeat;
+    width: 32px;
+}
+
+.chapter-iphone-accessories {
+    background-size: 35px 54px;
+    background-repeat: no-repeat;
+    width: 35px;
+}
+
+.chapter-iphone {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* iphone 12 pro banner */
+
+.iphone-sub-text {
+    font-size: 24px
+}
+
+.iphone-header-text {
+    font-size: 48px
+}
+
+.iphone-12 {
+    width: 100%;
+    object-fit: cover;
+}
+
+.iphone-12-pro {
+    width: 100%;
+    object-fit: cover;
+}
+
+.image-compare-iphone-12-pro {
+    width: 199px;
+    height: 256px;
+    background-size: 199px 256px;
+    background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 768px) {
+    .iphone-12-pro {
+        width: 260px;
+        height: 100%;
+    }
+    .iphone-sub-text {
+        font-size: 19px
+    }
+    .iphone-header-text {
+        font-size: 40px
+    }
+    .image-compare-iphone-12-pro {
+        width: 130px;
+        height: 168px;
+        background-size: 130px 168px;
+        background-repeat: no-repeat;
+    }
+}
+
+/* ios banner */
+
+.ios-banner {
+    background: url(../images/ios15_preview__f7lrpcnc3eum_large_2x.jpg) repeat 0 0;
+    object-fit: cover;
+    height: 560px;
+    width: 100%;
+    background-size: 100% 560px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center
+}
+
+.ios-header {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.ios-header-text {
+    font-size: 48px;
+    line-height: 1.08349;
+    font-weight: 600;
+    letter-spacing: -.003em;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.ios-sub-text {
+    font-size: 21px;
+}
+
+@media screen and (max-width: 768px) {
+    .ios-banner {
+        background: url(../images/ios15_preview__f7lrpcnc3eum_small_2x.jpg) repeat 0 0;
+        object-fit: cover;
+        width: 100%;
+        height: 620px;
+        background-size: 100% 620px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+    .ios-container {
+        margin-left: 30px !important;
+    }
+    .ios-header {
+        font-size: 32px;
+    }
+    .ios-sub-text {
+        font-size: 17px;
+    }
+}
+
+/* buy prodcut page */
+
+.title-price-nav {
+    background-color: #ffffff;
+}
+
+.title-divider {
+    display: block;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-top: 6px;
+}
+
+.product-title-name {
+    font-size: 21px;
+    line-height: 1.14286;
+    font-weight: 600;
+    letter-spacing: .011em;
+    font-family: SF Pro Display, SF Pro Icons, AOS Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.product-title-price {
+    font-size: 17px;
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: -.022em;
+    font-family: SF Pro Text, SF Pro Icons, AOS Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.product-spc-image {
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+}
+
+.product-image-cotainer {
+    position: sticky;
+    top: 0;
+}
+
+.need-help-tag {
+    font-size: 12px;
+    line-height: 1.33337;
+    font-weight: 600;
+    letter-spacing: -.01em;
+    font-family: SF Pro Text, SF Pro Icons, AOS Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+    margin: 6px 0 0;
+}
+
+.title-containers {
+    font-size: 17px;
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: -.022em;
+    font-family: SF Pro Text, SF Pro Icons, AOS Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+    margin: 3px 0 2px;
+}
+
+@media screen and (max-width: 768px) {
+    .product-title-name {
+        font-size: 19px;
+        display: block;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    .title-containers {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+    }
+    .title-divider {
+        padding: 0px;
+    }
+    .product-title-price {
+        font-size: 14px;
+    }
+    .product-image-cotainer {
+        padding: 0px !important;
+    }
+    .produc-hr {
+        display: none;
+    }
+    .product-sm-name {
+        display: none;
+    }
+}
+
+/* right section product details */
+
+.violator-frameless {
+    box-sizing: border-box;
+    white-space: nowrap;
+    display: block;
+    color: #bf4800;
+    font-size: 17px;
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: -.022em;
+    font-family: Sans-serif;
+    padding-bottom: 3px;
+}
+
+.product-name {
+    font-size: 40px;
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: 0;
+    font-family: Sans-serif;
+    padding-bottom: 11px;
+}
+
+.product-offer {
+    font-size: 17px;
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: -.022em;
+    font-family: sans-serif;
+    margin: 3px 0 2px;
+}
+
+.model-title {
+    font-size: 17px;
+    line-height: 1.47059;
+    letter-spacing: -.022em;
+    font-family: sans-serif;
+    font-weight: 600;
+    display: block;
+    color: #484848;
+}
+
+.screen-size {
+    font-size: 12px;
+    line-height: 1.33337;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    font-family: sans-serif;
+    color: #6a6a6a;
+}
+
+.device-model-select {
+    border-style: solid;
+    /* border-width: 20px; */
+    border-color: #c4c4c4;
+    border-radius: 13px;
+    outline: none;
+    border-width: 1px;
+    padding: 16px;
+}
+
+.device-price-radion {
+    position: relative;
+    align-self: center;
+    text-align: right;
+}
+
+.device-price {
+    float: right;
+    font-size: 17px;
+}
+
+.device-model-select:hover {
+    border-color: #868686;
+}
+
+@media screen and (max-width: 768px) {
+    .product-header {
+        display: none;
+    }
+    .violator-frameless {
+        font-size: 12px;
+    }
+    .product-name {
+        font-size: 28px;
+    }
+}
+
+.border-size {
+    border-top: 1px solid #d2d2d7;
+}
+
+.product-color {
+    width: 32px;
+    height: 32px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-label-small {
+    display: inline-block;
+    position: relative;
+    font-size: 12px;
+    line-height: 1.33337;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    font-family: sans-serif;
+    color: #1d1d1f;
+}
+
+.form-selector-title {
+    font-size: 29px;
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: .008em;
+    font-family: sans-serif;
+    display: block;
+}
+
+.small-text {
+    font-size: 12px;
+    line-height: 1.33337;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    font-family: sans-serif;
+    color: #6a6a6a;
+}
+
+.bag-btn-container {
+    border-top: 1px solid #d2d2d7;
+}
+
+.bag-btn {
+    background-color: #0071e3;
+    border-radius: 10px;
+}
+
+.footer-section {
+    background-color: #fbfbfd;
+    padding: 30px;
+    margin-top: 28px;
+}
+
+.banner-right-section {
+    display: block;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+@media screen and (max-width: 768px) {
+    .banner-right-section {
+        margin: 25px;
+    }
+    .footer-section {
+        padding: 5px;
+    }
+    .price {
+        font-size: 27px !important;
+    }
+}
+
+.ac-ln-menu-link {
+    color: #000;
+    display: inline-block;
+    line-height: 22px;
+    white-space: nowrap;
+    opacity: .88;
+}
+
+@media screen and (min-width: 768px) {
+    .product-header-sm {
+        display: none;
+    }
+}
+
+/* iphone-12 page */
+
+.ac-ln-content {
+    border-bottom: 1px solid #d2d2d7;
+}
+
+.iphone-video {
+    width: 100%;
+    height: 836px;
+}
+
+@media screen and (max-width: 768px) {
+    .iphone-text-container {
+        text-align: left !important;
+    }
+    .iphone-video {
+        height: 310px;
+    }
+    .iphone-video-head {
+        margin-top: 40px;
+    }
+    .iphone-video {
+        transform: scale(1.4);
+    }
+}
+
+/* supportpage */
+
+.search {
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+@media screen and (max-width: 768px) {
+    .search {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+.support-section {
+    background-size: 100%;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    margin-top: 60px;
+    background-image: url(images/hero-banner-baker-homepage.image.large_2x.jpg);
+    height: 500px;
+    width: 100%;
+}
+
+/* signup page */
+
+.appleid-text {
+    font-size: 40px;
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: 0;
+    font-family: sans-serif;
+    color: white;
+}
+
+.appleid-section {
+    padding: 60px;
+}
+
+@media screen and (min-width: 768px) {
+    .form-container {
+        padding-left: 17%;
+        padding-right: 17%;
+    }
+}
+
+.form-input-padding {
+    padding: 28px;
+}
+
+.form-submit-btn-style {
+    letter-spacing: 1px;
+    background-image: linear-gradient( 0deg, #0171ca, #3f9feb);
+    border-color: #0077cc;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.password-notmatch-text{
+    font-size: 13px;
+    padding-top: 10px;
+    float: left;
+    color: red;
+    letter-spacing: 0.012em;
+    display: none;
+}
+.show-password-notmatch-text{
+    display: block !important;
+}
+
+.password-input-box-error{
+    border-color: red;
+    background-color: #f7d4d4;
+    color: white;
+}
