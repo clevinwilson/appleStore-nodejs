@@ -1612,3 +1612,69 @@ input::-webkit-inner-spin-button {
     background-color: #f7d4d4;
     color: white;
 }
+
+ /* login page css */
+.signin-header-text{
+    font-size: 40px;
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: 0;
+    font-family: sans-serif;
+    padding-bottom: 36px;
+    padding-top: 34px;
+}
+.signin-input{
+    border-radius: 10px;
+    padding: 27px;
+}
+.form-itune-text{
+    font-size: 14px;
+    line-height: 1.42859;
+    font-weight: 400;
+    letter-spacing: -.016em;
+    font-family: sans-serif;
+    margin-top: 0;
+    margin-bottom: 35px;
+}
+.signin-btn{
+    background: #0071e3;
+    color: #fff;
+    font-size: 17px;
+    line-height: 1.17648;
+    font-weight: 400;
+    letter-spacing: -.022em;
+    font-family: sans-serif;
+    min-width: 28px;
+    padding: 18px 31px;
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+    border-radius: 12px;
+    white-space: normal;
+    display: inline-block;
+}
+@media screen and (max-width: 768px) {
+    .signin-header-text{
+        font-size: 28px;
+        padding: 0px;
+        
+    }
+    .form-itune-text{
+        font-size: 12px;
+    }
+    .create-account-text-container{
+        font-size: 13px;
+    }
+   
+}
+@media screen and (min-width: 768px) {
+
+    .signin-header-text{
+        padding: 0px !important;
+        margin-bottom: 60px !important;
+    }
+    .signup-form-marginl-lg{
+        margin-left: 50px;
+    }
+}
