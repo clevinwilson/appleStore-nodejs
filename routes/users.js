@@ -15,4 +15,10 @@ router.get('/login',(req,res)=>{
 router.get('/signup',(req,res)=>{
   res.render('user/signup')
 })
+
+
+//index page
+router.get('/imac',(req,res)=>{
+  res.render('user/imac')
+})
 module.exports = router;
