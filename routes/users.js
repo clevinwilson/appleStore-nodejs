@@ -21,4 +21,9 @@ router.get('/signup',(req,res)=>{
 router.get('/imac',(req,res)=>{
   res.render('user/imac')
 })
+
+//iphone page 
+router.get('/iphone',(req,res)=>{
+  res.render('user/iphone')
+})
 module.exports = router;
