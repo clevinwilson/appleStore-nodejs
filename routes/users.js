@@ -31,4 +31,10 @@ router.get('/iphone',(req,res)=>{
 router.get('/iphone-12',(req,res)=>{
   res.render('user/iphone-12')
 })
+
+//buy product page 
+router.get('/buy-product',(req,res)=>{
+  res.render('user/buy-product')
+})
+
 module.exports = router;
