@@ -26,4 +26,9 @@ router.get('/imac',(req,res)=>{
 router.get('/iphone',(req,res)=>{
   res.render('user/iphone')
 })
+
+//iphone 12 page
+router.get('/iphone-12',(req,res)=>{
+  res.render('user/iphone-12')
+})
 module.exports = router;
