@@ -6,14 +6,17 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "express-handlebars": "^5.3.3",
+    "express-session": "^1.17.2",
     "hbs": "^4.1.2",
     "http-errors": "~1.6.3",
     "mongodb": "^4.1.1",
     "morgan": "~1.9.1",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "session": "^0.1.0"
   }
 }
