@@ -26,7 +26,7 @@
     Pages
   </div>
 
-  <!-- Notifications -->
+  {{!-- <!-- Notifications -->
   <!-- Nav Item - user anagement -->
   <li class="nav-item">
     <a class="nav-link" href="/admin/notifications">
@@ -34,74 +34,67 @@
       <span>Notifications</span></a>
   </li>
   <!-- Divider -->
-  <hr class="sidebar-divider">
+  <hr class="sidebar-divider"> --}}
 
   {{!-- //user-activity --}}
-  <li class="nav-item mb-4">
-    <a class="nav-link" href="/admin/user-inquiry">
-      <i class="far fa-user"></i>
-      <span>User inquiry</span></a>
-  </li>
-
-  <!-- Divider -->
-  <hr class="sidebar-divider">
 
 
-  <!-- Courses -->
-  <!-- Nav Item - user anagement -->
+ 
+
+
+  <!-- Product  -->
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Courses" aria-expanded="true"
       aria-controls="collapseTwo">
-      <i class="far fa-id-card"></i>
-      <span>Courses</span>
+      <i style="font-size: 20px;" class="bi bi-display"></i>
+      <span>Products</span>
     </a>
     <div id="Courses" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Courses</h6>
+        <h6 class="collapse-header">Products</h6>
         {{!-- <a class="collapse-item" href="/admin/course">Courses</a> --}}
-        <a class="collapse-item" href="/admin/all-course">Courses</a>
-        <a class="collapse-item" href="/admin/addcoursecategory">Add Field</a>
-
-
+        <a class="collapse-item" href="/admin/add-product">Add Product</a>
+        <a class="collapse-item" href="/admin/manage-product">Manage Product</a>
       </div>
     </div>
   </li>
 
-  <!-- Divider -->
+
   <hr class="sidebar-divider">
 
-  <!-- Colleges -->
-  <!-- Nav Item - user anagement -->
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#colleges" aria-expanded="true"
-      aria-controls="collapseTwo">
-      <i class="fas fa-university"></i>
-      <span>Colleges</span>
-    </a>
-    <div id="colleges" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Colleges</h6>
-        <a class="collapse-item" href="/admin/institutions">Institutions</a>
-        <a class="collapse-item" href="/admin/add-institution">Add Institution</a>
 
+  <!-- Category -->
+   <!-- Nav Item - user anagement -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Courses" aria-expanded="true"
+      aria-controls="collapseTwo">
+      <i style="font-size: 20px;" class="fas fa-th-large"></i>
+      <span>Categorys</span>
+    </a>
+    <div id="Courses" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Categorys</h6>
+        {{!-- <a class="collapse-item" href="/admin/course">Courses</a> --}}
+        <a class="collapse-item" href="/admin/add-category">Add Category</a>
+        <a class="collapse-item" href="/admin/manage-category">Manage Category</a>
       </div>
     </div>
   </li>
 
-  <!-- Divider -->
+  <!-- Category -->
   <hr class="sidebar-divider">
 
   <!-- Nav Item - Home -->
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#home" aria-expanded="true"
       aria-controls="collapseTwo">
-      <i class="fas fa-home"></i>
-      <span>Home</span>
+      <i style="font-size: 20px;" class="bi bi-bag-check-fill"></i>
+      <span>Orders</span>
     </a>
     <div id="home" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Home page</h6>
-        <a class="collapse-item" href="/admin/home-banner">Banner</a>
+        <h6 class="collapse-header">Orders</h6>
+        <a class="collapse-item" href="/admin/manage orders">Manage Orders</a>
 
       </div>
     </div>
@@ -111,37 +104,7 @@
   <hr class="sidebar-divider">
 
 
-  <!-- Location -->
-  <!-- Nav Item - user anagement -->
-  <li class="nav-item">
-    <a class="nav-link" href="/admin/location">
-      <i class="fas fa-map-marker-alt"></i>
-      <span>Location</span></a>
-  </li>
 
-
-  <!-- Divider -->
-  <hr class="sidebar-divider">
-
-  <!-- About -->
-  <li class="nav-item">
-    <a class="nav-link" href="/admin/about">
-      <i class="fas fa-info-circle"></i>
-      <span>About</span></a>
-  </li>
-
-  <!-- Divider -->
-  <hr class="sidebar-divider">
-
-  <!-- Contact -->
-  <li class="nav-item">
-    <a class="nav-link" href="/admin/contact">
-      <i class="far fa-address-book"></i>
-      <span>Contact</span></a>
-  </li>
-
-  <!-- Divider -->
-  <hr class="sidebar-divider">
 
 
   {{!-- //Messages --}}
