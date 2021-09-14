@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var adminHelper = require('../helpers/admin-helpers');
+var productHelper =require('../helpers/product-helpers');
 
 
 
@@ -51,6 +52,13 @@ router.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/')
 })
+
+//add product 
+router.get('/add-product',verifyLogin,(req,res)=>{
+    res.render('admin/add-product',{admin:req.session.admin})
+})
+
+
 
 
 

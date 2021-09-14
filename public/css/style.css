@@ -686,7 +686,7 @@ hr.hamburger-hr {
 
 .buy-btn {
     width: 64px;
-    border-radius: 20px;
+    border-radius: 20px !important;
     background-color: #0071e3;
     border-color: #0071e3;
 }
@@ -786,12 +786,12 @@ hr.hamburger-hr {
 }
 
 .device-buy-btn {
-    font-size: 11px;
+    font-size: 11px !important;
     margin-bottom: auto;
-    padding-bottom: 22px;
+    padding-bottom: 22px !important;
     width: 46px;
     letter-spacing: 0.01em;
-    border-radius: 20px;
+    border-radius: 20px !important;
     background-color: #0071e3;
     border-color: #0071e3;
     height: 23px;

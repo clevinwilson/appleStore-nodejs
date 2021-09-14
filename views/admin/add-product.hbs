@@ -1,0 +1,253 @@
+<title> Owner</title>
+
+
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        {{>admin-sidebar}}
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800">Add Product</h1>
+
+                    <div class="row">
+
+                        <div class="col-lg-11">
+
+                            <!-- Circle Buttons -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Details</h6>
+                                </div>
+                                <div class="message p-3">
+                                    {{#if addMovieSucc}}
+                                    <div class="alert alert-success" role="alert">
+                                        {{addMovieSucc}}
+                                    </div>
+                                    {{/if}}
+                                    {{#if addMovieErr}}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{addMovieErr}}
+                                    </div>
+                                </div>
+                                {{/if}}
+                                <form action="/owner/add-movie" id="submit-form" method="post"
+                                    enctype="multipart/form-data">
+                                    <div class="card-body">
+                                     
+                                         <span style="margin-left: 13px; color: green;" id="check_availability_movie" style="font-size:12px;"></span>
+                                        <span style="margin-left: 13px; color:red;" id="check_not_movie" style="font-size:12px;"></span>
+
+                                        <div class="row m-1" id="modelname">
+                                            <div class="form-group mt-1 col-md-5">
+                                                <label for="modelname">Model name</label>
+                                                  <button class="m-1 btn btn-danger" id="remove"
+                                                    onblur="removeElement()">-</button>
+                                                <button class="m-1 btn btn-success" id="add"
+                                                    onclick="addElement()">+</button>        
+                                                <input style="border-color:#b4e3eb;" type="text"
+                                                    class="form-control col-md-12 mt-2" id="cast" name="cast" required>
+                                            </div>
+                                            <div class="form-group mt-5 col-md-5">
+                                                <input style="border-color:#b4e3eb;" type="text"
+                                                    class="form-control col-md-12 mt-2" id="castas" name="castas"
+                                                     required>
+                                            </div>
+                                        </div>
+
+
+                                       <div class="row m-1" id="color">
+                                            <div class="form-group mt-1 col-md-5">
+                                                <label for="color">Color</label>
+                                                  <button class="m-1 btn btn-danger" id="remove"
+                                                    onblur="removeElement()">-</button>
+                                                <button class="m-1 btn btn-success" id="add"
+                                                    onclick="addElement()">+</button>        
+                                                <input style="border-color:#b4e3eb;" type="text"
+                                                    class="form-control col-md-12 mt-2" id="cast" name="cast" required>
+                                            </div>
+                                            <div class="form-group mt-5 col-md-5">
+                                                <input style="border-color:#b4e3eb;" type="text"
+                                                    class="form-control col-md-12 mt-2" id="castas" name="castas"
+                                                     required>
+                                            </div>
+                                        </div>
+                                       
+
+                                       <div class="row m-1" id="storage">
+                                            <div class="form-group mt-1 col-md-5">
+                                                <label for="storage">Storage</label>
+                                                  <button class="m-1 btn btn-danger" id="remove"
+                                                    onblur="removeElement()">-</button>
+                                                <button class="m-1 btn btn-success" id="add"
+                                                    onclick="addElement()">+</button>        
+                                                <input style="border-color:#b4e3eb;" type="text"
+                                                    class="form-control col-md-12 mt-2" id="cast" name="cast" required>
+                                            </div>
+                                            <div class="form-group mt-5 col-md-5">
+                                                <input style="border-color:#b4e3eb;" type="text"
+                                                    class="form-control col-md-12 mt-2" id="castas" name="castas"
+                                                     required>
+                                            </div>
+                                        </div>
+                                        <div class="row m-1">
+                                            <div class="form-group mt-3 col-md-5">
+                                                <label for="Run Time">Run Time</label>
+                                                <input style="border-color:#b4e3eb;" type="number"
+                                                    class="form-control col-md-12 mt-2" id="hour" name="hour"
+                                                    placeholder="Hour" required>
+                                            </div>
+                                            <div class="form-group mt-5 col-md-5">
+                                                <input style="border-color:#b4e3eb;" type="number"
+                                                    class="form-control col-md-12 mt-2" id="minute" name="minute"
+                                                    placeholder="Minute" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mt-3 col-md-10">
+                                            <label for="Language">model spec</label>
+                                            <input style="border-color:#b4e3eb;" type="text"
+                                                class="form-control col-md-12 mt-2" id="language" name="language"
+                                                required>
+                                        </div>
+                                       
+                                        <div class="form-group mt-3 col-md-10">
+                                            <label for="Trailer Link">Trailer Link</label>
+                                            <input style="border-color:#b4e3eb;" type="text"
+                                                class="form-control col-md-12 mt-2" id="trailerlink" name="trailerlink"
+                                                required>
+                                        </div>
+                                        <div class="form-group mt-3 col-md-10">
+                                            <label for="Trailer Link">Image</label>
+                                            <img src="" id="imgView" height="250px" width="150px">
+                                            <input style="border-color:#b4e3eb;" type="file"
+                                                class="form-control col-md-12 mt-2" name="Image"
+                                                onchange="viewImage(event)" required>
+                                        </div>
+                                        <div class="form-group mt-3 col-md-10">
+                                            <label for="Trailer Link">Banner </label>
+                                            <img src="" id="bannerImg" height="200px" width="400px">
+                                            <input style="border-color:#b4e3eb;" type="file"
+                                                class="form-control col-md-12 mt-2" name="Image2"
+                                                onchange="banner(event)" required>
+                                        </div>
+                                        <center>
+                                            <a href="/owner/movie-management"
+                                                class="btn btn-danger  mt-3 mr-2 ">Cancel</a>
+                                            <button type="submit" id="submit"
+                                                class="btn btn-success  mt-3">Submit</button>
+                                        </center>
+                                    </div>
+                                </form>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+<script>
+    function checkMovieAvailability(){
+        let movietitle= $("#movietitle").val();
+     
+        $.ajax({
+                url:'/owner/movie-avilability/'+movietitle,
+                method:'get',
+               success:(response)=>{
+                    
+                    if(response.status){
+                        document.getElementById('check_availability_movie').innerHTML=' '
+                        document.getElementById('submit').disabled = true
+                        document.getElementById('check_not_movie').innerHTML=' Movie already exists'
+                      
+                       
+                        
+                    }else{
+                        document.getElementById('check_not_movie').innerHTML=''
+                        document.getElementById('submit').disabled = false
+                        document.getElementById('check_availability_movie').innerHTML='  Available '
+                    }
+                    
+                }
+        })
+    }
+
+
+    $(document).ready(function () {
+        $("#movietitle").keyup(checkMovieAvailability);
+    });
+</script>
+
+<script>
+    function viewImage(event) {
+        document.getElementById('imgView').src = URL.createObjectURL(event.target.files[0])
+    }
+
+    function banner(event) {
+        document.getElementById('bannerImg').src = URL.createObjectURL(event.target.files[0])
+    }
+</script>
+<script>
+    f = 1
+    function addElement() {
+
+        f = f + 1
+
+        var x = document.createElement("DIV");
+        x.setAttribute("class", "form-group mt-5 col-md-5");
+        x.setAttribute("id", f);
+        document.getElementById("cast").appendChild(x);
+
+
+
+
+        var label = document.createElement("LABEL");
+        label.setAttribute("id", "cast" + f);
+        document.getElementById(f).appendChild(label)
+        document.getElementById('cast' + f).innerHTML = "Cast" + f
+
+        var input = document.createElement("INPUT");
+        input.setAttribute("type", "text");
+        input.setAttribute("name", "cast" + f);
+        input.setAttribute("class", "form-control col-md-12 mt-2");
+        document.getElementById(f).appendChild(input)
+
+        var input = document.createElement("INPUT");
+        input.setAttribute("type", "text");
+        input.setAttribute("name", "castas" + f);
+        input.setAttribute("class", "form-control col-md-12 mt-2");
+        document.getElementById(f).appendChild(input)
+        if (f == 6) {
+            document.getElementById("add").disabled = true;
+        }
+    }
+
+    function removeElement() {
+        document.getElementById(f).remove();
+        f = f - 1
+        if (f <= 6) {
+            document.getElementById("add").disabled = false;
+        }
+
+    }
+</script>
