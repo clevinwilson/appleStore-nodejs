@@ -3,9 +3,20 @@ var router = express.Router();
 var adminHelper = require('../helpers/admin-helpers');
 
 
+
+// verifyLogin
+
+const verifyLogin = (req, res, next) => {
+    if (req.session.loggedIn) {
+        next();
+    } else {
+        res.redirect("/admin");
+    }
+};
+
 //login 
 router.get('/', (req, res) => {
-    res.render('admin/login',{adminLoginError:req.session.adminLoginError});
+    res.render('admin/login', { adminLoginError: req.session.adminLoginError });
     req.session.adminLoginError = false;
 })
 router.post('/login', (req, res) => {
@@ -16,17 +27,29 @@ router.post('/login', (req, res) => {
                 req.session.admin = response.admin;
                 req.session.loggedIn = true;
                 console.log(req.session.admin);
-                res.redirect("/admin/dashboard");
+                res.render("admin/dashboard", { admin: req.session.admin });
             } else {
                 req.session.adminLoginError = "Incorrect username or password ";
                 res.redirect("/admin");
             }
-        }else {
+        } else {
             req.session.adminLoginError = "Incorrect username or password ";
             console.log(req.session.adminLoginError);
             res.redirect("/admin");
-          }
+        }
     })
+})
+
+//dashboard
+
+router.get('/dashboard', verifyLogin, (req, res) => {
+    res.render('admin/dashboard', { admin: req.session.admin })
+})
+
+//logout
+router.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/')
 })
 
 
