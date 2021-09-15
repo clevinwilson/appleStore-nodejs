@@ -63,13 +63,15 @@
                                         </div>
 
                                         {{!-- Color --}}
-                                        <div class="row m-1" id="color">
+                                        <div style=" border-style: solid; border-color: #67c2d6;" class="row m-1"
+                                            id="color">
                                             <div class="form-group mt-1 col-md-12">
                                                 <label for="color">Color</label>
-                                                <button class="m-1 ml-5 btn btn-danger" id="remove"
+                                                <button style="border-radius: 20px;width: 37px;"
+                                                    class="m-1 ml-5 btn btn-danger" id="remove"
                                                     onblur="removeElement()">-</button>
-                                                <button class="m-1 btn btn-success" id="add"
-                                                    onclick="addElement()">+</button>
+                                                <button style="border-radius: 20px;" class="m-1 btn btn-success"
+                                                    id="add" onclick="addElement()">+</button>
                                             </div>
                                             <div class="form-group mt-3 col-md-5">
                                                 <label for="processor">Color</label>
@@ -83,8 +85,8 @@
                                                     <input style="border-color:#b4e3eb;" type="file"
                                                         class="form-control col-md-9 mt-2" name="Image"
                                                         onchange="viewImage(event,1)" required>
-                                                    <img class="col-md-3 mt-2 color-image" src="" id="color-image1" height="40px"
-                                                        width="40px">
+                                                    <img class="col-md-3 mt-2 color-image" src="" id="color-image1"
+                                                        height="40px" width="40px">
 
                                                 </div>
                                             </div>
@@ -94,21 +96,29 @@
 
                                         {{!-- storage --}}
 
-                                        <div class="row m-1" id="storage">
-                                            <div class="form-group mt-1 col-md-5">
+                                        <div style=" border-style: solid; border-color: #ffbeb3;" class="row m-1 mt-5"
+                                            id="storage">
+                                            <div class="form-group mt-1 col-md-12">
                                                 <label for="storage">Storage</label>
-                                                <button class="m-1 btn btn-danger" id="remove"
-                                                    onblur="removeElement()">-</button>
-                                                <button class="m-1 btn btn-success" id="add"
-                                                    onclick="addElement()">+</button>
-                                                <input style="border-color:#b4e3eb;" type="text"
-                                                    class="form-control col-md-12 mt-2" id="cast" name="cast" required>
+                                                <button style="border-radius: 20px;width: 37px;"
+                                                    class="m-1 ml-4 btn btn-danger" id="remove"
+                                                    onblur="removeStorageElement()">-</button>
+                                                <button style="border-radius: 20px;" class="m-1 btn btn-success"
+                                                    id="add" onclick="addStorageElement()">+</button>
                                             </div>
-                                            <div class="form-group mt-5 col-md-5">
-                                                <input style="border-color:#b4e3eb;" type="text"
-                                                    class="form-control col-md-12 mt-2" id="castas" name="castas"
-                                                    required>
-                                            </div>
+                                           
+                                                <div class="form-group mt-5 col-md-5">
+                                                    <input style="border-color:#b4e3eb;" type="text"
+                                                        class="form-control  mt-2" id="castas" name="castas"
+                                                        required>
+                                                </div>
+                                                <div class="form-group mt-5 col-md-5">
+                                                    <input style="border-color:#b4e3eb;" type="text"
+                                                        class="form-control  mt-2" id="castas" name="castas"
+                                                        required>
+                                                </div>
+                                            
+                                            
                                         </div>
 
 
@@ -208,14 +218,16 @@
 </script>
 
 <script>
-    function viewImage(event,count) {
-        document.getElementById('color-image'+count).src = URL.createObjectURL(event.target.files[0]);
+    function viewImage(event, count) {
+        document.getElementById('color-image' + count).src = URL.createObjectURL(event.target.files[0]);
     }
 
     function banner(event) {
         document.getElementById('bannerImg').src = URL.createObjectURL(event.target.files[0]);
     }
 </script>
+
+{{!-- product color --}}
 <script>
     let count = 1;
     function addElement() {
@@ -261,10 +273,10 @@
         input.setAttribute("type", "file");
         input.setAttribute("name", "color" + count);
         input.setAttribute("class", "form-control col-md-9 mt-3 ");
-        input.setAttribute('onchange',`viewImage(event,'${count}')`);
+        input.setAttribute('onchange', `viewImage(event,'${count}')`);
         document.getElementById('color-row' + count).appendChild(input);
-        
-       
+
+
 
         var image = document.createElement("img");
         image.setAttribute('class', 'col-md-3 mt-3 color-image');
@@ -274,7 +286,7 @@
         image.setAttribute('width', '40px');
         document.getElementById('color-row' + count).appendChild(image);
 
-      
+
 
     }
 
@@ -285,8 +297,51 @@
     }
 </script>
 
+
+
+{{!-- product storage --}}
+<script>
+    let storageCount = 1;
+    function addStorageElement() {
+        storageCount = storageCount + 1;
+
+        var divContainer = document.createElement("DIV");
+        divContainer.setAttribute("class", " form-group mt-5 col-md-5");
+        divContainer.setAttribute("id", storageCount);
+        document.getElementById("storage").appendChild(divContainer);
+
+
+
+
+        var inputText = document.createElement("INPUT");
+        inputText.setAttribute("type", "text");
+        inputText.setAttribute("name", "color-name" + storageCount);
+        inputText.setAttribute("class", "form-control  mt-2");
+        document.getElementById(storageCount).appendChild(inputText);
+
+         var divContainer = document.createElement("DIV");
+        divContainer.setAttribute("class", " form-group mt-5 col-md-5");
+        divContainer.setAttribute("id", "price"+storageCount);
+        document.getElementById("storage").appendChild(divContainer);
+
+        var inputText = document.createElement("INPUT");
+        inputText.setAttribute("type", "text");
+        inputText.setAttribute("name", "color-name" + storageCount);
+        inputText.setAttribute("class", "form-control  mt-2");
+        document.getElementById("price"+storageCount).appendChild(inputText);
+    }
+
+    function removeStorageElement() {
+        document.getElementById(storageCount).remove();
+        document.getElementById("price"+ storageCount).remove();
+        storageCount = storageCount - 1;
+    }
+</script>
+
+
+
 <style>
-    .color-image{
+    .color-image {
         object-fit: contain;
     }
 </style>
