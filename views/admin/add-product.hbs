@@ -133,12 +133,12 @@
                                                     required>
                                             </div>
                                             <div class="form-group mt-3 col-md-5">
-                                                <label for="Trailer Link" class="col-md-12">Image</label>
+                                                <label for="Trailer Link" class="col-md-12">Processor Image</label>
                                                 <div class="row">
                                                     <input style="border-color:#b4e3eb;" type="file"
                                                         class="form-control col-md-9 mt-2" name="Image"
-                                                        onchange="viewImage(event)" required>
-                                                    <img class="col-md-3 mt-2" src="" id="imgView" height="40px"
+                                                        onchange="processorImage(event)" required>
+                                                    <img style="    object-fit: contain;" class="col-md-3 mt-2" src="" id="processor-img" height="40px"
                                                         width="40px">
 
                                                 </div>
@@ -152,20 +152,15 @@
                                                 required>
                                         </div> --}}
 
+                                         <hr>
+                                        <label class="ml-3" for=" Trailer Link col-md-12">Product Image</label>
                                         <div class="form-group mt-3 col-md-10">
-                                            <label for="Trailer Link">Image</label>
-                                            <img src="" id="imgView" height="250px" width="150px">
+                                            <img src="" id="product-image" >
                                             <input style="border-color:#b4e3eb;" type="file"
                                                 class="form-control col-md-12 mt-2" name="Image"
-                                                onchange="viewImage(event)" required>
+                                                onchange="productImage(event)" required>
                                         </div>
-                                        <div class="form-group mt-3 col-md-10">
-                                            <label for="Trailer Link">Banner </label>
-                                            <img src="" id="bannerImg" height="200px" width="400px">
-                                            <input style="border-color:#b4e3eb;" type="file"
-                                                class="form-control col-md-12 mt-2" name="Image2"
-                                                onchange="banner(event)" required>
-                                        </div>
+                                      
                                         <center>
                                             <a href="/owner/movie-management"
                                                 class="btn btn-danger  mt-3 mr-2 ">Cancel</a>
@@ -224,8 +219,12 @@
         document.getElementById('color-image' + count).src = URL.createObjectURL(event.target.files[0]);
     }
 
-    function banner(event) {
-        document.getElementById('bannerImg').src = URL.createObjectURL(event.target.files[0]);
+    function processorImage(even){
+        document.getElementById('processor-img').src=URL.createObjectURL(event.target.files[0]);
+    }
+
+    function productImage(event) {
+        document.getElementById('product-image').src = URL.createObjectURL(event.target.files[0]);
     }
 </script>
 
