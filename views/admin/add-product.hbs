@@ -107,12 +107,14 @@
                                                     id="add" onclick="addStorageElement()">+</button>
                                             </div>
                                            
-                                                <div class="form-group mt-5 col-md-5">
+                                                <div class="form-group mt-3 col-md-5">
+                                                    <label for="color">Storage 1</label>
                                                     <input style="border-color:#b4e3eb;" type="text"
                                                         class="form-control  mt-2" id="castas" name="castas"
                                                         required>
                                                 </div>
-                                                <div class="form-group mt-5 col-md-5">
+                                                <div class="form-group mt-3 col-md-5">
+                                                    <label for="color">Price 1</label>
                                                     <input style="border-color:#b4e3eb;" type="text"
                                                         class="form-control  mt-2" id="castas" name="castas"
                                                         required>
@@ -306,12 +308,14 @@
         storageCount = storageCount + 1;
 
         var divContainer = document.createElement("DIV");
-        divContainer.setAttribute("class", " form-group mt-5 col-md-5");
+        divContainer.setAttribute("class", " form-group mt-3 col-md-5");
         divContainer.setAttribute("id", storageCount);
         document.getElementById("storage").appendChild(divContainer);
 
-
-
+        var label = document.createElement("LABEL");
+        label.setAttribute("id", "label" + storageCount);
+        document.getElementById(storageCount).appendChild(label);
+        document.getElementById("label" +storageCount).innerHTML = "Storage " + storageCount;
 
         var inputText = document.createElement("INPUT");
         inputText.setAttribute("type", "text");
@@ -320,9 +324,14 @@
         document.getElementById(storageCount).appendChild(inputText);
 
          var divContainer = document.createElement("DIV");
-        divContainer.setAttribute("class", " form-group mt-5 col-md-5");
+        divContainer.setAttribute("class", " form-group mt-3 col-md-5");
         divContainer.setAttribute("id", "price"+storageCount);
         document.getElementById("storage").appendChild(divContainer);
+
+        var label = document.createElement("LABEL");
+        label.setAttribute("id", "label-storage-price" + storageCount);
+        document.getElementById("price"+storageCount).appendChild(label);
+        document.getElementById( "label-storage-price" + storageCount).innerHTML = "Price " + storageCount;
 
         var inputText = document.createElement("INPUT");
         inputText.setAttribute("type", "text");
