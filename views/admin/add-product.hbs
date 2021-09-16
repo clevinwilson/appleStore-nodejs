@@ -309,19 +309,19 @@
 
         var divContainer = document.createElement("DIV");
         divContainer.setAttribute("class", " form-group mt-3 col-md-5");
-        divContainer.setAttribute("id", storageCount);
+        divContainer.setAttribute("id", "storage"+storageCount);
         document.getElementById("storage").appendChild(divContainer);
 
         var label = document.createElement("LABEL");
-        label.setAttribute("id", "label" + storageCount);
-        document.getElementById(storageCount).appendChild(label);
-        document.getElementById("label" +storageCount).innerHTML = "Storage " + storageCount;
+        label.setAttribute("id", "labelstorage" + storageCount);
+        document.getElementById("storage"+storageCount).appendChild(label);
+        document.getElementById("labelstorage" +storageCount).innerHTML = "Storage " + storageCount;
 
         var inputText = document.createElement("INPUT");
         inputText.setAttribute("type", "text");
-        inputText.setAttribute("name", "color-name" + storageCount);
+        inputText.setAttribute("name", "storage-option" + storageCount);
         inputText.setAttribute("class", "form-control  mt-2");
-        document.getElementById(storageCount).appendChild(inputText);
+        document.getElementById("storage"+storageCount).appendChild(inputText);
 
          var divContainer = document.createElement("DIV");
         divContainer.setAttribute("class", " form-group mt-3 col-md-5");
@@ -341,7 +341,7 @@
     }
 
     function removeStorageElement() {
-        document.getElementById(storageCount).remove();
+        document.getElementById("storage"+storageCount).remove();
         document.getElementById("price"+ storageCount).remove();
         storageCount = storageCount - 1;
     }
