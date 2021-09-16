@@ -60,6 +60,7 @@ router.get('/add-product',verifyLogin,(req,res)=>{
 
 router.post('/add-product',verifyLogin,(req,res)=>{
     console.log(req.body);
+    console.log(req.files.colorimage);
 })
 
 

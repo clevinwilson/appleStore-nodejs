@@ -4,7 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var hbs= require('express-handlebars');
-var session = require('express-session')
+var session = require('express-session');
+var fileUpload = require('express-fileupload');
 
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin')
@@ -33,6 +34,7 @@ db.connect((err)=>{
   }
 })
 
+app.use(fileUpload());
 app.use('/', usersRouter);
 app.use('/admin',adminRouter);
 
