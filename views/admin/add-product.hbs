@@ -46,7 +46,7 @@
                                     </div>
                                 </div>
                                 {{/if}}
-                                <form action="/owner/add-movie" id="submit-form" method="post"
+                                <form action="/admin/add-product" id="submit-form" method="post"
                                     enctype="multipart/form-data">
                                     <div class="card-body">
                                         <span style="margin-left: 13px; color: green;" id="check_availability_movie"
@@ -73,6 +73,18 @@
                                                 <button style="border-radius: 20px;" class="m-1 btn btn-success"
                                                     id="add" onclick="addElement()">+</button>
                                             </div>
+
+                                             <div class="form-group m-3 col-md-12"> 
+                                                <div class="row">
+                                                    <label class="col-md-12" for="processor ">All Colors</label>
+                                                    <input style="border-color:#b4e3eb;" type="file"
+                                                        class="form-control col-md-5 mt-2" name="all-colors"
+                                                        onchange="allColorImage(event)" required>
+                                                    <img style="object-fit: contain;" class="col-md-3 mt-2 color-image" src=""  height="40px" width="40px" id="all-color-image">
+
+                                                </div>
+                                            </div>
+                                            
                                             <div class="form-group mt-3 col-md-5">
                                                 <label for="processor">Color</label>
                                                 <input style="border-color:#b4e3eb;" type="text"
@@ -83,7 +95,7 @@
                                                 <label for="Trailer Link" class="col-md-12">Image</label>
                                                 <div class="row">
                                                     <input style="border-color:#b4e3eb;" type="file"
-                                                        class="form-control col-md-9 mt-2" name="Image"
+                                                        class="form-control col-md-9 mt-2" name="color"
                                                         onchange="viewImage(event,1)" required>
                                                     <img class="col-md-3 mt-2 color-image" src="" id="color-image1"
                                                         height="40px" width="40px">
@@ -108,15 +120,15 @@
                                             </div>
                                            
                                                 <div class="form-group mt-3 col-md-5">
-                                                    <label for="color">Storage 1</label>
+                                                    <label for="color">Storage </label>
                                                     <input style="border-color:#b4e3eb;" type="text"
-                                                        class="form-control  mt-2" id="castas" name="castas"
+                                                        class="form-control  mt-2" id="storage" name="storage"
                                                         required>
                                                 </div>
                                                 <div class="form-group mt-3 col-md-5">
-                                                    <label for="color">Price 1</label>
+                                                    <label for="color">Price </label>
                                                     <input style="border-color:#b4e3eb;" type="text"
-                                                        class="form-control  mt-2" id="castas" name="castas"
+                                                        class="form-control  mt-2" id="price" name="price"
                                                         required>
                                                 </div>
                                             
@@ -136,7 +148,7 @@
                                                 <label for="Trailer Link" class="col-md-12">Processor Image</label>
                                                 <div class="row">
                                                     <input style="border-color:#b4e3eb;" type="file"
-                                                        class="form-control col-md-9 mt-2" name="Image"
+                                                        class="form-control col-md-9 mt-2" name="processor-image"
                                                         onchange="processorImage(event)" required>
                                                     <img style="    object-fit: contain;" class="col-md-3 mt-2" src="" id="processor-img" height="40px"
                                                         width="40px">
@@ -157,7 +169,7 @@
                                         <div class="form-group mt-3 col-md-10">
                                             <img src="" id="product-image" >
                                             <input style="border-color:#b4e3eb;" type="file"
-                                                class="form-control col-md-12 mt-2" name="Image"
+                                                class="form-control col-md-12 mt-2" name="product-image"
                                                 onchange="productImage(event)" required>
                                         </div>
                                       
@@ -225,6 +237,10 @@
 
     function productImage(event) {
         document.getElementById('product-image').src = URL.createObjectURL(event.target.files[0]);
+    }
+
+    function allColorImage(even){
+         document.getElementById('all-color-image').src = URL.createObjectURL(event.target.files[0]);
     }
 </script>
 

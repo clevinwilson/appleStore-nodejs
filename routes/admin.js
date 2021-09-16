@@ -58,6 +58,9 @@ router.get('/add-product',verifyLogin,(req,res)=>{
     res.render('admin/add-product',{admin:req.session.admin})
 })
 
+router.post('/add-product',verifyLogin,(req,res)=>{
+    console.log(req.body);
+})
 
 
 
