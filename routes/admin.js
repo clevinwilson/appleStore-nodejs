@@ -111,6 +111,24 @@ router.post('/add-product', verifyLogin, async (req, res) => {
     })
 })
 
+//add category 
+router.get('/add-category',verifyLogin,(req,res)=>{
+    res.render('admin/add-category',{admin: req.session.admin,categorySucc:req.session.categorySucc,categoryError:req.session.categoryError});
+    req.session.categorySucc=false;
+    req.session.categoryError=false
+})
+
+router.post('/add-category',(req,res)=>{
+    productHelpers.addCategory(req.body).then((response)=>{
+        if(response){
+            req.session.categorySucc="Added Successfully";
+            res.redirect('/admin/add-category');
+        }else{
+            req.session.categoryError = "Something went wrong try again or Category already exists .";
+            res.redirect('/admin/add-category');
+        }
+    })
+})
 
 
 
