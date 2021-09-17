@@ -1,4 +1,4 @@
-const { request, response } = require("../app");
+
 var collection=require('../config/collection');
 var db=require('../config/connection');
 var bcrypt=require('bcrypt');
@@ -23,5 +23,6 @@ module.exports={
             resolve({ status: false });
            }
        })
-    }
+    },
+ 
 }

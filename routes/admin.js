@@ -1,7 +1,9 @@
+
+const { response } = require('express');
 var express = require('express');
 var router = express.Router();
-var adminHelper = require('../helpers/admin-helpers');
-var productHelper =require('../helpers/product-helpers');
+var adminHelpers = require('../helpers/admin-helpers');
+const productHelpers = require('../helpers/product-helpers');
 
 
 
@@ -21,7 +23,7 @@ router.get('/', (req, res) => {
     req.session.adminLoginError = false;
 })
 router.post('/login', (req, res) => {
-    adminHelper.doLogin(req.body).then((response) => {
+    adminHelpers.doLogin(req.body).then((response) => {
         if (response.status) {
             if (response.status) {
                 console.log(response.admin);
@@ -54,14 +56,58 @@ router.get('/logout', (req, res) => {
 })
 
 //add product 
-router.get('/add-product',verifyLogin,(req,res)=>{
-    res.render('admin/add-product',{admin:req.session.admin})
+router.get('/add-product', verifyLogin, (req, res) => {
+    res.render('admin/add-product', { admin: req.session.admin })
 })
 
-router.post('/add-product',verifyLogin,(req,res)=>{
+router.post('/add-product', verifyLogin, async (req, res) => {
     console.log(req.body);
-    console.log(req.files.colorimage);
+    productHelpers.addProduct(req.body).then((response)=>{
+
+
+        if(Array.isArray(req.files.colorimage)){
+            if (req.files.colorimage) {
+                let image = req.files.colorimage;
+                for (var i = 0; i < req.files.colorimage.length; i++) {
+                    image[i].mv('./public/device-colors/' + req.body.productname+i + '.jpg', (err) => {
+                        if (!err) {
+                            // req.session.imagesucc="Photo Updated successfully"
+                            // res.redirect('/admin/profile')
+                            console.log('succ');
+                        } else {
+                            // req.session.imgerror="Something went wrong try again"
+                            // res.redirect('/admin/profile')
+                            console.log('err');
+                        }
+                    })
+        
+                }
+            }
+        }else{
+    
+            if(req.files.colorimage){
+                let colorimage=req.files.colorimage
+                colorimage.mv('./public/device-colors/' + req.body.productname+ 'q' + '.jpg',(err)=>{
+                  if(!err){
+                    req.session.imagesucc="Photo Updated successfully"
+                    // res.redirect('/admin/profile')
+                  }else{
+                    req.session.imgerror="Something went wrong try again"
+                    // res.redirect('/admin/profile')
+                  }
+                })
+                
+              }
+        }
+
+    })
 })
+
+
+
+
+
+
 
 
 

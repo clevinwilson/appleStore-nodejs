@@ -79,7 +79,7 @@
                                                     <input style="border-color:#b4e3eb;" type="file"
                                                         class="form-control col-md-5 mt-2" name="all-colors"
                                                         onchange="allColorImage(event)" required>
-                                                    <img style="object-fit: contain;" class="col-md-3 mt-2 color-image" src=""  height="40px" width="40px" id="all-color-image">
+                                                    <img style="object-fit: contain;" class="col-md-1 mt-2 color-image" src=""  height="40px" width="40px" id="all-color-image">
 
                                                 </div>
                                             </div>
@@ -107,7 +107,7 @@
 
                                         {{!-- storage --}}
 
-                                        <div style=" border-style: solid; border-color: #ffbeb3;" class="row m-1 mt-5"
+                                        {{!-- <div style=" border-style: solid; border-color: #ffbeb3;" class="row m-1 mt-5"
                                             id="storage">
                                             <div class="form-group mt-1 col-md-12">
                                                 <label for="storage">Storage</label>
@@ -132,11 +132,11 @@
                                                 </div>
                                             
                                             
-                                        </div>
+                                        </div> --}}
 
 
                                         {{!-- Processor --}}
-                                        <div class="row ml-1">
+                                        {{!-- <div class="row ml-1">
                                             <div class="form-group mt-3 col-md-5">
                                                 <label for="processor">Processor</label>
                                                 <input style="border-color:#b4e3eb;" type="text"
@@ -154,7 +154,7 @@
 
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         {{!-- <div class="form-group mt-3 col-md-10">
                                             <label for="processor">Processor</label>
@@ -163,14 +163,14 @@
                                                 required>
                                         </div> --}}
 
-                                         <hr>
+                                         {{!-- <hr>
                                         <label class="ml-3" for=" Trailer Link col-md-12">Product Image</label>
                                         <div class="form-group mt-3 col-md-10">
                                             <img src="" id="product-image" >
                                             <input style="border-color:#b4e3eb;" type="file"
                                                 class="form-control col-md-12 mt-2" name="product-image"
                                                 onchange="productImage(event)" required>
-                                        </div>
+                                        </div> --}}
                                       
                                         <center>
                                             <a href="/owner/movie-management"
@@ -287,7 +287,7 @@
 
         var input = document.createElement("INPUT");
         input.setAttribute("type", "file");
-        input.setAttribute("name", "color" + count);
+        input.setAttribute("name", "colorimage");
         input.setAttribute("class", "form-control col-md-9 mt-3 ");
         input.setAttribute('onchange', `viewImage(event,'${count}')`);
         document.getElementById('color-row' + count).appendChild(input);
