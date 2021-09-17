@@ -57,49 +57,57 @@ router.get('/logout', (req, res) => {
 
 //add product 
 router.get('/add-product', verifyLogin, (req, res) => {
-    res.render('admin/add-product', { admin: req.session.admin })
+    res.render('admin/add-product', { admin: req.session.admin,deviceError:req.session.deviceError,deviceSucc:req.session.deviceSucc })
+    req.session.deviceError=false;
+    req.session.deviceSucc=false;
 })
 
 router.post('/add-product', verifyLogin, async (req, res) => {
-    console.log(req.body);
-    productHelpers.addProduct(req.body).then((response)=>{
-
-
-        if(Array.isArray(req.files.colorimage)){
+    productHelpers.addProduct(req.body).then((response) => {
+        if (Array.isArray(req.files.colorimage)) {
             if (req.files.colorimage) {
-                let image = req.files.colorimage;
+                let colorimage = req.files.colorimage;
                 for (var i = 0; i < req.files.colorimage.length; i++) {
-                    image[i].mv('./public/device-colors/' + req.body.productname+i + '.jpg', (err) => {
-                        if (!err) {
-                            // req.session.imagesucc="Photo Updated successfully"
-                            // res.redirect('/admin/profile')
-                            console.log('succ');
-                        } else {
-                            // req.session.imgerror="Something went wrong try again"
-                            // res.redirect('/admin/profile')
-                            console.log('err');
+                    colorimage[i].mv('./public/device-colors/' + response + i + '.jpg', (err) => {
+                        if (err) {
+                            req.session.deviceError = "Something went wrong try again"
+                             res.redirect('/admin/add-product')
+                            
                         }
                     })
-        
+
                 }
             }
-        }else{
-    
-            if(req.files.colorimage){
-                let colorimage=req.files.colorimage
-                colorimage.mv('./public/device-colors/' + req.body.productname+ 'q' + '.jpg',(err)=>{
-                  if(!err){
-                    req.session.imagesucc="Photo Updated successfully"
-                    // res.redirect('/admin/profile')
-                  }else{
-                    req.session.imgerror="Something went wrong try again"
-                    // res.redirect('/admin/profile')
-                  }
+        } else {
+
+            if (req.files.colorimage) {
+                let colorimage = req.files.colorimage
+                colorimage.mv('./public/device-colors/' + response + 0 + '.jpg', (err) => {
+                    if (err) {
+                        req.session.deviceError = "Something went wrong try again"
+                         res.redirect('/admin/add-product');
+                        
+                    }
                 })
-                
-              }
+
+            }
         }
 
+
+
+        let processorimage = req.files.processorimage;
+        let productimage = req.files.productimage;
+        processorimage.mv('./public/device-processor/' + response + '.jpg', (err) => {
+            productimage.mv('./public/device-image/' + response + '.jpg', (err) => {
+                if (!err) {
+                    req.session.deviceSucc = "Added Successfully"
+                    res.redirect('/admin/add-product');
+                } else {
+                    req.session.deviceError = "Something went wrong try again"
+                    res.redirect('/admin/add-product');
+                }
+            })
+        })
     })
 })
 

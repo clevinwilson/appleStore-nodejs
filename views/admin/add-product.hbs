@@ -35,14 +35,14 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Details</h6>
                                 </div>
                                 <div class="message p-3">
-                                    {{#if addMovieSucc}}
+                                    {{#if deviceSucc}}
                                     <div class="alert alert-success" role="alert">
-                                        {{addMovieSucc}}
+                                        {{deviceSucc}}
                                     </div>
                                     {{/if}}
-                                    {{#if addMovieErr}}
+                                    {{#if deviceError}}
                                     <div class="alert alert-danger" role="alert">
-                                        {{addMovieErr}}
+                                        {{deviceError}}
                                     </div>
                                 </div>
                                 {{/if}}
@@ -116,7 +116,7 @@
 
                                         {{!-- storage --}}
 
-                                        <div style=" border-style: solid; border-color: #ffbeb3;" class="row m-1 mt-5"
+                                        {{!-- <div style=" border-style: solid; border-color: #ffbeb3;" class="row m-1 mt-5"
                                             id="storage">
                                             <div class="form-group mt-1 col-md-12">
                                                 <label for="storage">Storage</label>
@@ -141,7 +141,7 @@
                                                 </div>
                                             
                                             
-                                        </div>
+                                        </div> --}}
 
 
                                         {{!-- Processor --}}
@@ -156,7 +156,7 @@
                                                 <label for="Trailer Link" class="col-md-12">Processor Image</label>
                                                 <div class="row">
                                                     <input style="border-color:#b4e3eb;" type="file"
-                                                        class="form-control col-md-9 mt-2" name="processor-image"
+                                                        class="form-control col-md-9 mt-2" name="processorimage"
                                                         onchange="processorImage(event)" required>
                                                     <img style="    object-fit: contain;" class="col-md-3 mt-2" src="" id="processor-img" height="40px"
                                                         width="40px">
@@ -177,7 +177,7 @@
                                         <div class="form-group mt-3 col-md-10">
                                             <img src="" id="product-image" >
                                             <input style="border-color:#b4e3eb;" type="file"
-                                                class="form-control col-md-12 mt-2" name="product-image"
+                                                class="form-control col-md-12 mt-2" name="productimage"
                                                 onchange="productImage(event)" required>
                                         </div>
                                       
@@ -273,7 +273,7 @@
 
         var inputText = document.createElement("INPUT");
         inputText.setAttribute("type", "text");
-        inputText.setAttribute("name", "color-name" + count);
+        inputText.setAttribute("name", "color");
         inputText.setAttribute("class", "form-control col-md-12 mt-2");
         document.getElementById(count).appendChild(inputText);
 
@@ -325,7 +325,7 @@
 
 
 {{!-- product storage --}}
-<script>
+{{!-- <script>
     let storageCount = 1;
     function addStorageElement() {
         storageCount = storageCount + 1;
@@ -342,7 +342,7 @@
 
         var inputText = document.createElement("INPUT");
         inputText.setAttribute("type", "text");
-        inputText.setAttribute("name", "storage" + storageCount);
+        inputText.setAttribute("name", "storagesize");
         inputText.setAttribute("class", "form-control  mt-2");
         document.getElementById("storage"+storageCount).appendChild(inputText);
 
@@ -358,7 +358,7 @@
 
         var inputText = document.createElement("INPUT");
         inputText.setAttribute("type", "text");
-        inputText.setAttribute("name", "storageprice" + storageCount);
+        inputText.setAttribute("name", "storageprice");
         inputText.setAttribute("class", "form-control  mt-2");
         document.getElementById("price"+storageCount).appendChild(inputText);
     }
@@ -368,7 +368,7 @@
         document.getElementById("price"+ storageCount).remove();
         storageCount = storageCount - 1;
     }
-</script>
+</script> --}}
 
 
 
