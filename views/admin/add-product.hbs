@@ -54,12 +54,21 @@
                                             style="font-size:12px;"></span>
 
                                         {{!-- Product Name --}}
-                                        <div class="form-group mt-3 col-md-10">
+                                      <div class="row m-2">
+                                            <div class="form-group mt-3 col-md-5">
                                             <label for="product">Product Name</label>
                                             <input style="border-color:#b4e3eb;" type="text"
                                                 class="form-control col-md-12 mt-2" id="productname" name="productname"
                                                 required>
                                         </div>
+
+                                        <div class="form-group mt-3 col-md-5">
+                                            <label for="product">Product Price</label>
+                                            <input style="border-color:#b4e3eb;" type="text"
+                                                class="form-control col-md-12 mt-2" id="productprice" name="productprice"
+                                                required>
+                                        </div>
+                                      </div>
 
                                         {{!-- Color --}}
                                         <div style=" border-style: solid; border-color: #67c2d6;" class="row m-1"
@@ -77,7 +86,7 @@
                                                 <div class="row">
                                                     <label class="col-md-12" for="processor ">All Colors</label>
                                                     <input style="border-color:#b4e3eb;" type="file"
-                                                        class="form-control col-md-5 mt-2" name="all-colors"
+                                                        class="form-control col-md-5 mt-2" name="allcolors"
                                                         onchange="allColorImage(event)" required>
                                                     <img style="object-fit: contain;" class="col-md-1 mt-2 color-image" src=""  height="40px" width="40px" id="all-color-image">
 
@@ -107,7 +116,7 @@
 
                                         {{!-- storage --}}
 
-                                        {{!-- <div style=" border-style: solid; border-color: #ffbeb3;" class="row m-1 mt-5"
+                                        <div style=" border-style: solid; border-color: #ffbeb3;" class="row m-1 mt-5"
                                             id="storage">
                                             <div class="form-group mt-1 col-md-12">
                                                 <label for="storage">Storage</label>
@@ -127,16 +136,16 @@
                                                 <div class="form-group mt-3 col-md-5">
                                                     <label for="color">Price </label>
                                                     <input style="border-color:#b4e3eb;" type="text"
-                                                        class="form-control  mt-2" id="price" name="price"
+                                                        class="form-control  mt-2" id="storageprice" name="storageprice"
                                                         required>
                                                 </div>
                                             
                                             
-                                        </div> --}}
+                                        </div>
 
 
                                         {{!-- Processor --}}
-                                        {{!-- <div class="row ml-1">
+                                        <div class="row ml-1">
                                             <div class="form-group mt-3 col-md-5">
                                                 <label for="processor">Processor</label>
                                                 <input style="border-color:#b4e3eb;" type="text"
@@ -154,7 +163,7 @@
 
                                                 </div>
                                             </div>
-                                        </div> --}}
+                                        </div>
 
                                         {{!-- <div class="form-group mt-3 col-md-10">
                                             <label for="processor">Processor</label>
@@ -163,14 +172,14 @@
                                                 required>
                                         </div> --}}
 
-                                         {{!-- <hr>
+                                         <hr>
                                         <label class="ml-3" for=" Trailer Link col-md-12">Product Image</label>
                                         <div class="form-group mt-3 col-md-10">
                                             <img src="" id="product-image" >
                                             <input style="border-color:#b4e3eb;" type="file"
                                                 class="form-control col-md-12 mt-2" name="product-image"
                                                 onchange="productImage(event)" required>
-                                        </div> --}}
+                                        </div>
                                       
                                         <center>
                                             <a href="/owner/movie-management"
@@ -333,7 +342,7 @@
 
         var inputText = document.createElement("INPUT");
         inputText.setAttribute("type", "text");
-        inputText.setAttribute("name", "storage-option" + storageCount);
+        inputText.setAttribute("name", "storage" + storageCount);
         inputText.setAttribute("class", "form-control  mt-2");
         document.getElementById("storage"+storageCount).appendChild(inputText);
 
@@ -349,7 +358,7 @@
 
         var inputText = document.createElement("INPUT");
         inputText.setAttribute("type", "text");
-        inputText.setAttribute("name", "color-name" + storageCount);
+        inputText.setAttribute("name", "storageprice" + storageCount);
         inputText.setAttribute("class", "form-control  mt-2");
         document.getElementById("price"+storageCount).appendChild(inputText);
     }
