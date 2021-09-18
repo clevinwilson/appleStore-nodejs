@@ -1,4 +1,5 @@
 
+const { ObjectID } = require('bson')
 const { response } = require('express')
 var collection = require('../config/collection')
 const db = require('../config/connection')
@@ -23,6 +24,20 @@ module.exports = {
                     resolve(response);
                 })
             }
+        })
+    },
+    getCategory:()=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.CATEGORY_COLLECTION).find().toArray().then((response)=>{
+               resolve(response)
+            })
+        })
+    },
+    deleteCategory:(categoryId)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.CATEGORY_COLLECTION).removeOne({_id:ObjectID(categoryId)}).then((response)=>{
+                resolve(response);
+            })
         })
     }
 }

@@ -111,7 +111,7 @@ router.post('/add-product', verifyLogin, async (req, res) => {
     })
 })
 
-//add category 
+// category 
 router.get('/add-category',verifyLogin,(req,res)=>{
     res.render('admin/add-category',{admin: req.session.admin,categorySucc:req.session.categorySucc,categoryError:req.session.categoryError});
     req.session.categorySucc=false;
@@ -129,6 +129,22 @@ router.post('/add-category',(req,res)=>{
         }
     })
 })
+
+router.get('/manage-category',verifyLogin,(req,res)=>{
+    productHelpers.getCategory().then((response)=>{
+        res.render('admin/manage-category',{admin:req.session.admin,category:response});
+    })
+})
+
+router.get('/delete-category/:id',verifyLogin,(req,res)=>{
+    productHelpers.deleteCategory(req.params.id).then((response)=>{
+        if(response){
+            res.json({status:true})
+        }
+    })
+})
+
+
 
 
 
