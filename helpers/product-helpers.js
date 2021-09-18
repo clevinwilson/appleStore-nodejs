@@ -13,8 +13,9 @@ module.exports = {
         })
     },
     addCategory:(category)=>{
-        return new Promise((resolve,reject)=>{
-            let categoryExist=db.get().collection(collection.CATEGORY_COLLECTION).findOne({category:category.category});
+        return new Promise(async(resolve,reject)=>{
+            let categoryExist= await db.get().collection(collection.CATEGORY_COLLECTION).findOne({category:category.category});
+            console.log(categoryExist);
             if(categoryExist){
                 resolve(false);
             }else{
