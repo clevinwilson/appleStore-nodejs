@@ -102,13 +102,23 @@ router.post('/add-product', verifyLogin, async (req, res) => {
             productimage.mv('./public/device-image/' + response + '.jpg', (err) => {
                 if (!err) {
                     req.session.deviceSucc = "Added Successfully"
-                    res.redirect('/admin/add-product');
+                    res.render('admin/add-storageoptions',{productId:response});
                 } else {
                     req.session.deviceError = "Something went wrong try again"
                     res.redirect('/admin/add-product');
                 }
             })
         })
+    })
+})
+
+router.get('/add-storageoptions/',(req,res)=>{
+    res.render('admin/add-storageoptions')
+})
+
+router.post('/add-storage/:productId',(req,res)=>{
+    productHelpers.addStorage(req.body,req.params.productId).then((response)=>{
+
     })
 })
 

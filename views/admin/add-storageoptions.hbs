@@ -1,0 +1,210 @@
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        {{>admin-sidebar}}
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800">Storage</h1>
+
+                    <div class="row">
+
+                        <div class="col-lg-11">
+
+                            <!-- Circle Buttons -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Add Storage Options</h6>
+                                </div>
+                                <div class="message p-3">
+                                    {{#if deviceSucc}}
+                                    <div class="alert alert-success" role="alert">
+                                        {{deviceSucc}}
+                                    </div>
+                                    {{/if}}
+                                    {{#if deviceError}}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{deviceError}}
+                                    </div>
+                                </div>
+                                {{/if}}
+
+
+                                {{!-- storage --}}
+
+                                <div style=" border-style: solid; border-color: #ffbeb3;" class="row m-1 mt-5"
+                                    id="storage">
+                                    <div class="form-group mt-1 col-md-12">
+                                        <label for="storage">Add Storage </label>
+                                        <a style="border-radius: 20px;width: 37px;"
+                                            class="m-1 text-white ml-4 btn btn-danger" id="remove"
+                                            onclick="removeStorageElement()">-</a>
+                                        <a style="border-radius: 20px;" class="m-1 text-white btn btn-success" id="add"
+                                            onclick="addStorageElement()">+</a>
+                                    </div>
+                                </div>
+                                <center>
+                                    <a href="/admin/dashboard" class="btn btn-danger  mt-3 mr-2 ">Cancel</a>
+                                    <button type="submit" id="submit" class="btn btn-success  mt-3">Submint</button>
+                                </center>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+
+
+
+
+{{!-- product storage --}}
+<script>
+    let storageCount = 0;
+    function addStorageElement() {
+        storageCount = storageCount + 1;
+
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "/admin/add-storage/{{productId}}");
+        form.setAttribute("class", "col-md-12");
+        form.setAttribute("id", "form" + storageCount);
+        form.style.display = 'inherit'
+        document.getElementById("storage").appendChild(form);
+
+        var divContainer = document.createElement("DIV");
+        divContainer.setAttribute("class", " form-group mt-3 col-md-5");
+        divContainer.setAttribute("id", "storage" + storageCount);
+        document.getElementById("form" + storageCount).appendChild(divContainer);
+
+        var label = document.createElement("LABEL");
+        label.setAttribute("id", "labelstorage" + storageCount);
+        document.getElementById("storage" + storageCount).appendChild(label);
+        document.getElementById("labelstorage" + storageCount).innerHTML = "Storage " + storageCount;
+
+        var inputText = document.createElement("INPUT");
+        inputText.setAttribute("type", "text");
+        inputText.setAttribute("name", "storagesize");
+         inputText.setAttribute("id", "storagesize"+storageCount);
+        inputText.setAttribute("class", "form-control  mt-2");
+        inputText.required = "true";
+        document.getElementById("storage" + storageCount).appendChild(inputText);
+
+        var divContainer = document.createElement("DIV");
+        divContainer.setAttribute("class", " form-group mt-3 col-md-5");
+        divContainer.setAttribute("id", "price" + storageCount);
+        document.getElementById("form" + storageCount).appendChild(divContainer);
+
+        var label = document.createElement("LABEL");
+        label.setAttribute("id", "label-storage-price" + storageCount);
+        document.getElementById("price" + storageCount).appendChild(label);
+        document.getElementById("label-storage-price" + storageCount).innerHTML = "Price " + storageCount;
+
+        var inputText = document.createElement("INPUT");
+        inputText.setAttribute("type", "text");
+        inputText.setAttribute("name", "storageprice");
+        inputText.setAttribute("id", "storageprice"+storageCount);
+        inputText.setAttribute("class", "form-control  mt-2");
+        inputText.required = "true";
+        document.getElementById("price" + storageCount).appendChild(inputText);
+
+        var buttonDiv = document.createElement("DIV");
+        buttonDiv.setAttribute("class", " form-group mt-4");
+        buttonDiv.setAttribute("id", "buttondiv" + storageCount);
+        document.getElementById("form" + storageCount).appendChild(buttonDiv);
+
+        var button = document.createElement('button');
+        button.setAttribute('class', 'btn btn-primary ml-3  mt-4');
+        button.setAttribute('type', 'submit');
+        button.setAttribute('id', 'submit'+storageCount);
+        button.setAttribute('onclick', `checkInputbox(${storageCount})`);
+        button.style.height = '41px';
+        button.innerHTML = 'Add';
+        document.getElementById("buttondiv" + storageCount).appendChild(button);
+
+        var itag= document.createElement('i');
+        itag.setAttribute('class','fas fa-check-circle ');
+        itag.setAttribute('id','tick'+storageCount);
+        itag.style.color='green';
+        itag.style.fontSize='27px';
+        itag.style.display='none';
+        itag.style.marginTop='36px'
+        document.getElementById("buttondiv" + storageCount).appendChild(itag);
+        
+
+    }
+
+    function removeStorageElement() {
+        document.getElementById("form" + storageCount).remove();
+        storageCount = storageCount - 1;
+    }
+</script>
+
+<script>
+    function checkInputbox(storageCount) {
+        if (document.getElementById("storagesize"+ storageCount).value.length == 0 && document.getElementById("storageprice"+ storageCount).value.length == 0 ) {
+            alert("empty");
+        }else{
+            document.getElementById("form"+ storageCount).id='submited';
+            document.getElementById("storagesize"+storageCount).readOnly = true;
+            document.getElementById("storageprice"+storageCount).readOnly = true;
+            document.getElementById("submit"+ storageCount).style.display='none';
+            document.getElementById("tick"+ storageCount).style.display='block'
+        }
+    }
+</script>
+
+
+
+<style>
+    .color-image {
+        object-fit: contain;
+    }
+</style>
+
+{{!-- <script>
+
+function checkInputbox(){
+  $("#form2").submit((e) => {
+    e.preventDefault()
+    $.ajax({
+      url: '/admin/add-storage',
+      data: $("#form2").serialize(),
+      method: "post",
+      success: function (response) {
+        alert("Form submitted successfully")
+        window.location.reload()
+        //window.location.href="https://google.com"
+      },
+      error: function (err) {
+        alert("Something Error")
+
+      }
+    })
+  })
+}
+</script> --}}
