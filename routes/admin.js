@@ -56,8 +56,9 @@ router.get('/logout', (req, res) => {
 })
 
 //add product 
-router.get('/add-product', verifyLogin, (req, res) => {
-    res.render('admin/add-product', { admin: req.session.admin,deviceError:req.session.deviceError,deviceSucc:req.session.deviceSucc })
+router.get('/add-product', verifyLogin,async (req, res) => {
+    let category = await productHelpers.getCategory();
+    res.render('admin/add-product', { admin: req.session.admin,deviceError:req.session.deviceError,deviceSucc:req.session.deviceSucc,category:category })
     req.session.deviceError=false;
     req.session.deviceSucc=false;
 })

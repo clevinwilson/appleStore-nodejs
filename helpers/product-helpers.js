@@ -5,6 +5,7 @@ var collection = require('../config/collection')
 const db = require('../config/connection')
 module.exports = {
     addProduct:(productDetails)=>{
+        productDetails.status=false;
         return new Promise((resolve,reject)=>{
            db.get().collection(collection.PRODUCT_COLLECTION).insertOne(productDetails).then((response)=>{
          
