@@ -148,15 +148,16 @@
 
             </div>
         </div>
+        {{#each products}}
         <div id="iphones" class="row m-1">
             <div class="col-md-3 col-6 p-0 ">
                 <div class="product-image-outer text-center">
                     <img class="product-image image-compare-iphone-12-pro"
-                        src="images/compare_iphone_12_pro__gmn3556ju3am_large.jpg" alt="Product image">
+                        src="/device-image/{{this._id}}.jpg" alt="Product image">
                     <div class="device-title ">
-                        <h3 class="device-name">iPhone12Pro</h3>
-                        <p class="device-price-spec  ">From ₹119900*</p>
-                        <img class="device-colors" src="images/swatches_iphone_12_pro__for4g8pne0ey_large.jpg"
+                        <h3 class="device-name">{{this.productname}}</h3>
+                        <p class="device-price-spec  ">{{this.productprice}}*</p>
+                        <img class="device-colors" src="/device-all-colors/{{this._id}}.jpg"
                             alt="">
                         <div class="product-buy">
                             <a href="/iphone-12" class="device-buy-btn  btn btn-primary">Buy</a>
@@ -171,13 +172,13 @@
                         <p class="mt-2 device-details-text">5G capable</p>
                     </div>
                     <div class="device-chip mt-5 ">
-                        <img src="images/icon_a14__e0ozekurulm6_large.png" alt="">
-                        <p class="mt-2 device-details-text">A14 Bionic chip</p>
+                        <img src="/device-processor/{{this._id}}.jpg" alt="">
+                        <p class="mt-2 device-details-text">{{this.processor}}</p>
                         <p class="device-subtext">Fastest chip in a smartphone</p>
                     </div>
                     <div class="mt-5 device-details">
-                        <h4 class="device-details-head">2TB</h4>
-                        <p class="device-details-text">Maximum configurable storage2</p>
+                        <img src="images/icon_battery__d3vjqufl1mgm_large_2x.png" style="width: 51px; height: 25px;" alt="">
+                        <p class="mt-2 device-subtext">Up to 28 hours of video playback3</p>
                     </div>
                     <div class="device-memory mt-5">
                         <img src="images/icon_triple_camera__e6vgz42wpwom_large.png" alt="">
@@ -206,6 +207,7 @@
 
 
         </div>
+        {{/each}}
     </div>
 </section>
 

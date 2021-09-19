@@ -76,5 +76,12 @@ module.exports = {
                 resolve({status:false})
             }
         })
+    },
+    getProducts:()=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.PRODUCT_COLLECTION).find().toArray().then((products)=>{
+                resolve(products)
+            })
+        })
     }
 }
