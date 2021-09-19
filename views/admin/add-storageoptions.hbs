@@ -1,4 +1,3 @@
-
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -32,6 +31,11 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Add Storage Options</h6>
                                 </div>
                                 <div class="message p-3">
+                                    <div style="display: none;" class="alert alert-danger" id="error" role="alert">
+                                        Add Storage Options.
+                                    </div>
+                                </div>
+                                <div class="message p-3">
                                     {{#if deviceSucc}}
                                     <div class="alert alert-success" role="alert">
                                         {{deviceSucc}}
@@ -60,7 +64,7 @@
                                 </div>
                                 <center>
                                     <a href="/admin/dashboard" class="btn btn-danger  mt-3 mr-2 ">Cancel</a>
-                                    <button type="submit" id="submit" class="btn btn-success  mt-3">Submint</button>
+                                    <a onclick="checkProduct()" class="btn btn-success  mt-3 text-white">Submint</a>
                                 </center>
                             </div>
 
@@ -87,14 +91,22 @@
     let storageCount = 0;
     function addStorageElement() {
         storageCount = storageCount + 1;
-
         var form = document.createElement("form");
+        form.setAttribute("action", "  ");
         form.setAttribute("method", "post");
-        form.setAttribute("action", "/admin/add-storage/{{productId}}");
+        //  form.setAttribute("action", "/admin/add-storage/{{productId}}"); 
         form.setAttribute("class", "col-md-12");
         form.setAttribute("id", "form" + storageCount);
         form.style.display = 'inherit'
         document.getElementById("storage").appendChild(form);
+
+        var productIdInput = document.createElement("INPUT");
+        productIdInput.setAttribute("type", "text");
+        productIdInput.setAttribute("name", "productId");
+        productIdInput.setAttribute('value', '{{productId}}')
+        productIdInput.style.display = 'none';
+        productIdInput.required = "true";
+        document.getElementById("form" + storageCount).appendChild(productIdInput);
 
         var divContainer = document.createElement("DIV");
         divContainer.setAttribute("class", " form-group mt-3 col-md-5");
@@ -109,10 +121,12 @@
         var inputText = document.createElement("INPUT");
         inputText.setAttribute("type", "text");
         inputText.setAttribute("name", "storagesize");
-         inputText.setAttribute("id", "storagesize"+storageCount);
+        inputText.setAttribute("id", "storagesize" + storageCount);
         inputText.setAttribute("class", "form-control  mt-2");
         inputText.required = "true";
         document.getElementById("storage" + storageCount).appendChild(inputText);
+
+
 
         var divContainer = document.createElement("DIV");
         divContainer.setAttribute("class", " form-group mt-3 col-md-5");
@@ -127,7 +141,7 @@
         var inputText = document.createElement("INPUT");
         inputText.setAttribute("type", "text");
         inputText.setAttribute("name", "storageprice");
-        inputText.setAttribute("id", "storageprice"+storageCount);
+        inputText.setAttribute("id", "storageprice" + storageCount);
         inputText.setAttribute("class", "form-control  mt-2");
         inputText.required = "true";
         document.getElementById("price" + storageCount).appendChild(inputText);
@@ -137,24 +151,24 @@
         buttonDiv.setAttribute("id", "buttondiv" + storageCount);
         document.getElementById("form" + storageCount).appendChild(buttonDiv);
 
-        var button = document.createElement('button');
-        button.setAttribute('class', 'btn btn-primary ml-3  mt-4');
-        button.setAttribute('type', 'submit');
-        button.setAttribute('id', 'submit'+storageCount);
+        var button = document.createElement('a');
+        button.setAttribute('class', 'btn btn-primary ml-3  mt-4 text-white');
+        button.setAttribute("id", "submitbtn" + storageCount);
         button.setAttribute('onclick', `checkInputbox(${storageCount})`);
         button.style.height = '41px';
         button.innerHTML = 'Add';
         document.getElementById("buttondiv" + storageCount).appendChild(button);
 
-        var itag= document.createElement('i');
-        itag.setAttribute('class','fas fa-check-circle ');
-        itag.setAttribute('id','tick'+storageCount);
-        itag.style.color='green';
-        itag.style.fontSize='27px';
-        itag.style.display='none';
-        itag.style.marginTop='36px'
+        var itag = document.createElement('i');
+        itag.setAttribute('class', 'fas fa-check-circle ');
+        itag.setAttribute('id', 'tick' + storageCount);
+        itag.style.color = 'green';
+        itag.style.fontSize = '27px';
+        itag.style.display = 'none';
+        itag.style.marginTop = '36px'
+        itag.style.marginLeft = '22px'
         document.getElementById("buttondiv" + storageCount).appendChild(itag);
-        
+
 
     }
 
@@ -165,18 +179,42 @@
 </script>
 
 <script>
+
     function checkInputbox(storageCount) {
-        if (document.getElementById("storagesize"+ storageCount).value.length == 0 && document.getElementById("storageprice"+ storageCount).value.length == 0 ) {
-            alert("empty");
-        }else{
-            document.getElementById("form"+ storageCount).id='submited';
-            document.getElementById("storagesize"+storageCount).readOnly = true;
-            document.getElementById("storageprice"+storageCount).readOnly = true;
-            document.getElementById("submit"+ storageCount).style.display='none';
-            document.getElementById("tick"+ storageCount).style.display='block'
-        }
+        $.ajax({
+            url: '/admin/add-storage',
+            data: $("#form" + storageCount).serialize(),
+            method: "post",
+            success: function (response) {
+                if (response.status) {
+                    document.getElementById("form" + storageCount).id = 'submited';
+                    document.getElementById("storagesize" + storageCount).readOnly = true;
+                    document.getElementById("storageprice" + storageCount).readOnly = true;
+                    document.getElementById("submitbtn" + storageCount).style.display = 'none';
+                    document.getElementById("tick" + storageCount).style.display = 'block'
+                }
+            }
+
+        })
+    }
+
+
+    function checkProduct() {
+        $.ajax({
+            url: '/admin/check-product/' + '{{productId}}',
+            method: 'get',
+            success: (response) => {
+                if (response.status) {
+                    window.location.href="/admin/add-product"
+                } else {
+                    document.getElementById("error").style.display = "block"
+                }
+            }
+        })
     }
 </script>
+
+
 
 
 
@@ -185,26 +223,3 @@
         object-fit: contain;
     }
 </style>
-
-{{!-- <script>
-
-function checkInputbox(){
-  $("#form2").submit((e) => {
-    e.preventDefault()
-    $.ajax({
-      url: '/admin/add-storage',
-      data: $("#form2").serialize(),
-      method: "post",
-      success: function (response) {
-        alert("Form submitted successfully")
-        window.location.reload()
-        //window.location.href="https://google.com"
-      },
-      error: function (err) {
-        alert("Something Error")
-
-      }
-    })
-  })
-}
-</script> --}}

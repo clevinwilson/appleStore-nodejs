@@ -58,10 +58,12 @@ router.get('/logout', (req, res) => {
 //add product 
 router.get('/add-product', verifyLogin,async (req, res) => {
     let category = await productHelpers.getCategory();
-    res.render('admin/add-product', { admin: req.session.admin,deviceError:req.session.deviceError,deviceSucc:req.session.deviceSucc,category:category })
+    res.render('admin/add-product', { admin: req.session.admin,deviceError:req.session.deviceError,deviceSucc:req.session.deviceSucc,category:category})
     req.session.deviceError=false;
     req.session.deviceSucc=false;
 })
+
+
 
 router.post('/add-product', verifyLogin, async (req, res) => {
     productHelpers.addProduct(req.body).then((response) => {
@@ -93,16 +95,12 @@ router.post('/add-product', verifyLogin, async (req, res) => {
 
             }
         }
-
-
-
         let processorimage = req.files.processorimage;
         let productimage = req.files.productimage;
         processorimage.mv('./public/device-processor/' + response + '.jpg', (err) => {
             productimage.mv('./public/device-image/' + response + '.jpg', (err) => {
                 if (!err) {
-                    req.session.deviceSucc = "Added Successfully"
-                    res.render('admin/add-storageoptions',{productId:response});
+                    res.render('admin/add-storageoptions',{productId:response,admin:req.session.admin});
                 } else {
                     req.session.deviceError = "Something went wrong try again"
                     res.redirect('/admin/add-product');
@@ -112,13 +110,31 @@ router.post('/add-product', verifyLogin, async (req, res) => {
     })
 })
 
-router.get('/add-storageoptions/',(req,res)=>{
-    res.render('admin/add-storageoptions')
+
+
+router.get('/add-storageoptions',verifyLogin,(req,res)=>{
+    res.render('admin/add-storageoptions',{admin:req.session.admin,productId:req.params.productId})
 })
 
-router.post('/add-storage/:productId',(req,res)=>{
-    productHelpers.addStorage(req.body,req.params.productId).then((response)=>{
+router.post('/add-storage',verifyLogin,(req,res)=>{
+    console.log(req.body);
+    productHelpers.addStorage(req.body).then((response)=>{
+       if(response){
+        req.session.deviceSucc = "Added Successfully";
+        res.json({status:true})
+       }else{
+        res.json({status:false})
+       }
+    })
+})
 
+router.get('/check-product/:productId',verifyLogin,(req,res)=>{
+    productHelpers.checkProduct(req.params.productId).then((response)=>{
+       if(response.status){
+           res.json({status:true})
+       }else{
+           res.json({status:false})
+       }
     })
 })
 
@@ -129,7 +145,7 @@ router.get('/add-category',verifyLogin,(req,res)=>{
     req.session.categoryError=false
 })
 
-router.post('/add-category',(req,res)=>{
+router.post('/add-category',verifyLogin,(req,res)=>{
     productHelpers.addCategory(req.body).then((response)=>{
         if(response){
             req.session.categorySucc="Added Successfully";

@@ -142,7 +142,7 @@
             $("#deleteModal").modal('hide')
         })
         $.ajax({
-            url: '/admin/delete-category/' + id,
+            url: '/admin/delete-category',
             method: 'get',
             success: (response) => {
                 if (response.status) {

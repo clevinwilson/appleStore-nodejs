@@ -42,18 +42,39 @@ module.exports = {
             })
         })
     },
-    addStorage: (data, productId) => {
+    addStorage: (data) => {
         data = Object.assign({}, data)
         return new Promise((resolve, reject) => {
             db.get().collection(collection.PRODUCT_COLLECTION)
-                .updateOne({ _id: ObjectId(productId) },
+                .updateOne({ _id: ObjectId(data.productId) },
                     {
                          $push: {storageOptions: data}
                     }
 
                 ).then((response)=>{
-                    // console.log(response);
+                    resolve(response);
                 })
+        })
+    },
+    checkProduct:(productId)=>{
+        return new Promise(async(resolve,reject)=>{
+            let product=await db.get().collection(collection.PRODUCT_COLLECTION).findOne({_id:ObjectID(productId)});
+            if(product.storageOptions[0]){
+                db.get().collection(collection.PRODUCT_COLLECTION)
+                .updateOne({_id:ObjectID(productId)},{
+                    $set:{
+                        status:true
+                    }
+                }).then((response)=>{
+                    if(response){
+                        resolve({status:true});
+                    }else{
+                        resolve({statu:false})
+                    }
+                })
+            }else{
+                resolve({status:false})
+            }
         })
     }
 }
