@@ -7,6 +7,7 @@ module.exports = {
     addProduct: (productDetails) => {
         productDetails.status = false;
         productDetails.storageOptions = [];
+        productDetails.category=ObjectID(productDetails.category)
         return new Promise((resolve, reject) => {
             db.get().collection(collection.PRODUCT_COLLECTION).insertOne(productDetails).then((response) => {
 

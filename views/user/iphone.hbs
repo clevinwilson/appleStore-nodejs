@@ -148,8 +148,8 @@
 
             </div>
         </div>
-        {{#each products}}
         <div id="iphones" class="row m-1">
+              {{#each products}}
             <div class="col-md-3 col-6 p-0 ">
                 <div class="product-image-outer text-center">
                     <img class="product-image image-compare-iphone-12-pro"
@@ -164,7 +164,7 @@
                         </div>
                     </div>
                     <div class="mt-5 device-details">
-                        <h4 style="font-size: 17px;" class="device-details-head">15.5 cm (6.1″) or 17 cm (6.7″)</h4>
+                        <h4 style="font-size: 17px;" class="device-details-head">{{this.display}}</h4>
                         <p class="device-details-text">all-screen OLED display1</p>
                     </div>
                     <div class="device-memory mt-5">
@@ -178,7 +178,7 @@
                     </div>
                     <div class="mt-5 device-details">
                         <img src="images/icon_battery__d3vjqufl1mgm_large_2x.png" style="width: 51px; height: 25px;" alt="">
-                        <p class="mt-2 device-subtext">Up to 28 hours of video playback3</p>
+                        <p class="mt-2 device-subtext">{{this.battery}}</p>
                     </div>
                     <div class="device-memory mt-5">
                         <img src="images/icon_triple_camera__e6vgz42wpwom_large.png" alt="">
@@ -204,10 +204,10 @@
 
                 </div>
             </div>
-
+   {{/each}}
 
         </div>
-        {{/each}}
+     
     </div>
 </section>
 

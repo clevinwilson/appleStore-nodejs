@@ -46,7 +46,7 @@
                                     </div>
                                 </div>
                                 {{/if}}
-                                <form action="/admin/add-product"  method="post" enctype="multipart/form-data" >
+                                <form action="/admin/add-product" method="post" enctype="multipart/form-data">
                                     <div class="card-body">
                                         <span style="margin-left: 13px; color: green;" id="check_availability_movie"
                                             style="font-size:12px;"></span>
@@ -54,29 +54,49 @@
                                             style="font-size:12px;"></span>
 
                                         {{!-- Product Name --}}
-                                      <div class="row m-2">
+                                        <div class="row m-2">
                                             <div class="form-group mt-3 col-md-5">
-                                            <label for="product">Product Name</label>
-                                            <input style="border-color:#b4e3eb;" type="text"
-                                                class="form-control col-md-12 mt-2" id="productname" name="productname"
-                                                required>
+                                                <label for="product">Product Name</label>
+                                                <input style="border-color:#b4e3eb;" type="text"
+                                                    class="form-control col-md-12 mt-2" id="productname"
+                                                    name="productname" required>
+                                            </div>
+
+                                            <div class="form-group mt-3 col-md-5">
+                                                <label for="product">Product Price</label>
+                                                <input style="border-color:#b4e3eb;" type="text"
+                                                    class="form-control col-md-12 mt-2" id="productprice"
+                                                    name="productprice" required>
+                                            </div>
                                         </div>
 
-                                        <div class="form-group mt-3 col-md-5">
-                                            <label for="product">Product Price</label>
-                                            <input style="border-color:#b4e3eb;" type="text"
-                                                class="form-control col-md-12 mt-2" id="productprice" name="productprice"
-                                                required>
+                                        <div class="row m-2">
+
+                                            <div class="form-group mt-3 col-md-5">
+                                                <label for="product">Display</label>
+                                                <input style="border-color:#b4e3eb;" type="text"
+                                                    class="form-control col-md-12 mt-2" id="display" name="display"
+                                                    required>
+                                            </div>
+
+
+                                            <div class="form-group mt-3 col-md-5">
+                                                <label for="product">Battery life</label>
+                                                <input style="border-color:#b4e3eb;" type="text"
+                                                    class="form-control col-md-12 mt-2" id="battery" name="battery"
+                                                    required>
+                                            </div>
                                         </div>
-                                      </div>
 
                                         <div class="form-group mt-3 col-md-5">
                                             <div class="form-group">
                                                 <label for="movietitle">Select Movie</label>
-                                                <select style="background-color: #ebfaf8;" name="category" class="form-control" id="category" required>
+                                                <select style="background-color: #ebfaf8;" name="category"
+                                                    class="form-control" id="category" required>
                                                     <option value="">Select</option>
                                                     {{#each category}}
-                                                    <option name="category" value="{{this._id}}">{{this.category}}</option>
+                                                    <option name="category" value="{{this._id}}">{{this.category}}
+                                                    </option>
                                                     {{/each}}
                                                 </select>
                                             </div>
@@ -87,24 +107,25 @@
                                             id="color">
                                             <div class="form-group mt-1 col-md-12">
                                                 <label for="color">Color</label>
-                                                <button style="border-radius: 20px;width: 37px;"
+                                                <a style="border-radius: 20px;width: 37px;"
                                                     class="m-1 ml-5 btn btn-danger" id="remove"
-                                                    onblur="removeElement()">-</button>
-                                                <button style="border-radius: 20px;" class="m-1 btn btn-success"
-                                                    id="add" onclick="addElement()">+</button>
+                                                    onclick="removeElement()">-</a>
+                                                <a style="border-radius: 20px;" class="m-1 btn btn-success"
+                                                    id="add" onclick="addElement()">+</a>
                                             </div>
 
-                                             <div class="form-group m-3 col-md-12"> 
+                                            <div class="form-group m-3 col-md-12">
                                                 <div class="row">
                                                     <label class="col-md-12" for="processor ">All Colors</label>
                                                     <input style="border-color:#b4e3eb;" type="file"
                                                         class="form-control col-md-5 mt-2" name="allcolors"
                                                         onchange="allColorImage(event)" required>
-                                                    <img style="object-fit: contain;" class="col-md-1 mt-2 color-image" src=""  height="40px" width="40px" id="all-color-image">
+                                                    <img style="object-fit: contain;" class="col-md-1 mt-2 color-image"
+                                                        src="" height="40px" width="40px" id="all-color-image">
 
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="form-group mt-3 col-md-5">
                                                 <label for="processor">Color</label>
                                                 <input style="border-color:#b4e3eb;" type="text"
@@ -128,8 +149,8 @@
 
                                         {{!-- storage --}}
 
-                                        {{!-- <div style=" border-style: solid; border-color: #ffbeb3;" class="row m-1 mt-5"
-                                            id="storage">
+                                        {{!-- <div style=" border-style: solid; border-color: #ffbeb3;"
+                                            class="row m-1 mt-5" id="storage">
                                             <div class="form-group mt-1 col-md-12">
                                                 <label for="storage">Storage</label>
                                                 <button style="border-radius: 20px;width: 37px;"
@@ -138,21 +159,20 @@
                                                 <button style="border-radius: 20px;" class="m-1 btn btn-success"
                                                     id="add" onclick="addStorageElement()">+</button>
                                             </div>
-                                           
-                                                <div class="form-group mt-3 col-md-5">
-                                                    <label for="color">Storage </label>
-                                                    <input style="border-color:#b4e3eb;" type="text"
-                                                        class="form-control  mt-2" id="storage" name="storage"
-                                                        required>
-                                                </div>
-                                                <div class="form-group mt-3 col-md-5">
-                                                    <label for="color">Price </label>
-                                                    <input style="border-color:#b4e3eb;" type="text"
-                                                        class="form-control  mt-2" id="storageprice" name="storageprice"
-                                                        required>
-                                                </div>
-                                            
-                                            
+
+                                            <div class="form-group mt-3 col-md-5">
+                                                <label for="color">Storage </label>
+                                                <input style="border-color:#b4e3eb;" type="text"
+                                                    class="form-control  mt-2" id="storage" name="storage" required>
+                                            </div>
+                                            <div class="form-group mt-3 col-md-5">
+                                                <label for="color">Price </label>
+                                                <input style="border-color:#b4e3eb;" type="text"
+                                                    class="form-control  mt-2" id="storageprice" name="storageprice"
+                                                    required>
+                                            </div>
+
+
                                         </div> --}}
 
 
@@ -170,8 +190,8 @@
                                                     <input style="border-color:#b4e3eb;" type="file"
                                                         class="form-control col-md-9 mt-2" name="processorimage"
                                                         onchange="processorImage(event)" required>
-                                                    <img style="    object-fit: contain;" class="col-md-3 mt-2" src="" id="processor-img" height="40px"
-                                                        width="40px">
+                                                    <img style="    object-fit: contain;" class="col-md-3 mt-2" src=""
+                                                        id="processor-img" height="40px" width="40px">
 
                                                 </div>
                                             </div>
@@ -180,22 +200,21 @@
                                         <div class="form-group mt-3 col-md-10">
                                             <label for="storage">Default Storage</label>
                                             <input style="border-color:#b4e3eb;" type="text"
-                                                class="form-control col-md-12 mt-2" id="defaultstorage" name="defaultstorage"
-                                                required>
+                                                class="form-control col-md-12 mt-2" id="defaultstorage"
+                                                name="defaultstorage" required>
                                         </div>
 
-                                         <hr>
+                                        <hr>
                                         <label class="ml-3" for=" Trailer Link col-md-12">Product Image</label>
                                         <div class="form-group mt-3 col-md-10">
-                                            <img src="" id="product-image" >
+                                            <img src="" id="product-image">
                                             <input style="border-color:#b4e3eb;" type="file"
                                                 class="form-control col-md-12 mt-2" name="productimage"
                                                 onchange="productImage(event)" required>
                                         </div>
-                                      
+
                                         <center>
-                                            <a href="/admin/dashboard"
-                                                class="btn btn-danger  mt-3 mr-2 ">Cancel</a>
+                                            <a href="/admin/dashboard" class="btn btn-danger  mt-3 mr-2 ">Cancel</a>
                                             <button type="submit" id="submit"
                                                 class="btn btn-success  mt-3">Next</button>
                                         </center>
@@ -251,16 +270,16 @@
         document.getElementById('color-image' + count).src = URL.createObjectURL(event.target.files[0]);
     }
 
-    function processorImage(even){
-        document.getElementById('processor-img').src=URL.createObjectURL(event.target.files[0]);
+    function processorImage(even) {
+        document.getElementById('processor-img').src = URL.createObjectURL(event.target.files[0]);
     }
 
     function productImage(event) {
         document.getElementById('product-image').src = URL.createObjectURL(event.target.files[0]);
     }
 
-    function allColorImage(even){
-         document.getElementById('all-color-image').src = URL.createObjectURL(event.target.files[0]);
+    function allColorImage(even) {
+        document.getElementById('all-color-image').src = URL.createObjectURL(event.target.files[0]);
     }
 </script>
 
@@ -337,47 +356,48 @@
 
 
 {{!-- product storage --}}
-{{!-- <script>
+{{!--
+<script>
     let storageCount = 1;
     function addStorageElement() {
         storageCount = storageCount + 1;
 
         var divContainer = document.createElement("DIV");
         divContainer.setAttribute("class", " form-group mt-3 col-md-5");
-        divContainer.setAttribute("id", "storage"+storageCount);
+        divContainer.setAttribute("id", "storage" + storageCount);
         document.getElementById("storage").appendChild(divContainer);
 
         var label = document.createElement("LABEL");
         label.setAttribute("id", "labelstorage" + storageCount);
-        document.getElementById("storage"+storageCount).appendChild(label);
-        document.getElementById("labelstorage" +storageCount).innerHTML = "Storage " + storageCount;
+        document.getElementById("storage" + storageCount).appendChild(label);
+        document.getElementById("labelstorage" + storageCount).innerHTML = "Storage " + storageCount;
 
         var inputText = document.createElement("INPUT");
         inputText.setAttribute("type", "text");
         inputText.setAttribute("name", "storagesize");
         inputText.setAttribute("class", "form-control  mt-2");
-        document.getElementById("storage"+storageCount).appendChild(inputText);
+        document.getElementById("storage" + storageCount).appendChild(inputText);
 
-         var divContainer = document.createElement("DIV");
+        var divContainer = document.createElement("DIV");
         divContainer.setAttribute("class", " form-group mt-3 col-md-5");
-        divContainer.setAttribute("id", "price"+storageCount);
+        divContainer.setAttribute("id", "price" + storageCount);
         document.getElementById("storage").appendChild(divContainer);
 
         var label = document.createElement("LABEL");
         label.setAttribute("id", "label-storage-price" + storageCount);
-        document.getElementById("price"+storageCount).appendChild(label);
-        document.getElementById( "label-storage-price" + storageCount).innerHTML = "Price " + storageCount;
+        document.getElementById("price" + storageCount).appendChild(label);
+        document.getElementById("label-storage-price" + storageCount).innerHTML = "Price " + storageCount;
 
         var inputText = document.createElement("INPUT");
         inputText.setAttribute("type", "text");
         inputText.setAttribute("name", "storageprice");
         inputText.setAttribute("class", "form-control  mt-2");
-        document.getElementById("price"+storageCount).appendChild(inputText);
+        document.getElementById("price" + storageCount).appendChild(inputText);
     }
 
     function removeStorageElement() {
-        document.getElementById("storage"+storageCount).remove();
-        document.getElementById("price"+ storageCount).remove();
+        document.getElementById("storage" + storageCount).remove();
+        document.getElementById("price" + storageCount).remove();
         storageCount = storageCount - 1;
     }
 </script> --}}

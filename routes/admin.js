@@ -97,14 +97,17 @@ router.post('/add-product', verifyLogin, async (req, res) => {
         }
         let processorimage = req.files.processorimage;
         let productimage = req.files.productimage;
+        let allcolors = req.files.allcolors;
         processorimage.mv('./public/device-processor/' + response + '.jpg', (err) => {
             productimage.mv('./public/device-image/' + response + '.jpg', (err) => {
-                if (!err) {
-                    res.render('admin/add-storageoptions',{productId:response,admin:req.session.admin});
-                } else {
-                    req.session.deviceError = "Something went wrong try again"
-                    res.redirect('/admin/add-product');
-                }
+                allcolors.mv('./public/device-all-colors/' + response + '.jpg', (err) => {
+                    if (!err) {
+                        res.render('admin/add-storageoptions',{productId:response,admin:req.session.admin});
+                    } else {
+                        req.session.deviceError = "Something went wrong try again"
+                        res.redirect('/admin/add-product');
+                    }
+                })
             })
         })
     })
