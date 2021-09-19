@@ -26,7 +26,7 @@ router.get('/imac',(req,res)=>{
 
 //iphone page 
 router.get('/iphone',(req,res)=>{
-  productHelper.getProducts().then((products)=>{
+  productHelper.getPhones().then((products)=>{
     res.render('user/iphone',{products:products})
   })
 })
