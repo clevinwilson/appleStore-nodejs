@@ -2,6 +2,7 @@ const { response } = require('express');
 var express = require('express');
 var router = express.Router();
 var productHelper=require('../helpers/product-helpers')
+var userHelper=require('../helpers/user-helpers')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -15,7 +16,22 @@ router.get('/login',(req,res)=>{
 
 //signup page
 router.get('/signup',(req,res)=>{
-  res.render('user/signup')
+  res.render('user/signup',{signupError:req.session.signupError})
+  req.session.signupError=false;
+})
+
+router.post('/signup',(req,res)=>{
+ if(req.body.firstname.toString().length && req.body.lastname.toString().length && req.body.email.toString().length && req.body.password.toString().length && req.body.password.toString().length > 3){
+  userHelper.doSignup(req.body).then((response)=>{
+    if(response){
+      res.json({status:true})
+    }else{
+      res.json({status:false})
+    }
+  })
+ }else{
+   req.session.signupError="Something went wrong try again"
+ }
 })
 
 

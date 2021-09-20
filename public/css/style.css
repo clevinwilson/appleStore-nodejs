@@ -1582,7 +1582,7 @@ hr.hamburger-hr {
 }
 
 .form-input-padding {
-    padding: 28px;
+    padding: 28px !important;
 }
 
 .form-submit-btn-style {
