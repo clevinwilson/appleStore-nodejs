@@ -71,7 +71,7 @@ router.post('/add-product', verifyLogin, async (req, res) => {
             if (req.files.colorimage) {
                 let colorimage = req.files.colorimage;
                 for (var i = 0; i < req.files.colorimage.length; i++) {
-                    colorimage[i].mv('./public/device-colors/' + response + i + '.jpg', (err) => {
+                    colorimage[i].mv('./public/device-colors/' + response +  req.body.color[i]+ '.jpg', (err) => {
                         if (err) {
                             req.session.deviceError = "Something went wrong try again"
                              res.redirect('/admin/add-product')

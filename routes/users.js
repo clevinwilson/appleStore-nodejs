@@ -94,8 +94,14 @@ router.get('/iphone-12',(req,res)=>{
 })
 
 //buy product page 
-router.get('/buy-product',(req,res)=>{
-  res.render('user/buy-product',{user:req.session.user})
+router.get('/buy-product/:productId',(req,res)=>{
+  productHelper.getProductDetails(req.params.productId).then((productDetails)=>{
+    if(productDetails){
+      res.render('user/buy-product',{user:req.session.user,productDetails:productDetails});
+    }else{
+      res.redirect('/');
+    }
+  })
 })
 
 module.exports = router;

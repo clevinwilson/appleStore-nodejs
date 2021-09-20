@@ -1286,6 +1286,14 @@ hr.hamburger-hr {
     top: 0;
 }
 
+@media screen and (min-width: 768px) {
+    .product-image-cotainer {
+        position: sticky;
+        top: 0;
+        padding: 70px
+    }
+}
+
 .need-help-tag {
     font-size: 12px;
     line-height: 1.33337;
@@ -1306,7 +1314,7 @@ hr.hamburger-hr {
 
 @media screen and (max-width: 768px) {
     .product-title-name {
-        font-size: 19px;
+        font-size: 18px;
         display: block;
         margin-top: auto;
         margin-bottom: auto;
@@ -1319,7 +1327,7 @@ hr.hamburger-hr {
         padding: 0px;
     }
     .product-title-price {
-        font-size: 14px;
+        font-size: 13px;
     }
     .product-image-cotainer {
         padding: 0px !important;

@@ -91,5 +91,16 @@ module.exports = {
             }
            
         })
+    },
+    getProductDetails:(productId)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.PRODUCT_COLLECTION).findOne({_id:ObjectID(productId)}).then((response)=>{
+                if(response){
+                    resolve(response);
+                }else{
+                    resolve(false)
+                }
+            })
+        })
     }
 }
