@@ -182,6 +182,8 @@
                         success: function (response) {
                             if (response.status) {
                                window.location.href='/login'
+                            }else{
+                                window.location.reload()
                             }
                         }
 

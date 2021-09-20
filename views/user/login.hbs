@@ -6,7 +6,12 @@
                     <h1 class="signin-header-text p-3 mb-4"> Please sign in. </h1>
                 </div>
                 <div class="signin-form-container ">
-                    <form action="">
+                     {{#if loginError}}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{loginError}}
+                                    </div>
+                    {{/if}}
+                    <form action="/signin" method="POST">
                         <div class="form-group ">
                             <input type="email" class="form-control signin-input  " id="email" placeholder="Apple ID"
                                 name="email">
@@ -21,7 +26,7 @@
                                 the App Store, and iCloud.</p>
                         </div>
                         <div class="button-submit">
-                            <button type="submit" class="btn btn-primary signin-btn">Sign In</button>
+                            <button type="submit"  class="btn btn-primary signin-btn">Sign In</button>
                         </div>
                     </form>
                     </form>

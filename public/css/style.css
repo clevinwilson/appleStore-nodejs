@@ -1624,8 +1624,8 @@ input::-webkit-inner-spin-button {
     padding-top: 34px;
 }
 .signin-input{
-    border-radius: 10px;
-    padding: 27px;
+    border-radius: 10px !important;
+    padding: 27px !important;
 }
 .form-itune-text{
     font-size: 14px;
