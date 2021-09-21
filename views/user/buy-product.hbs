@@ -53,12 +53,12 @@
                             <p>Get 10% on your Apple devices</p>
                         </div>
                     </div>
-                    <form  id="device-details">
+                    <form  id="device-details" action="/add-to-bag" method="POST">
                         <div onclick="divScroll('device-color')" id="model" class="mt-4 model">
                             <h2 class="model-title">Choose your model.</h2>
                             <a style="font-size: 14px;" href="#">Which model is right for you?</a>
                             <label class="mt-3 poduct-container col-md-12 p-0 ">
-                                <input type="radio" class="radio-btn" id="device" name="device" required>
+                                <input type="radio" class="radio-btn" id="device" name="deviceId" value="{{productDetails._id}}" required>
                                 <div class="device-model-select product-model">
                                     <div class="device-radio">
                                         <span class="model-title">{{productDetails.productname}}</span>
@@ -86,7 +86,7 @@
                             <div class="row">
                                {{#each productDetails.color}}
                                 <label class="mt-3 poduct-container text-center col-md-6 col-6 ">
-                                    <input type="radio" class="radio-btn" id="device" name="color" required>
+                                    <input type="radio" class="radio-btn" id="color" name="color" value="{{this}}" required>
                                     <div style=" padding: 20px;" class="device-model-select product-model">
                                         <div class="device-radio">
                                             <img class="product-color" src="/device-colors/{{../productDetails._id}}{{this}}.jpg"
@@ -101,13 +101,14 @@
                                
                             </div>
                         </div>
+                       
                         <!-- device storage -->
                         <div onclick="divScroll('total-price-section')" id="device-storage" class="mt-4 border-size model">
                             <h2 class="model-title  mt-4">Choose your capacity.</h2>
                             <a style="font-size: 14px;" href="#">How much capacity is right for you?</a>
                             <div class="row">
                                 <label class="mt-3 poduct-container text-center col-md-6 col-6 ">
-                                    <input type="radio" class="radio-btn" id="device" name="price" required>
+                                    <input type="radio" class="radio-btn" id="storage" name="storage" value="{{productDetails.defaultstorage}}" required>
                                     <div style=" padding: 20px;" class="p-4 device-model-select product-model">
                                         <div class="device-radio">
                                             <span class="form-selector-title">{{productDetails.defaultstorage}} <small>GB</small></span>
@@ -118,7 +119,7 @@
                                 </label>
                                {{#each productDetails.storageOptions}}
                                 <label class="mt-3 poduct-container text-center col-md-6  col-6 ">
-                                    <input type="radio" class="radio-btn" id="device" name="price">
+                                    <input type="radio" class="radio-btn" id="storage" name="storage" value="{{this.storagesize}}">
                                     <div style=" padding: 20px;" class="p-4 device-model-select product-model">
                                         <div class="device-radio">
                                             <span class="form-selector-title">{{this.storagesize}} <small>GB</small></span>

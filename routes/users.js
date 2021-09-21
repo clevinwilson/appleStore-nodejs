@@ -83,8 +83,14 @@ router.get('/imac',(req,res)=>{
 
 //iphone page 
 router.get('/iphone',(req,res)=>{
-  productHelper.getPhones().then((products)=>{
-    res.render('user/iphone',{products:products,user:req.session.user})
+  productHelper.getPhones().then(async(products)=>{
+    if(req.session.loggedIn){
+      var bag =await userHelper.getBagProducts(req.session.user._id);
+      console.log(bag);
+      res.render('user/iphone',{products:products,user:req.session.user,bagItems:bag[0].bagItems})
+    }else{
+      res.render('user/iphone',{products:products,user:req.session.user})
+    }
   })
 })
 
@@ -101,6 +107,23 @@ router.get('/buy-product/:productId',(req,res)=>{
     }else{
       res.redirect('/');
     }
+  })
+})
+
+router.post('/add-to-bag',verifyLogin,(req,res)=>{
+  console.log(req.body);
+  userHelper.addToBag(req.body,req.session.user._id).then((response)=>{
+    if(response.status){
+      res.redirect('/iphone')
+    }else{
+      res.redirect('/iphone')
+    }
+  })
+})
+
+router.get('/bag',verifyLogin,(req,res)=>{
+  userHelper.getBagProducts(req.session.user._id).then((products)=>{
+    console.log(products[0].bagItems);
   })
 })
 

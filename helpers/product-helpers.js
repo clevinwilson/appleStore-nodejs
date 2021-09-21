@@ -45,6 +45,7 @@ module.exports = {
     },
     addStorage: (data) => {
         data = Object.assign({}, data)
+        data.productId=ObjectID(data.productId);
         return new Promise((resolve, reject) => {
             db.get().collection(collection.PRODUCT_COLLECTION)
                 .updateOne({ _id: ObjectId(data.productId) },
@@ -83,7 +84,6 @@ module.exports = {
             let category =await db.get().collection(collection.CATEGORY_COLLECTION).findOne({category:'iPhone'});
             if(category){
                 db.get().collection(collection.PRODUCT_COLLECTION).find({category:ObjectID(category._id),status:true}).toArray().then((products)=>{
-                    console.log(products);
                     resolve(products)
                 })
             }else{

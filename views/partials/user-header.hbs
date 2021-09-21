@@ -117,7 +117,21 @@
                 <i id="bag" onclick="openBag()" style="font-weight: 100;"
                   class="text-white nav-icon fas fa-shopping-bag"></i>
                 <div id="dropdown-content" class="p-3 mb-2 dropdown-content">
-                  <p class="m-4 p-1" style="color: #6e6e73; font-size: 13px;">Your Bag is empty.</p>
+                  {{!-- <div class="loader"></div> --}}
+                  <div  class="account">
+                                      <p class="m-4 p-1" style="color: #6e6e73; font-size: 13px;">Your Bag is empty.</p>
+                   <div class="dag-items row">
+                     {{#each bagItems}}
+                     <div class="col-md-4">
+                       <img style="object-fit: contain;height: 100%;width: 46px;" src="/images/iphone-13-mini-midnight-select-2021.png" alt="">
+                     </div>
+                     <div class="col-md-7 bag-items-spec">
+                       <span>{{this.productname}} </span><span class="ml-1">256GB </span><span>Black </span>
+                     </div>
+                     {{/each}}
+                   </div>  
+
+
                   <hr>
                   <a class="content-align" href="#"><i style="font-weight: 100;"
                       class="mr-2 fas fa-shopping-bag"></i>Bag</a>
@@ -138,7 +152,7 @@
                   <a class="content-align" href="/login"><i style="font-weight: 100;"
                       class="mr-2 fas fa-user-circle"></i>Sign in</a>
                   {{/if}}
-                  
+                  </div>
                 </div>
               </div>
             </li>

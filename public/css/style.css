@@ -1686,3 +1686,41 @@ input::-webkit-inner-spin-button {
         margin-left: 50px;
     }
 }
+
+/* bag login animation */
+
+
+.loader {
+  border: 3px solid #f3f3f3;
+  border-radius: 100%;
+  border-top: 3px solid #0071e3;
+  width: 40px;
+  height: 40px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* bag items style*/
+
+.bag-items-spec{
+    display: block;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 14px;
+    color: black;
+    font-family: system-ui;
+}
