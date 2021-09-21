@@ -102,5 +102,19 @@ module.exports = {
                 }
             })
         })
-    }
+    },
+    getProducts:()=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.PRODUCT_COLLECTION).find().toArray().then((products)=>{
+                resolve(products);
+            })
+        })
+    },
+    deleteProduct: (categoryId) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.PRODUCT_COLLECTION).removeOne({ _id: ObjectID(categoryId) }).then((response) => {
+                resolve(response);
+            })
+        })
+    },
 }

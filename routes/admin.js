@@ -115,7 +115,7 @@ router.post('/add-product', verifyLogin, async (req, res) => {
 
 
 
-router.get('/add-storageoptions',verifyLogin,(req,res)=>{
+router.get('/add-storageoptions/:productId',verifyLogin,(req,res)=>{
     res.render('admin/add-storageoptions',{admin:req.session.admin,productId:req.params.productId})
 })
 
@@ -138,6 +138,22 @@ router.get('/check-product/:productId',verifyLogin,(req,res)=>{
        }else{
            res.json({status:false})
        }
+    })
+})
+
+router.get('/manage-product',verifyLogin,(req,res)=>{
+    productHelpers.getProducts().then((products)=>{
+        res.render('admin/manage-products',{admin:req.session.admin,products:products})
+    })
+})
+router.get('/delete-product/:id',verifyLogin,(req,res)=>{
+    console.log('delet');
+    productHelpers.deleteProduct(req.params.id).then((response)=>{
+        if(response){
+            res.json({status:true})
+        }else{
+            res.json({status:false})
+        }
     })
 })
 
@@ -173,6 +189,8 @@ router.get('/delete-category/:id',verifyLogin,(req,res)=>{
         }
     })
 })
+
+
 
 
 
