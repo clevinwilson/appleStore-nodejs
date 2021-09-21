@@ -147,6 +147,26 @@
         </div>
     </section>
 
+
+      <!-- ipad banner -->
+  <section class="pt-4 banner">
+    <div class="row">
+      <div class="pt-2 col-md-12">
+        <div class="text-center text-light text">
+          <h2 class="banner-header-text">iPad Pro</h2>
+          <h3 class="banner-text">Supercharged by the Apple M1 chip.</h3>
+          <div class="mt-1 banner-links">
+            <a href="/iphone-12">Learn more <i class="banner-links-icons font-weight-normal fas fa-chevron-right"></i></a>
+            <a class=" pl-2" href="">Buy <i class="banner-links-icons font-weight-normal fas fa-chevron-right"></i></a>
+          </div>
+          <div class="banner-image-box">
+            <img style="    height: 446px; width: 1070px;" id="myImg" class="banner-image" src="/images/hero_ipad_pro_non_avail__fcrsmhs4b7ma_small_2x.jpg" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
     <section style="background-color: #fafafa;">
         <div class="container">
             <div class="row">
@@ -155,6 +175,25 @@
                 </div>
                 <div class="col-md-5 banner-right-section  text-center">
                     <h2 class="product-name">Blast past fast.</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+ <!-- imac banner -->
+    <section class="pt-5 bg-white">
+        <div class="row">
+            <div class="pt-2 col-md-12">
+                <div class="text-center text-light text">
+                    <h4 class="imac-promo-title">New</h4>
+                    <h2 class="imac-header-text ">iMac</h2>
+                    
+                    <div class="mt-1 banner-links">
+                        <a href="">Learn more <i
+                                class="banner-links-icons font-weight-normal fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="p-5 banner-image-box imac-banner">
+                        <img id="imacImage" class="imac-image" src="/images/hero_imac_24__eq5phrdpwjyq_large.jpg" alt="">
+                    </div>
                 </div>
             </div>
         </div>
@@ -194,3 +233,67 @@
            
         }
     </script>
+
+      <script>
+    function screenSize() {
+    if (screen.width < 735) {
+       
+        document.getElementById("myImg").src = "/images/hero_ipad_pro_non_avail__fcrsmhs4b7ma_small_2x.jpg";
+        var image = document.getElementById("myImg")
+        image.style.objectFit = "cover";
+        image.style.width = '324px';
+        image.style.height = '365px';
+
+        var image = document.getElementById("banner-two")
+        image.src = "/images/iphone_12_updated__jepm2xpxncuy_small_2x.jpg";
+
+        var image = document.getElementById("banner-three").src = "/images/hero_imac__dqh65mwjj04m_small_2x.jpg";
+         var imacImage = document.querySelector("#imacImage").src = "/images/hero_imac_24__eq5phrdpwjyq_small_2x.jpg";
+
+    } else {
+        document.getElementById("dropdown-content-sm").style.display = "none";
+        var image = document.getElementById("myImg")
+        image.src = "/images/index-banner.jpg";
+        image.style.objectFit = "cover";
+        image.style.width = '847px';
+        image.style.height = '394px';
+
+
+        var image = document.getElementById("banner-two")
+        image.src = "/images/iphone_12_updated__jepm2xpxncuy_large_2x.jpg";
+
+        var image = document.getElementById("banner-three").src = "/images/hero_imac__dqh65mwjj04m_large.jpg";
+         var imacImage = document.querySelector("#imacImage").src = "/images/hero_imac_24__eq5phrdpwjyq_large.jpg";
+
+    }
+}
+if (screen.width < 735) {
+    document.getElementById("myImg").src = "/images/hero_ipad_pro_non_avail__fcrsmhs4b7ma_small_2x.jpg";
+    var image = document.getElementById("myImg")
+    image.style.objectFit = "cover";
+    image.style.width = '324px';
+    image.style.height = '365px';
+
+    var image = document.getElementById("banner-two")
+    image.src = "/images/iphone_12_updated__jepm2xpxncuy_small_2x.jpg";
+
+    var image = document.getElementById("banner-three").src = "/images/hero_imac__dqh65mwjj04m_small_2x.jpg";
+      var imacImage = document.querySelector("#imacImage").src = "/images/hero_imac_24__eq5phrdpwjyq_small_2x.jpg";
+
+} else {
+    var image = document.getElementById("myImg")
+    document.getElementById("myImg").src = "/images/index-banner.jpg";
+    image.style.objectFit = "cover";
+    image.style.width = '847px';
+    image.style.height = '394px';
+
+
+    var image = document.getElementById("banner-two")
+    image.src = "/images/iphone_12_updated__jepm2xpxncuy_large_2x.jpg";
+
+    var image = document.getElementById("banner-three").src = "/images/hero_imac__dqh65mwjj04m_large.jpg";
+     var imacImage = document.querySelector("#imacImage").src = "/images/hero_imac_24__eq5phrdpwjyq_large.jpg";
+
+}
+  </script>
+
