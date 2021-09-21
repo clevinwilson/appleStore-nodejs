@@ -82,7 +82,7 @@ module.exports = {
         return new Promise(async(resolve,reject)=>{
             let category =await db.get().collection(collection.CATEGORY_COLLECTION).findOne({category:'iPhone'});
             if(category){
-                db.get().collection(collection.PRODUCT_COLLECTION).find({category:ObjectID(category._id)}).toArray().then((products)=>{
+                db.get().collection(collection.PRODUCT_COLLECTION).find({category:ObjectID(category._id),status:true}).toArray().then((products)=>{
                     console.log(products);
                     resolve(products)
                 })
