@@ -112,19 +112,17 @@ router.get('/buy-product/:productId',(req,res)=>{
 router.post('/add-to-bag',verifyLogin,(req,res)=>{
   userHelper.addToBag(req.body,req.session.user._id).then((response)=>{
     if(response.status){
-      res.redirect('/iphone')
+      res.redirect('/bag')
     }else{
-      res.redirect('/iphone')
+      res.redirect('/')
     }
   })
 })
 
-router.get('/bag',(req,res)=>{
-  // userHelper.getBagProducts(req.session.user._id).then((products)=>{
-  //   console.log(products[0].bagItems);
-   
-  // })
-  res.render('user/bag',{user:req.session.user})
+router.get('/bag',verifyLogin,(req,res)=>{
+  userHelper.getBagProducts(req.session.user._id).then((products)=>{
+    res.render('user/bag',{user:req.session.user,bagItems:products})
+  })
 })
 
 
