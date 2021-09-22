@@ -1721,6 +1721,6 @@ input::-webkit-inner-spin-button {
     margin-top: auto;
     margin-bottom: auto;
     font-size: 14px;
-    color: black;
-    font-family: system-ui;
+    color: #383838;
+    font-family: inherit;
 }

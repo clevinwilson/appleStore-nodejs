@@ -45,26 +45,34 @@ module.exports = {
     addToBag: (data, userId) => {
         return new Promise(async (resolve, reject) => {
             data.deviceId=ObjectID(data.deviceId);
-            let product = db.get().collection(collection.PRODUCT_COLLECTION).findOne({ _id: ObjectId(data.deviceId), })
+            var product =await db.get().collection(collection.PRODUCT_COLLECTION).find({ _id: ObjectId(data.deviceId) }, { storageOptions: { $elemMatch: { storagesize:data.storage } } } ).toArray()
             if (product) {
-                let bag = await db.get().collection(collection.BAG_COLLECTION).findOne({ user: ObjectId(userId) });
-                if (bag) {
-                    db.get().collection(collection.BAG_COLLECTION)
-                    .updateOne({user:ObjectID(userId)},
-                    {
-                            $push:{product:data}
+            
+                let productLength= product[0].storageOptions.length;
+                for(let i =0;i<productLength;i++){
+                    if(product[0].storageOptions[i].storagesize == data.storage){
+                        data.price=  parseInt(product[0].storageOptions[i].storageprice) + parseInt(product[0].productprice);
 
-                    }).then((response)=>{
-                        resolve({status:true});
-                    })
-                } else {
-                    let bagObj = {
-                        user: ObjectId(userId),
-                        product: [data]
-                    };
-                    db.get().collection(collection.BAG_COLLECTION).insertOne(bagObj).then((response) => {
-                        resolve({status:true});
-                    })
+                        let bag = await db.get().collection(collection.BAG_COLLECTION).findOne({ user: ObjectId(userId) });
+                        if (bag) {
+                            db.get().collection(collection.BAG_COLLECTION)
+                            .updateOne({user:ObjectID(userId)},
+                            {
+                                    $push:{product:data}
+        
+                            }).then((response)=>{
+                                resolve({status:true});
+                            })
+                        } else {
+                            let bagObj = {
+                                user: ObjectId(userId),
+                                product: [data]
+                            };
+                            db.get().collection(collection.BAG_COLLECTION).insertOne(bagObj).then((response) => {
+                                resolve({status:true});
+                            })
+                        }
+                    }
                 }
             }else{
                 resolve({statu:false})
@@ -73,29 +81,47 @@ module.exports = {
     },
     getBagProducts:(userId)=>{
         return new Promise(async(resolve,reject)=>{
-            let cartItems=await db.get().collection(collection.BAG_COLLECTION).aggregate([
+            let bagItems=await db.get().collection(collection.BAG_COLLECTION).aggregate([
                 {
                     $match:{user:ObjectID(userId)}
                 },
+                { 
+                    $unwind: "$product"
+                },
                 {
-                    $lookup:{
-                        from:collection.PRODUCT_COLLECTION,
-                        let:{productList:'$product'},
-                        pipeline:[
-                            {
-                                $match:{
-                                    $expr:{
-                                        $in:['$_id','$$productList.deviceId']
-                                    }
-                                }
-                            }
-                        ],
-                        as:'bagItems'
+                    $lookup: {
+                        from: collection.PRODUCT_COLLECTION,
+                        localField: 'product.deviceId',
+                        foreignField: '_id',
+                        as: 'productDetails'
                     }
                 },
+                { 
+                    $unwind: "$productDetails"
+                }
+                
                
             ]).toArray()
-            resolve(cartItems)
+            resolve(bagItems)
         })
     }
 }
+
+
+
+// {
+//     $lookup:{
+//         from:collection.PRODUCT_COLLECTION,
+//         let:{productList:'$product'},
+//         pipeline:[
+//             {
+//                 $match:{
+//                     $expr:{
+//                         $in:['$_id','$$productList.deviceId']
+//                     }
+//                 }
+//             },           
+//         ],
+//         as:'bagItems'
+//     }
+// },

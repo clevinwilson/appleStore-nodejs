@@ -39,7 +39,24 @@
       </div>
       <!-- Bag for sm devices -->
       <div id="dropdown-content-sm" class=" p-3 mb-2 dropdown-content-sm">
-        <p class="bag-items-list m-4 p-1" style="color: #6e6e73; font-size: 13px;">Your Bag is empty.</p>
+        {{#if bagItems}}
+        {{#each bagItems}}
+        <div style="margin-left: 20px;" class="mt-3  dag-items row">
+
+          <div class="col-md-3 col-3">
+            <img style="object-fit: contain;height: 100%;width: 46px;" src="/device-image/{{this.product.deviceId}}.jpg"
+              alt="">
+          </div>
+          <div class="col-md-9 col-9 bag-items-spec">
+            <span>{{this.productDetails.productname}} </span><span class="ml-1">{{this.product.storage}} GB
+            </span><span>{{this.product.color}} </span>
+          </div>
+        </div>
+          <hr>
+        {{/each}}
+        {{else}}
+        <p class="m-4 p-1" style="color: #6e6e73; font-size: 13px;">Your Bag is empty.</p>
+        {{/if}}
         <div class="bag-options p-1  pl-4 pr-4">
           <hr>
           <a class="content-align" href="#"><i style="font-weight: 100;" class="mr-2 fas fa-shopping-bag"></i>Bag</a>
@@ -54,7 +71,8 @@
             Account</a>
           <hr>
           {{#if user}}
-          <a class="content-align" href="/logout"><i style="font-weight: 100;" class="mr-2 fas fa-user-circle"></i>Sign out {{user.firstname}}</a>
+          <a class="content-align" href="/logout"><i style="font-weight: 100;" class="mr-2 fas fa-user-circle"></i>Sign
+            out {{user.firstname}}</a>
           {{else}}
           <a class="content-align" href="/login"><i style="font-weight: 100;" class="mr-2 fas fa-user-circle"></i>Sign
             in</a>
@@ -118,40 +136,48 @@
                   class="text-white nav-icon fas fa-shopping-bag"></i>
                 <div id="dropdown-content" class="p-3 mb-2 dropdown-content">
                   {{!-- <div class="loader"></div> --}}
-                  <div  class="account">
-                                      <p class="m-4 p-1" style="color: #6e6e73; font-size: 13px;">Your Bag is empty.</p>
-                   <div class="dag-items row">
-                     {{#each bagItems}}
-                     <div class="col-md-4">
-                       <img style="object-fit: contain;height: 100%;width: 46px;" src="/images/iphone-13-mini-midnight-select-2021.png" alt="">
-                     </div>
-                     <div class="col-md-7 bag-items-spec">
-                       <span>{{this.productname}} </span><span class="ml-1">256GB </span><span>Black </span>
-                     </div>
+                  <div class="account">
+                    {{#if bagItems}}
+                    {{#each bagItems}}
+                    <div class="mt-3 dag-items row">
+                      
+                      <div class="col-md-3">
+                        <img style="object-fit: contain;height: 100%;width: 46px;"
+                          src="/device-image/{{this.product.deviceId}}.jpg" alt="">
+                      </div>
+                      <div class="col-md-9 bag-items-spec">
+                        <span>{{this.productDetails.productname}} </span><span class="ml-1">{{this.product.storage}} GB
+                        </span><span>{{this.product.color}} </span>
+                      </div>
+                     
+                    </div>
+                    <hr>
                      {{/each}}
-                   </div>  
+                    {{else}}
+                    <p class="m-4 p-1" style="color: #6e6e73; font-size: 13px;">Your Bag is empty.</p>
+                    {{/if}}
 
 
-                  <hr>
-                  <a class="content-align" href="#"><i style="font-weight: 100;"
-                      class="mr-2 fas fa-shopping-bag"></i>Bag</a>
-                  <hr>
-                  <a class="content-align" href="#"><i style="font-weight: 100;" class="mr-2 far fa-heart"></i>
-                    Favourites</a>
-                  <hr>
-                  <a class="content-align" href="#"><i style="font-weight: 100;" class="mr-2 fas fa-box"></i>
-                    Orders</a>
-                  <hr>
-                  <a class="content-align" href="#"><i style="font-weight: 100;" class="mr-2 fas fa-cog"></i>
-                    Account</a>
-                  <hr>
-                  {{#if user}}
-                  <a class="content-align" href="/logout"><i style="font-weight: 100;"
-                      class="mr-2 fas fa-user-circle"></i>Sign out {{user.firstname}}</a>
-                  {{else}}
-                  <a class="content-align" href="/login"><i style="font-weight: 100;"
-                      class="mr-2 fas fa-user-circle"></i>Sign in</a>
-                  {{/if}}
+                    <hr>
+                    <a class="content-align" href="#"><i style="font-weight: 100;"
+                        class="mr-2 fas fa-shopping-bag"></i>Bag</a>
+                    <hr>
+                    <a class="content-align" href="#"><i style="font-weight: 100;" class="mr-2 far fa-heart"></i>
+                      Favourites</a>
+                    <hr>
+                    <a class="content-align" href="#"><i style="font-weight: 100;" class="mr-2 fas fa-box"></i>
+                      Orders</a>
+                    <hr>
+                    <a class="content-align" href="#"><i style="font-weight: 100;" class="mr-2 fas fa-cog"></i>
+                      Account</a>
+                    <hr>
+                    {{#if user}}
+                    <a class="content-align" href="/logout"><i style="font-weight: 100;"
+                        class="mr-2 fas fa-user-circle"></i>Sign out {{user.firstname}}</a>
+                    {{else}}
+                    <a class="content-align" href="/login"><i style="font-weight: 100;"
+                        class="mr-2 fas fa-user-circle"></i>Sign in</a>
+                    {{/if}}
                   </div>
                 </div>
               </div>

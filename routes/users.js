@@ -85,9 +85,8 @@ router.get('/imac',(req,res)=>{
 router.get('/iphone',(req,res)=>{
   productHelper.getPhones().then(async(products)=>{
     if(req.session.loggedIn){
-      var bag =await userHelper.getBagProducts(req.session.user._id);
-      console.log(bag);
-      res.render('user/iphone',{products:products,user:req.session.user,bagItems:bag[0].bagItems})
+      var bagItems =await userHelper.getBagProducts(req.session.user._id);
+      res.render('user/iphone',{products:products,user:req.session.user,bagItems:bagItems})
     }else{
       res.render('user/iphone',{products:products,user:req.session.user})
     }
@@ -111,7 +110,6 @@ router.get('/buy-product/:productId',(req,res)=>{
 })
 
 router.post('/add-to-bag',verifyLogin,(req,res)=>{
-  console.log(req.body);
   userHelper.addToBag(req.body,req.session.user._id).then((response)=>{
     if(response.status){
       res.redirect('/iphone')
