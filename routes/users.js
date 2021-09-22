@@ -119,10 +119,13 @@ router.post('/add-to-bag',verifyLogin,(req,res)=>{
   })
 })
 
-router.get('/bag',verifyLogin,(req,res)=>{
-  userHelper.getBagProducts(req.session.user._id).then((products)=>{
-    console.log(products[0].bagItems);
-  })
+router.get('/bag',(req,res)=>{
+  // userHelper.getBagProducts(req.session.user._id).then((products)=>{
+  //   console.log(products[0].bagItems);
+   
+  // })
+  res.render('user/bag',{user:req.session.user})
 })
+
 
 module.exports = router;
