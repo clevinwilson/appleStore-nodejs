@@ -44,48 +44,48 @@ module.exports = {
     },
     addToBag: (data, userId) => {
         return new Promise(async (resolve, reject) => {
-            data.deviceId=ObjectID(data.deviceId);
-            var product =await db.get().collection(collection.PRODUCT_COLLECTION).find({ _id: ObjectId(data.deviceId) }, { storageOptions: { $elemMatch: { storagesize:data.storage } } } ).toArray()
+            data.deviceId = ObjectID(data.deviceId);
+            var product = await db.get().collection(collection.PRODUCT_COLLECTION).find({ _id: ObjectId(data.deviceId) }, { storageOptions: { $elemMatch: { storagesize: data.storage } } }).toArray()
             if (product) {
-            
-                let productLength= product[0].storageOptions.length;
-                for(let i =0;i<productLength;i++){
-                    if(product[0].storageOptions[i].storagesize == data.storage){
-                        data.price=  parseInt(product[0].storageOptions[i].storageprice) + parseInt(product[0].productprice);
+
+                let productLength = product[0].storageOptions.length;
+                for (let i = 0; i < productLength; i++) {
+                    if (product[0].storageOptions[i].storagesize == data.storage) {
+                        data.price = parseInt(product[0].storageOptions[i].storageprice) + parseInt(product[0].productprice);
 
                         let bag = await db.get().collection(collection.BAG_COLLECTION).findOne({ user: ObjectId(userId) });
                         if (bag) {
                             db.get().collection(collection.BAG_COLLECTION)
-                            .updateOne({user:ObjectID(userId)},
-                            {
-                                    $push:{product:data}
-        
-                            }).then((response)=>{
-                                resolve({status:true});
-                            })
+                                .updateOne({ user: ObjectID(userId) },
+                                    {
+                                        $push: { product: data }
+
+                                    }).then((response) => {
+                                        resolve({ status: true });
+                                    })
                         } else {
                             let bagObj = {
                                 user: ObjectId(userId),
                                 product: [data]
                             };
                             db.get().collection(collection.BAG_COLLECTION).insertOne(bagObj).then((response) => {
-                                resolve({status:true});
+                                resolve({ status: true });
                             })
                         }
                     }
                 }
-            }else{
-                resolve({statu:false})
+            } else {
+                resolve({ statu: false })
             }
         })
     },
-    getBagProducts:(userId)=>{
-        return new Promise(async(resolve,reject)=>{
-            let bagItems=await db.get().collection(collection.BAG_COLLECTION).aggregate([
+    getBagProducts: (userId) => {
+        return new Promise(async (resolve, reject) => {
+            let bagItems = await db.get().collection(collection.BAG_COLLECTION).aggregate([
                 {
-                    $match:{user:ObjectID(userId)}
+                    $match: { user: ObjectID(userId) }
                 },
-                { 
+                {
                     $unwind: "$product"
                 },
                 {
@@ -96,66 +96,71 @@ module.exports = {
                         as: 'productDetails'
                     }
                 },
-                { 
+                {
                     $unwind: "$productDetails"
                 }
-                
-               
+
+
             ]).toArray()
             resolve(bagItems)
         })
     },
-    getTotalAmound:(userId)=>{
-        return new Promise(async(resolve,reject)=>{
-           let total=await db.get().collection(collection.BAG_COLLECTION).aggregate([
-                {
-                    $match:{
-                        user:ObjectID(userId)
+    getTotalAmound: (userId) => {
+        return new Promise(async (resolve, reject) => {
+            let cart = await db.get().collection(collection.BAG_COLLECTION).findOne({ user: ObjectID(userId) })
+            if (cart) {
+                let total = await db.get().collection(collection.BAG_COLLECTION).aggregate([
+                    {
+                        $match: {
+                            user: ObjectID(userId)
+                        }
+                    },
+                    { $unwind: '$product' },
+                    {
+                        $group: {
+                            _id: null,
+                            total: { $sum: "$product.price" }
+                        }
                     }
-                },
-                {$unwind:'$product'},
-                {
-                    $group:{
-                        _id:null,
-                        total:{$sum:"$product.price"}
-                    }
-                }
-            ]).toArray()
-            resolve(total[0])
+                ]).toArray()
+                resolve(total[0])
+            }else{
+                resolve(false)
+            }
         })
     },
-    placeOrder:(order,products,total)=>{
-        console.log(order,products,total);
-        return new Promise((resolve,reject)=>{
-            var orderObj={
-                address:order,
-                product:products.product,
-                total:total.total
+    placeOrder: (order, products, total) => {
+        
+        return new Promise((resolve, reject) => {
+            var orderObj = {
+                address: order,
+                product: products.product,
+                total: total.total
 
             }
-            db.get().collection(collection.ORDER_COLLECTION).insertOne(orderObj).then((response)=>{
-                if(response){
-                    db.get().collection(collection.BAG_COLLECTION).removeOne({user:ObjectID(order.userId)}).then((response)=>{
+            db.get().collection(collection.ORDER_COLLECTION).insertOne(orderObj).then((response) => {
+                if (response) {
+                    db.get().collection(collection.BAG_COLLECTION).removeOne({ user: ObjectID(order.userId) }).then((response) => {
                         resolve(response)
                     })
                 }
             })
         })
     },
-    getBag:(userId)=>{
-        return new Promise((resolve,reject)=>{
-            db.get().collection(collection.BAG_COLLECTION).findOne({user:ObjectID(userId)}).then((response)=>{
+    getBag: (userId) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.BAG_COLLECTION).findOne({ user: ObjectID(userId) }).then((response) => {
                 resolve(response)
             })
         })
     },
-    getOrders:(userId)=>{
-        return new Promise(async(resolve,reject)=>{
-           let orders=await db.get().collection(collection.ORDER_COLLECTION).aggregate([
+    getOrders: (userId) => {
+        return new Promise(async (resolve, reject) => {
+            let orders = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
                 {
-                    $match:{user:ObjectID(userId)}
+                    $match: { user: ObjectID(userId) }
                 },
-                {$unwind:'$product'},
+                { $unwind: '$product' },
                 {
                     $lookup: {
                         from: collection.PRODUCT_COLLECTION,
@@ -167,12 +172,11 @@ module.exports = {
                 {
                     $project: {
 
-                        address:1,product:1,  productDetails: { $arrayElemAt: ['$productDetails', 0] },
+                        address: 1, product: 1, productDetails: { $arrayElemAt: ['$productDetails', 0] },
                     }
                 }
-                
+
             ]).toArray()
-            console.log(orders);
             resolve(orders)
         })
     }

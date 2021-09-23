@@ -15,12 +15,21 @@
         <div class="row">
             <div class="col-md-12 " style="border-bottom: 1px solid #d2d2d7;">
                 <div class="bag-header mb-5">
+                    {{#if bagItems}}
                     <div class="m-5 rs-bag-header">
                         <h2 class="checkout-header-text imac-header-text text-center ">Your bag total is ₹{{total}}</h2>
                     </div>
                     <div class=" m-4 text-center bag-header-btn">
                         <a href="/shipping" class="text-white btn btn-primary checkout-btn">Check Out</a>
                     </div>
+                    {{else}}
+                    <div class="m-5 rs-bag-header">
+                        <h2 class="checkout-header-text imac-header-text text-center ">Your bag is empty.</h2>
+                    </div>
+                    <div class=" m-4 text-center bag-header-btn">
+                        <a style="background-color: #ebebeb !important;" href="/" class="text-black p-3 btn btn-light checkout-btn">Continue Shopping</a>
+                    </div>
+                    {{/if}}
                 </div>
             </div>
         </div>
@@ -81,6 +90,7 @@
             <div class="col-md-4">
 
             </div>
+             {{#if bagItems}}
             <div class=" col-md-8 col-12">
                 <div style="  border-bottom: 1px solid #d2d2d7;" class="pb-3 row">
                     <div class="col-md-6 col-6">
@@ -130,4 +140,5 @@
                     </div>
                 </div>
             </div>
+            {{/if}}
 </section>

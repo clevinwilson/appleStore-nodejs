@@ -121,16 +121,20 @@ router.post('/add-to-bag',verifyLogin,(req,res)=>{
 
 router.get('/bag',verifyLogin,async(req,res)=>{
   let getTotalAmound=await userHelper.getTotalAmound(req.session.user._id)
-  userHelper.getBagProducts(req.session.user._id).then((products)=>{
-    res.render('user/bag',{user:req.session.user,bagItems:products,total:getTotalAmound.total})
-  })
+  if(getTotalAmound){
+    userHelper.getBagProducts(req.session.user._id).then((products)=>{
+      res.render('user/bag',{user:req.session.user,bagItems:products,total:getTotalAmound.total})
+    })
+  }else{
+    res.render('user/bag',{user:req.session.user})
+  }
 })
 
 router.get('/shipping',verifyLogin,(req,res)=>{
   res.render('user/shipping',{user:req.session.user})
 })
 
-router.post('/place-order',async(req,res)=>{
+router.post('/place-order',verifyLogin, async(req,res)=>{
   let bag =await  userHelper.getBag(req.body.userId)
   let total=await userHelper.getTotalAmound(req.session.user._id)
   userHelper.placeOrder(req.body,bag,total).then((response)=>{
@@ -142,7 +146,7 @@ router.post('/place-order',async(req,res)=>{
   })
 })
 
-router.get('/order',(req,res)=>{
+router.get('/order',verifyLogin,(req,res)=>{
   userHelper.getOrders(req.session.user._id).then((orders)=>{
     res.render('user/order',{orders:orders})
   })
