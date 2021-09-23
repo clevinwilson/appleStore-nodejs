@@ -131,10 +131,14 @@ router.get('/shipping',verifyLogin,(req,res)=>{
 })
 
 router.post('/place-order',async(req,res)=>{
-  let bag =await  userHelper.getBagProducts(req.body.userId)
+  let bag =await  userHelper.getBag(req.body.userId)
   let total=await userHelper.getTotalAmound(req.session.user._id)
   userHelper.placeOrder(req.body,bag,total).then((response)=>{
-
+    if(response){
+      res.json({status:true})
+    }else{
+      res.json({status:false})
+    }
   })
 })
 

@@ -123,6 +123,31 @@ module.exports = {
             ]).toArray()
             resolve(total[0])
         })
+    },
+    placeOrder:(order,products,total)=>{
+        console.log(order,products,total);
+        return new Promise((resolve,reject)=>{
+            var orderObj={
+                address:order,
+                product:products.product,
+                total:total.total
+
+            }
+            db.get().collection(collection.ORDER_COLLECTION).insertOne(orderObj).then((response)=>{
+                if(response){
+                    db.get().collection(collection.BAG_COLLECTION).removeOne({user:ObjectID(order.userId)}).then((response)=>{
+                        resolve(response)
+                    })
+                }
+            })
+        })
+    },
+    getBag:(userId)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.BAG_COLLECTION).findOne({user:ObjectID(userId)}).then((response)=>{
+                resolve(response)
+            })
+        })
     }
 }
 
