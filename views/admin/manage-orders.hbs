@@ -1,0 +1,197 @@
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        {{>admin-sidebar}}
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-2 text-gray-800">Product</h1>
+                        <a href="/admin/add-product"
+                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas  fa-sm text-white-50"></i> ADD PRODUCT</a>
+                    </div>
+
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Device list</h6>
+                        </div>
+                        <div class="message p-3">
+                            <div style="display: none;" class="alert alert-danger" id="error" role="alert">
+                                Something went wrong please try again.
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Image</th>
+                                            <th>Product</th>
+                                            <th>Storage</th>
+                                            <th>Colors</th>
+                                            <th>Status</th>
+                                            <th>Price</th>
+                                            <th>Address</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Image</th>
+                                            <th>Product</th>
+                                            <th>Storage</th>
+                                            <th>Colors</th>
+                                            <th>Status</th>
+                                            <th>Price</th>
+                                            <th>Address</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        {{#each orders}}
+                                        <tr>
+
+                                            <td>{{this._id}}</td>
+                                            <td>
+                                                <img style="    height: 100px;width: 100px; object-fit: cover;"
+                                                    src="/device-image/{{this.product.deviceId}}.jpg" alt="">
+                                            </td>
+                                            <td>{{this.productDetails.productname}}</td>
+                                            <td>{{this.product.storage}} GB</td>
+                                            <td>
+                                                <img style="width: 81px; object-fit: cover; width: 39px;object-fit: cover;height: 100%;display: block;margin-left: auto;margin-right: auto;"
+                                                    src="/device-colors/{{this.product.deviceId}}{{this.product.color}}.jpg" alt="">
+                                                <h6 class="text-center mt-3">{{this.product.color}}</h6>
+                                            </td>
+                                            {{#if this.status}}
+                                            <td class="text-success">Published</td>
+                                            {{else}}
+                                            <td class="text-danger" title="Add storage options">Pending 
+                
+                                            </td>
+
+                                            {{/if}}
+                                            <td>₹ {{this.product.price}} </td>
+                                            <td>{{this.address.addressLine1}} ,{{this.address.addressLine2}},<br>
+                                                {{this.address.addressLine3}},{{this.address.postalCode}},<br>
+                                               {{this.address.cityState}} ,{{this.address.country}}
+                                                
+                                            </td>
+                                            {{!-- <td align="center"><a type="button"
+                                                    href="/admin/theater-details/{{this._id}}"
+                                                    style="background-color: red; border-radius: 21px;"
+                                                    class="text-white mt-2 btn btn-danger">VIEW</a></td> --}}
+
+                                            <td align="center"><a type="button" href="/admin/edit-category/{{this._id}}"
+                                                    style=" border-radius: 21px;"
+                                                    class="text-white m-2 btn btn-primary">STATUS</a><a
+                                                    style=" border-radius: 21px;" type="button" href="#"
+                                                    data-toggle="modal" data-target="#deleteModal"
+                                                    onclick=" confirmDelete('{{this._id}}')"
+                                                    class="text-white ml-2 btn btn-success">CANCEL</a></td>
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
+
+    <!-- Delete Modal-->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div style="    margin-top: 242px;" class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="exampleModalLabel">Confirm to delete</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Are you sure you want to delete ?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-danger" href="#" onclick="deleteProduct()">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
+<style>
+    tr:hover {
+        box-shadow: 1px 0px 22px -1px #888888;
+
+    }
+</style>
+
+
+<script>
+    function confirmDelete(categoryId) {
+        id = categoryId
+        $(document).ready(function () {
+            $("#deleteModal").modal('show')
+        })
+
+    }
+    function deleteProduct() {
+        $(document).ready(function () {
+            $("#deleteModal").modal('hide')
+        })
+        $.ajax({
+            url: '/admin/delete-product/' + id,
+            method: 'get',
+            success: (response) => {
+                if (response.status) {
+                    window.location.reload();
+                } else {
+                    document.getElementById("error").style.display = "block"
+                }
+            }
+        })
+    }
+
+  
+</script>

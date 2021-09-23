@@ -190,6 +190,12 @@ router.get('/delete-category/:id',verifyLogin,(req,res)=>{
     })
 })
 
+router.get('/manage-orders',(req,res)=>{
+    adminHelpers.getOrders().then((response)=>{
+        res.render('admin/manage-orders',{orders:response})
+    })
+  })
+
 
 
 
