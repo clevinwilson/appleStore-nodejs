@@ -1,0 +1,208 @@
+<!-- ribborn -->
+<section class="bg-white ribbon">
+    <div class="bg-white container">
+        <div style="border-bottom: 1px solid #d2d2d7;" class="row ">
+            <div class="pt-3 bg-white ribbon-covid-19 col-md-4 col-4">
+                <p class="text-center shipping-ribbon-text">Checkout </p>
+            </div>
+            <div class="pt-3 bg-white ribbon-covid-19 col-md-8 col-8">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="bag-header">
+                    <div class="mt-5 rs-bag-header">
+                        <h2 class="shipping-header-text checkout-header-text imac-header-text ">Where should we send
+                            your order?</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="form">
+    <form action="" id="shipping-details" method="POST">
+        <section class="mt-5">
+            <div class="container">
+                <div class="shipping-address-container">
+                    <h3 class="shipping-address-text">Select an address:</h3>
+                </div>
+                <div class="row">
+                    <di class="col-md-6">
+                        <label class="mt-3 poduct-container col-md-12 p-0 ">
+                            <input type="radio" onclick="hideAddressForm()" class="radio-btn" id="address-option"
+                                name="addressOption" value="defaultAddress" required>
+                            <div class="device-model-select product-model">
+                                <div class="device-radio">
+                                    <span class="model-title">Clevin Wilson</span>
+                                    <span class="screen-size">chandanakkampara po</span>
+                                    <span class="device-price-right">Default</span>
+                                </div>
+                            </div>
+                        </label>
+                    </di>
+                    <div class="col-md-6">
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <di class="col-md-6">
+                        <label class="mt-3 poduct-container col-md-12 p-0 ">
+                            <input type="radio" onclick="showAddressForm()" class="radio-btn" id="addressOption"
+                                name="addressOption" value="newAddress" required>
+                            <div class="device-model-select product-model">
+                                <div class="device-radio p-2">
+                                    <span class="model-title">Use a new address</span>
+                                </div>
+                            </div>
+                        </label>
+                    </di>
+                    <div class="col-md-6">
+
+                    </div>
+                </div>
+
+                <div style="display: none;" id="newAddress" class="row">
+                    <div class="col-md-6">
+                        <div class="email">
+                            <input style="border-radius: 10px;" type="email"
+                                class="mt-3 form-input-padding form-control" id="firstName" name="firstName"
+                                placeholder="First Name" required>
+                        </div>
+                        <div class="number ">
+                            <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
+                                id="lastName" name="lastName" placeholder="Last Name" required>
+                        </div>
+                        <div class="address1 ">
+                            <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
+                                id="addressLine1" name="addressLine1" placeholder="Address Line 1"
+                                autocomplete="address-level1" required>
+                        </div>
+                        <div class="address2 ">
+                            <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
+                                id="addressLine2" name="addressLine2" placeholder="Address Line 2 (Optional)"
+                                autocomplete="address-level2">
+                        </div>
+                        <div class="landmark ">
+                            <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
+                                id="addressLine3" name="addressLine3" placeholder="Landmark (Optional)"
+                                autocomplete="address-level3">
+                        </div>
+                        <div class="postalCode ">
+                            <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
+                                id="postalCode" name="postalCode" placeholder="PIN Code" autocomplete="postalCode"
+                                required>
+                        </div>
+                        <div class="cityState ">
+                            <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
+                                id="cityState" name="cityState" placeholder="City, State" required>
+                        </div>
+                        <div class="country ">
+                            <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
+                                id="country" name="country" placeholder="Country" value="India" readonly required>
+                        </div>
+                        <input type="text" name="userId" value="{{user._id}}" hidden>
+                    </div>
+                    <div class="col-md-6">
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="mt-5">
+            <div class="container">
+                <div class="shipping-address-container">
+                    <h3 class="shipping-address-text">What’s your contact information?</h3>
+                </div>
+
+                <div style="    border-bottom: 1px solid #d2d2d7;" class="row">
+                    <div class="col-md-6 mb-5">
+                        <div class="email">
+                            <input style="border-radius: 10px;" type="email"
+                                class="mt-3 form-input-padding form-control" id="email" name="email"
+                                placeholder="Email Address" required>
+                        </div>
+                        <div class="number ">
+                            <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
+                                id="number" name="number" placeholder="India Mobile Number" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="message mt-3">
+                            <h5 class="shipping-message">For a successful delivery, make sure your phone number is
+                                correct:</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-5">
+                    <div class="col-md-6">
+                        <div class="bottem-checkout-btn-container ">
+                            <a onclick="placeOrder()" class="text-white col-md-12 btn btn-primary bottem-shipping-btn checkout-btn mt-4 ">Continue to
+                                Payment</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+</div>
+
+
+
+<style>
+    .poduct-container input:checked~.device-model-select {
+        border-color: #2196F3;
+        border-width: 2px;
+    }
+
+    #navbar.mySidenav {
+        position: absolute !important;
+    }
+
+    .radio-btn {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    function showAddressForm() {
+        document.getElementById('newAddress').style.display = 'block'
+    }
+
+    function hideAddressForm() {
+        document.getElementById('newAddress').style.display = 'none'
+    }
+</script>
+
+<script>
+    function placeOrder(){
+        $.ajax({
+        url: '/place-order',
+        data: $("#shipping-details").serialize(),
+        method: "post",
+        success: function (response) {
+            if (response.status) {
+                window.location.href = '/login'
+            } else {
+                window.location.reload()
+            }
+        }
+
+    })
+    }
+</script>

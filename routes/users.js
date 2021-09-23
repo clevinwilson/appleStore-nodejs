@@ -126,5 +126,16 @@ router.get('/bag',verifyLogin,async(req,res)=>{
   })
 })
 
+router.get('/shipping',verifyLogin,(req,res)=>{
+  res.render('user/shipping',{user:req.session.user})
+})
+
+router.post('/place-order',async(req,res)=>{
+  let bag =await  userHelper.getBagProducts(req.body.userId)
+  let total=await userHelper.getTotalAmound(req.session.user._id)
+  userHelper.placeOrder(req.body,bag,total).then((response)=>{
+
+  })
+})
 
 module.exports = router;

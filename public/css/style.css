@@ -943,7 +943,7 @@ hr.hamburger-hr {
 
 /* chapter nav */
 
-.chapternav {}
+/* .chapternav {} */
 
 .chapter-icon {
     width: 52px;
@@ -1801,3 +1801,45 @@ input::-webkit-inner-spin-button {
     }
    
 }
+
+.shipping-ribbon-text{
+    font-size: 24px;
+    line-height: 1.16667;
+    font-weight: 400;
+    letter-spacing: .009em;
+    font-family: sans-serif;
+    color: black;
+}
+
+.shipping-address-text{
+    font-size: 24px;
+    line-height: 1.19048;
+    font-weight: 600;
+    letter-spacing: .011em;
+    font-family: Helvetica ,Helvetica,Arial,sans-serif;
+    color: #000;
+}
+.shipping-message{
+    font-size: 14px;
+    line-height: 1.42859;
+    font-weight: 400;
+    letter-spacing: -.016em;
+    color: black;
+}
+.bottem-shipping-btn{
+    float: right !important;
+    padding: 14px !important;
+    border-radius: 13px !important;
+}
+
+
+@media screen and (max-width: 768px) {
+    .shipping-header-text{
+        font-weight: 600;
+        font-size: 28px;
+    } 
+    .shipping-address-text{
+        font-size: 21px;
+    } 
+}
+
