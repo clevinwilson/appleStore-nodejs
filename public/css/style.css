@@ -1849,3 +1849,20 @@ input::-webkit-inner-spin-button {
     }
 }
 
+/* order-page */
+.order-status{
+
+}
+.order-status-point{
+   display: inline;
+   text-decoration: none; 
+}
+
+@media screen and (max-width: 768px) {
+    .order-status-point{
+        font-size: 9px; 
+     }
+  
+    
+}
+
