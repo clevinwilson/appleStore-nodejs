@@ -16,7 +16,7 @@
             <div class="col-md-12 " style="border-bottom: 1px solid #d2d2d7;">
                 <div class="bag-header mb-5">
                     <div class="m-5 rs-bag-header">
-                        <h2 class="checkout-header-text imac-header-text text-center ">Your bag total is ₹158800 </h2>
+                        <h2 class="checkout-header-text imac-header-text text-center ">Your bag total is ₹{{total}}</h2>
                     </div>
                     <div class=" m-4 text-center bag-header-btn">
                         <button class="btn btn-primary checkout-btn">Check Out</button>
@@ -45,7 +45,7 @@
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-12 checkout-price-container mt-3">
-                                <h3 class="text-center checkout-price">₹{{this.product.price}}</h3>
+                                <h3 class="text-center checkout-price">₹ {{this.product.price}}</h3>
                             </div>
                             <div class="col-md-12 checkout-remove-container">
                                 <a class="mt-2 checkout-remove" href="">Remove</a>
@@ -99,7 +99,7 @@
                     <div class="col-md-6 col-6">
                         <div style="float: right;" class="col-md-12">
                             <div style="float: right;" class="shipping">
-                                <h4 style=" color: black;font-size: 17px;">₹92900</h4>
+                                <h4 style=" color: black;font-size: 17px;">₹ {{total}}</h4>
                             </div>
                         </div>
                         <div class="col-md-12 col-12">
@@ -121,7 +121,7 @@
                     <div class="col-md-6 col-6">
                         <div style="float: right;" class="col-md-12">
                             <div style="float: right;" class="shipping">
-                                <h4 class="checkout-price">₹92900</h4>
+                                <h4 class="checkout-price">₹ {{total}}</h4>
                             </div>
                         </div>
                         <div class="bottem-checkout-btn-container ">

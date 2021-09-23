@@ -119,9 +119,10 @@ router.post('/add-to-bag',verifyLogin,(req,res)=>{
   })
 })
 
-router.get('/bag',verifyLogin,(req,res)=>{
+router.get('/bag',verifyLogin,async(req,res)=>{
+  let getTotalAmound=await userHelper.getTotalAmound(req.session.user._id)
   userHelper.getBagProducts(req.session.user._id).then((products)=>{
-    res.render('user/bag',{user:req.session.user,bagItems:products})
+    res.render('user/bag',{user:req.session.user,bagItems:products,total:getTotalAmound.total})
   })
 })
 

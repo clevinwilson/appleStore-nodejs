@@ -104,6 +104,25 @@ module.exports = {
             ]).toArray()
             resolve(bagItems)
         })
+    },
+    getTotalAmound:(userId)=>{
+        return new Promise(async(resolve,reject)=>{
+           let total=await db.get().collection(collection.BAG_COLLECTION).aggregate([
+                {
+                    $match:{
+                        user:ObjectID(userId)
+                    }
+                },
+                {$unwind:'$product'},
+                {
+                    $group:{
+                        _id:null,
+                        total:{$sum:"$product.price"}
+                    }
+                }
+            ]).toArray()
+            resolve(total[0])
+        })
     }
 }
 
