@@ -142,4 +142,10 @@ router.post('/place-order',async(req,res)=>{
   })
 })
 
+router.get('/order',(req,res)=>{
+  userHelper.getOrders(req.session.user._id).then((orders)=>{
+    res.render('user/order',{orders:orders})
+  })
+})
+
 module.exports = router;

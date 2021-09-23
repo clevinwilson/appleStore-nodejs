@@ -1,0 +1,83 @@
+<!-- ribborn -->
+<section class="bg-white ribbon">
+    <div class="bg-white container">
+        <div class="row ">
+            <div class="pt-3 bg-white ribbon-covid-19 col-md-12">
+                <p class="text-center ribbon-text">Free contactless delivery. Some deliveries may be affected by local
+                    Covid-19 restrictions. See checkout for details. </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 ">
+                <div class="bag-header mb-5">
+                    <div class="m-5 rs-bag-header">
+                        <h2 class="order-header-text checkout-header-text imac-header-text  ">Details of your order.
+                        </h2>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6 ">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mt-4">
+    <div class="container">
+
+        {{#each orders}}
+        <div style="border-bottom: 1px solid #d2d2d7;" class="pb-5 row">
+            <div class="col-md-4 mt-3 ">
+                <img class="checkout-image" src="/device-image/{{this.productDetails._id}}.jpg" alt="">
+            </div>
+
+            <div class="col-md-8 mt-3 ">
+                <div  class="row pb-4">
+                    <div class="col-md-6 ">
+                        <div class="checkout-product-name-div mt-3">
+                            <h3 class="checkout-product-name  ">{{this.productDetails.productname}} -
+                                {{this.product.color}}</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12 checkout-price-container mt-3">
+                                <h3 class="text-center checkout-price">₹ {{this.product.price}}</h3>
+                            </div>
+                            <div class="col-md-12 checkout-price-container mt-3">
+                                <h6 class="text-center text-dark order-text checkout-price">Order Number: <span class="text-uppercase text-dark order-text" >{{this._id}}</span>  </h6>
+                            </div>
+                            <div class="col-md-12 checkout-remove-container">
+                                <h6 class="text-center order-text checkout-price">Order Placed:</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row ">
+                    <div class="col-md-12">
+                        <div class="checkout-product-name-div mt-3">
+                            <h3 class="checkout-pincode-text ">Find out how soon you can get this item. <a href="">Enter
+                                    pin code <i class="fas fa-chevron-down"></i></a></h3>
+                        </div>
+                        <div class="shipping-text-container">
+                            <h2 class="item-shipping-detail-line"><i style="font-size: 17px; color: black;"
+                                    class="bi bi-box"></i> <span style="font-size: 13px;">Ships in 3-5 business
+                                    days.</span></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+
+
+    </div>
+</section>

@@ -1840,6 +1840,12 @@ input::-webkit-inner-spin-button {
     } 
     .shipping-address-text{
         font-size: 21px;
-    } 
+    }
+    .order-text{
+        font-size: 15px !important;
+    }
+    .order-header-text{
+        font-size: 25px;
+    }
 }
 
