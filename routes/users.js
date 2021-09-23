@@ -148,7 +148,9 @@ router.post('/place-order',verifyLogin, async(req,res)=>{
 
 router.get('/order',verifyLogin,(req,res)=>{
   userHelper.getOrders(req.session.user._id).then((orders)=>{
+    console.log(orders);
     res.render('user/order',{orders:orders})
+
   })
 })
 

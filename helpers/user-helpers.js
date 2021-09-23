@@ -133,9 +133,11 @@ module.exports = {
         
         return new Promise((resolve, reject) => {
             var orderObj = {
+                user:ObjectID(order.userId),
                 address: order,
                 product: products.product,
-                total: total.total
+                total: total.total,
+                data:new Date()
 
             }
             db.get().collection(collection.ORDER_COLLECTION).insertOne(orderObj).then((response) => {

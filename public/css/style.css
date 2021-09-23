@@ -1845,7 +1845,7 @@ input::-webkit-inner-spin-button {
         font-size: 15px !important;
     }
     .order-header-text{
-        font-size: 25px;
+        font-size: 21px;
     }
 }
 
@@ -1861,6 +1861,9 @@ input::-webkit-inner-spin-button {
 @media screen and (max-width: 768px) {
     .order-status-point{
         font-size: 9px; 
+     }
+     .bag-empty-text{
+         font-size: 27px;
      }
   
     
