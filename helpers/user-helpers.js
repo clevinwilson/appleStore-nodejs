@@ -137,7 +137,11 @@ module.exports = {
                 address: order,
                 product: products.product,
                 total: total.total,
-                date:new Date()
+                date:new Date(),
+                orderplaced:true,
+                shipped:false,
+                delivered:false,
+                cancel:false
 
             }
             db.get().collection(collection.ORDER_COLLECTION).insertOne(orderObj).then((response) => {
@@ -174,7 +178,7 @@ module.exports = {
                 {
                     $project: {
 
-                        date:1,address: 1, product: 1, productDetails: { $arrayElemAt: ['$productDetails', 0] },
+                        cancel:1,orderplaced:1,shipped:1,delivered:1,date:1,address: 1, product: 1, productDetails: { $arrayElemAt: ['$productDetails', 0] },
                     }
                 }
 

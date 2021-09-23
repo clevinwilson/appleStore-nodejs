@@ -19,7 +19,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-2 text-gray-800">Product</h1>
+                        <h1 class="h3 mb-2 text-gray-800">Orders</h1>
                         <a href="/admin/add-product"
                             class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas  fa-sm text-white-50"></i> ADD PRODUCT</a>
@@ -29,7 +29,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Device list</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Order list</h6>
                         </div>
                         <div class="message p-3">
                             <div style="display: none;" class="alert alert-danger" id="error" role="alert">
@@ -46,9 +46,9 @@
                                             <th>Product</th>
                                             <th>Storage</th>
                                             <th>Colors</th>
-                                            <th>Status</th>
                                             <th>Price</th>
                                             <th>Address</th>
+                                            <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -59,9 +59,9 @@
                                             <th>Product</th>
                                             <th>Storage</th>
                                             <th>Colors</th>
-                                            <th>Status</th>
                                             <th>Price</th>
                                             <th>Address</th>
+                                            <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </tfoot>
@@ -81,32 +81,52 @@
                                                     src="/device-colors/{{this.product.deviceId}}{{this.product.color}}.jpg" alt="">
                                                 <h6 class="text-center mt-3">{{this.product.color}}</h6>
                                             </td>
-                                            {{#if this.status}}
-                                            <td class="text-success">Published</td>
-                                            {{else}}
-                                            <td class="text-danger" title="Add storage options">Pending 
-                
-                                            </td>
-
-                                            {{/if}}
+                                            
                                             <td>₹ {{this.product.price}} </td>
                                             <td>{{this.address.addressLine1}} ,{{this.address.addressLine2}},<br>
                                                 {{this.address.addressLine3}},{{this.address.postalCode}},<br>
                                                {{this.address.cityState}} ,{{this.address.country}}
                                                 
                                             </td>
+                                            {{#if this.orderplaced}}
+                                            <td class="text-success">Order Placed</td>
+                                            {{else if this.shipped}}
+                                            <td class="text-success" title="Order Shipped">Shipped</td>
+                                            {{else if this.delivered}}
+                                            <td class="text-success" title="Order Delivered">Delivered</td>
+                                            {{else if this.cancel}}
+                                            <td class="text-danger" title="Order Delivered">Canceled</td>
+                                            {{/if}}
                                             {{!-- <td align="center"><a type="button"
                                                     href="/admin/theater-details/{{this._id}}"
                                                     style="background-color: red; border-radius: 21px;"
                                                     class="text-white mt-2 btn btn-danger">VIEW</a></td> --}}
 
-                                            <td align="center"><a type="button" href="/admin/edit-category/{{this._id}}"
+                                            <td align="center">
+                                                {{#if this.orderplaced}}
+                                                <a type="button" href="/admin/update-status/1/{{this._id}}"
                                                     style=" border-radius: 21px;"
-                                                    class="text-white m-2 btn btn-primary">STATUS</a><a
+                                                    class="text-white m-2 btn btn-dark text-uppercase">Shipped</a>
+                                                 {{else if this.shipped}}
+                                                 <a type="button" href="/admin/update-status/2/{{this._id}}"
+                                                    style=" border-radius: 21px;"
+                                                    class="text-white m-2 btn btn-primary">Delivered</a>
+                                                {{else if this.delivered}}
+                                                <h6 class="text-success" title="Order Delivered">Delivered</h6>
+                                                {{else if this.cancel}}
+                                                <h6 class="text-danger" title="Order Delivered">Canceled</h6>
+                                                {{/if}}
+
+                                                {{#if this.delivered}}
+
+                                                {{else if this.cancel}}
+                                                {{else}}
+                                                    <a
                                                     style=" border-radius: 21px;" type="button" href="#"
                                                     data-toggle="modal" data-target="#deleteModal"
                                                     onclick=" confirmDelete('{{this._id}}')"
                                                     class="text-white ml-2 btn btn-success">CANCEL</a></td>
+                                                {{/if}}
                                         </tr>
                                         {{/each}}
                                     </tbody>
@@ -141,15 +161,15 @@
         <div style="    margin-top: 242px;" class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-danger" id="exampleModalLabel">Confirm to delete</h5>
+                    <h5 class="modal-title text-danger" id="exampleModalLabel">Confirm to Cancel</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Are you sure you want to delete ?</div>
+                <div class="modal-body">Are you sure you want to Cancel ?</div>
                 <div class="modal-footer">
-                    <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-danger" href="#" onclick="deleteProduct()">Delete</a>
+                    <button class="btn btn-success" type="button" data-dismiss="modal">No</button>
+                    <a class="btn btn-danger" href="#" onclick="deleteProduct()">Yes</a>
                 </div>
             </div>
         </div>
@@ -169,8 +189,8 @@
 
 
 <script>
-    function confirmDelete(categoryId) {
-        id = categoryId
+    function confirmDelete(orderId) {
+        id = orderId;
         $(document).ready(function () {
             $("#deleteModal").modal('show')
         })
@@ -181,13 +201,11 @@
             $("#deleteModal").modal('hide')
         })
         $.ajax({
-            url: '/admin/delete-product/' + id,
+            url: '/admin/cancel-order/' + id,
             method: 'get',
             success: (response) => {
                 if (response.status) {
                     window.location.reload();
-                } else {
-                    document.getElementById("error").style.display = "block"
                 }
             }
         })

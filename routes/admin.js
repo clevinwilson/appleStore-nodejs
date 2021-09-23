@@ -190,11 +190,31 @@ router.get('/delete-category/:id',verifyLogin,(req,res)=>{
     })
 })
 
-router.get('/manage-orders',(req,res)=>{
+router.get('/manage-orders',verifyLogin,(req,res)=>{
     adminHelpers.getOrders().then((response)=>{
-        res.render('admin/manage-orders',{orders:response})
+        res.render('admin/manage-orders',{admin:req.session.admin,orders:response})
     })
   })
+
+router.get('/update-status/:number/:orderId',(req,res)=>{
+    if(req.params.number == 1){
+        adminHelpers.updateStatusToShipped(req.params.orderId).then((response)=>{
+            res.redirect('/admin/manage-orders');
+        })
+    }else if(req.params.number == 2){
+        adminHelpers.udateStatusToDelivered(req.params.orderId).then((response)=>{
+            res.redirect('/admin/manage-orders');
+        })
+    }else{
+        res.redirect('/admin/manage-orders');
+    }
+})
+
+router.get('/cancel-order/:orderId',(req,res)=>{
+    adminHelpers.cancelOrder(req.params.orderId).then((response)=>{
+        res.json({status:true})
+    })
+})
 
 
 

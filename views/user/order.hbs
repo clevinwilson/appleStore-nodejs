@@ -54,14 +54,14 @@
                                         class="text-uppercase text-dark order-text">{{this._id}}</span> </h6>
                             </div>
                             <div class="col-md-12 checkout-remove-container">
-                                <h6 class="text-center order-text checkout-price">Order Placed:{{this.date}}</h6>
+                                <h6 class="text-center order-text checkout-price">Order Placed:</h6>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="row ">
-                    <div class="col-md-12 p-0 m-0">
+                    <div class="text-center col-md-12 p-0 m-0">
                         {{!-- <div class="checkout-product-name-div mt-3">
                             <h3 class="checkout-pincode-text ">Find out how soon you can get this item. <a href="">Enter
                                     pin code <i class="fas fa-chevron-down"></i></a></h3>
@@ -71,17 +71,39 @@
                                     class="bi bi-box"></i> <span style="font-size: 13px;">Ships in 3-5 business
                                     days.</span></h2>
                         </div> --}}
+                         {{#if this.orderplaced}}
                         <div style="height: 5px;" class="progress mb-2">
                             <div class="progress-bar bg-success" role="progressbar" style="width: 8%"
                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
+                        {{else if this.shipped}}
+                        <div style="height: 5px;" class="progress mb-2">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 50%"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                         {{else if this.delivered}}
+                         <div style="height: 5px;" class="progress mb-2">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        {{else if this.cancel}}
+                         <div style="height: 5px;" class="progress mb-2">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 100%"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        {{/if}}
 
-
+                        {{#if  this.cancel}}
+                        <div class="text-center"></div>
+                        <li class="   order-status-point mr-4 ml-4">Canceled</li>
+                       </div>
+                        {{else}}
                        <div class="text-center">
                             <li style="float: left;" class="order-status-point ">Order Placed</li>
                         <li class="  order-status-point mr-4 ml-4">Shipped</li>
                         <li style="    float: right;" class="order-status-point  ml-4">Delivered</li>
                        </div>
+                       {{/if}}
 
                     </div>
                 </div>

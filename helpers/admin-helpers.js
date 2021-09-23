@@ -2,6 +2,8 @@
 var collection=require('../config/collection');
 var db=require('../config/connection');
 var bcrypt=require('bcrypt');
+const { ObjectId } = require('bson');
+const { response } = require('express');
 
 module.exports={
     doLogin:(data)=>{
@@ -39,12 +41,57 @@ module.exports={
                 {
                     $project: {
 
-                        date:1,address: 1, product: 1, productDetails: { $arrayElemAt: ['$productDetails', 0] },
+                        cancel:1,orderplaced:1,shipped:1,delivered:1, date:1,address: 1, product: 1, productDetails: { $arrayElemAt: ['$productDetails', 0] },
                     }
                 }
 
             ]).toArray()
             resolve(orders)
+        })
+    },
+    updateStatusToShipped:(orderId)=>{
+        console.log(orderId);
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.ORDER_COLLECTION)
+            .updateOne({_id:ObjectId(orderId)},
+            {
+                $set:{
+                    orderplaced:false,
+                    shipped:true
+                }
+            }).then((response)=>{
+                resolve(response)
+            })
+        })
+    },
+    udateStatusToDelivered:(orderId)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.ORDER_COLLECTION)
+            .updateOne({_id:ObjectId(orderId)},
+            {
+                $set:{
+                    shipped:false,
+                    delivered:true
+                }
+            }).then((response)=>{
+                resolve(response)
+            })
+        })
+    },
+    cancelOrder:(orderId)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.ORDER_COLLECTION)
+            .updateOne({_id:ObjectId(orderId)},
+            {
+                $set:{
+                    orderplaced:false,
+                    shipped:false,
+                    delivered:false,
+                    cancel:true
+                }
+            }).then((response)=>{
+                resolve(response)
+            })
         })
     }
  
