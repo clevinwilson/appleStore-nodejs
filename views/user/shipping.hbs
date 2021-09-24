@@ -130,11 +130,11 @@
                         <div class="email">
                             <input style="border-radius: 10px;" type="email"
                                 class="mt-3 form-input-padding form-control" id="email" name="email"
-                                placeholder="Email Address" required>
+                                placeholder="Email Address" value="{{user.email}}" required>
                         </div>
                         <div class="number ">
                             <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
-                                id="number" name="number" placeholder="India Mobile Number" required>
+                                id="number" name="number" value="{{user.number}}" placeholder="India Mobile Number" required>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
@@ -250,7 +250,7 @@
             },
             method: 'post',
             success: (response) => {
-                if (response) {
+                if (response.status) {
                     window.location.href = "/order"
                 } else {
                     alert('Payment Failed')

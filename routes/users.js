@@ -140,16 +140,16 @@ router.post('/place-order', verifyLogin, async (req, res) => {
   userHelper.placeOrder(req.body, bag, total).then((orderId) => {
     if (response) {
       userHelper.generateRazorpay(orderId, total.total).then((response) => {
-        if(response){
+        if (response) {
           console.log(response);
           res.json(response)
-        }else{
+        } else {
           res.json(false)
         }
       })
-    }else {
-        res.json({ status: false })
-      }
+    } else {
+      res.json({ status: false })
+    }
   })
 })
 
@@ -160,15 +160,14 @@ router.get('/order', verifyLogin, (req, res) => {
   })
 })
 
-router.post('/verify-payment',(req,res)=>{
-  userHelper.verifyPayment(req.body).then(()=>{
-    userHelper.chanePaymentStatus(req.body['order[receipt]']).then((response)=>{
-      console.log('haahahahahhaha');
-      res.json({status:true})
+router.post('/verify-payment',verifyLogin, (req, res) => {
+  userHelper.verifyPayment(req.body).then(() => {
+    userHelper.chanePaymentStatus(req.body['order[receipt]']).then((response) => {
+      res.json({ status: true })
     })
-  }).catch((err)=>{
+  }).catch((err) => {
     console.log(err);
-    res.json({status:false,errMsg:''})
+    res.json({ status: false, errMsg: '' })
   })
 })
 

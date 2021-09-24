@@ -3,6 +3,7 @@ var db = require('../config/connection');
 var bcrypt = require('bcrypt');
 const { response } = require('express');
 const { ObjectId, ObjectID } = require('bson');
+var objectId = require('mongodb').ObjectID
 const Razorpay = require('razorpay')
 var instance = new Razorpay({
     key_id: 'rzp_test_deE2E1795zFmxy',
@@ -195,9 +196,9 @@ module.exports = {
         console.log(orderId, total);
         return new Promise((resolve, reject) => {
             var options = {
-                amount: total,  // amount in the smallest currency unit
+                amount: total*100,  // amount in the smallest currency unit
                 currency: "INR",
-                receipt: " " + orderId
+                receipt: "" + orderId
             };
             instance.orders.create(options, function (err, order) {
                 if (err) {
@@ -225,10 +226,9 @@ module.exports = {
         })
     },
     chanePaymentStatus: (orderId) => {
-        console.log(orderId);
         return new Promise((resolve, reject) => {
             db.get().collection(collection.ORDER_COLLECTION)
-            .updateOne({_id:orderId},{
+            .updateOne({_id:objectId(orderId)},{
                 $set:{
                     payment:true
                 }
