@@ -136,14 +136,19 @@ module.exports = {
         })
     },
     placeOrder: (order, products, total) => {
+        let date = new Date()
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
 
+        let fullDate = `${day}-${month}-${year}`;
         return new Promise((resolve, reject) => {
             var orderObj = {
                 user: ObjectID(order.userId),
                 address: order,
                 product: products.product,
                 total: total.total,
-                date: new Date(),
+                date: fullDate,
                 orderplaced: true,
                 shipped: false,
                 delivered: false,
@@ -196,7 +201,7 @@ module.exports = {
         console.log(orderId, total);
         return new Promise((resolve, reject) => {
             var options = {
-                amount: total*100,  // amount in the smallest currency unit
+                amount: total * 100,  // amount in the smallest currency unit
                 currency: "INR",
                 receipt: "" + orderId
             };
@@ -228,13 +233,13 @@ module.exports = {
     chanePaymentStatus: (orderId) => {
         return new Promise((resolve, reject) => {
             db.get().collection(collection.ORDER_COLLECTION)
-            .updateOne({_id:objectId(orderId)},{
-                $set:{
-                    payment:true
-                }
-            }).then((response)=>{
-                resolve(response)
-            })
+                .updateOne({ _id: objectId(orderId) }, {
+                    $set: {
+                        payment: true
+                    }
+                }).then((response) => {
+                    resolve(response)
+                })
         })
     }
 }
