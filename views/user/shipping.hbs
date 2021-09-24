@@ -35,19 +35,35 @@
                     <h3 class="shipping-address-text">Select an address:</h3>
                 </div>
                 <div class="row">
-                    <di class="col-md-6">
+                    <div class="col-md-6">
                         <label class="mt-3 poduct-container col-md-12 p-0 ">
                             <input type="radio" onclick="hideAddressForm()" class="radio-btn" id="address-option"
                                 name="addressOption" value="defaultAddress" required>
                             <div class="device-model-select product-model">
                                 <div class="device-radio">
+                                     <span class="device-price-right">Default</span>
                                     <span class="model-title">Clevin Wilson</span>
-                                    <span class="screen-size">chandanakkampara po</span>
-                                    <span class="device-price-right">Default</span>
+                                    <span class="screen-size pb-3 ">{{user.address.street}}</span>
+                                   
                                 </div>
                             </div>
                         </label>
-                    </di>
+
+                        {{#if addressError}}
+
+                        <div class="edit-address">
+                            <a style="font-size: 15px; color: red; " data-toggle="modal" data-target="#defaultAddress"
+                                class="content-align" href="#">Edit this address</a>
+                        </div>
+                        {{else}}
+                        <div class="edit-address">
+                            <a style="font-size: 15px; color: #267af7; " data-toggle="modal"
+                                data-target="#defaultAddress" class="content-align" href="#">Edit this address</a>
+                        </div>
+                        {{/if}}
+
+
+                    </div>
                     <div class="col-md-6">
 
                     </div>
@@ -73,7 +89,7 @@
                 <div style="display: none;" id="newAddress" class="row">
                     <div class="col-md-6">
                         <div class="email">
-                            <input style="border-radius: 10px;" type="email"
+                            <input style="border-radius: 10px;" type="text"
                                 class="mt-3 form-input-padding form-control" id="firstName" name="firstName"
                                 placeholder="First Name" required>
                         </div>
@@ -83,33 +99,33 @@
                         </div>
                         <div class="address1 ">
                             <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
-                                id="addressLine1" name="addressLine1" placeholder="Address Line 1"
+                                id="street" name="street" placeholder="Address Line 1"
                                 autocomplete="address-level1" required>
                         </div>
                         <div class="address2 ">
                             <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
-                                id="addressLine2" name="addressLine2" placeholder="Address Line 2 (Optional)"
+                                id="street2" name="street2" placeholder="Address Line 2 (Optional)"
                                 autocomplete="address-level2">
                         </div>
                         <div class="landmark ">
                             <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
-                                id="addressLine3" name="addressLine3" placeholder="Landmark (Optional)"
+                                id="street3" name="street3" placeholder="Landmark (Optional)"
                                 autocomplete="address-level3">
                         </div>
                         <div class="postalCode ">
                             <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
-                                id="postalCode" name="postalCode" placeholder="PIN Code" autocomplete="postalCode"
+                                id="postalCode" name="postalCode" placeholder="PIN Code" autocomplete
                                 required>
                         </div>
                         <div class="cityState ">
                             <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
-                                id="cityState" name="cityState" placeholder="City, State" required>
+                                id="cityState" name="state" placeholder="City, State" required>
                         </div>
                         <div class="country ">
                             <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
                                 id="country" name="country" placeholder="Country" value="India" readonly required>
                         </div>
-                        <input type="text" name="userId" value="{{user._id}}" hidden>
+                       
                     </div>
                     <div class="col-md-6">
 
@@ -134,13 +150,19 @@
                         </div>
                         <div class="number ">
                             <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
-                                id="number" name="number" value="{{user.number}}" placeholder="India Mobile Number" required>
+                                id="number" name="number" value="{{user.number}}" placeholder="India Mobile Number"
+                                required>
                         </div>
+                         <input type="text" name="userId" value="{{user._id}}" hidden>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <div class="message mt-3">
+                        <div class="message ml-3 mt-3">
                             <h5 class="shipping-message">For a successful delivery, make sure your phone number is
                                 correct:</h5>
+                            <ul>
+                                <li style="font-size: 13px;">The courier will send a One-Time Password (OTP) to this number.</li>
+                                <li style="font-size: 13px;">We’ll email you a receipt and send order updates to your mobile phone via SMS or iMessage.</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -162,6 +184,66 @@
     </form>
 </div>
 
+<!-- default address Modal-->
+<div class="modal fade" id="defaultAddress" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div style="    margin-top: 30px;" class="text-center modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 style="color: black;" class="modal-title text-black " id="exampleModalLabel">Edit Address</h2>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form action="/add-default-address" method="POST">
+            <div class="col-md-12 p-3">
+                <div class="email">
+                    <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
+                        id="firstName" name="firstName" value="{{user.address.firstName}}" placeholder="First Name" required>
+                </div>
+                <div class="number ">
+                    <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
+                        id="lastName" name="lastName" value="{{user.address.lastName}}" placeholder="Last Name" required>
+                </div>
+                <div class="address1 ">
+                    <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
+                        id="street" name="street" value="{{user.address.street}}" placeholder="Address Line 1" autocomplete="address-level1"
+                        required>
+                </div>
+                <div class="address2 ">
+                    <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
+                        id="street2" name="street2" value="{{user.address.street2}}" placeholder="Address Line 2 (Optional)"
+                        autocomplete="address-level2">
+                </div>
+                <div class="landmark ">
+                    <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
+                        id="street3" name="street3" value="{{user.address.street3}}" placeholder="Landmark (Optional)"
+                        autocomplete="address-level3">
+                </div>
+                <div class="postalCode ">
+                    <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
+                        id="postalCode" name="postalCode" value="{{user.address.postalCode}}" placeholder="PIN Code" autocomplete required>
+                </div>
+                <div class="cityState ">
+                    <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
+                        id="cityState" name="state" value="{{user.address.state}}" placeholder="City, State" required>
+                </div>
+                <div class="country ">
+                    <input style="border-radius: 10px;" type="text" class="mt-3 form-input-padding form-control"
+                        id="country" name="country" placeholder="Country" value="India" readonly required>
+                </div>
+                <input type="text" name="userId" value="{{user._id}}" hidden>
+            </div>
+
+            <div class="bottem-checkout-btn-container col-md-12 p-3  ">
+                <button type="submit" id="submit" 
+                    class="text-white col-md-12 btn btn-primary bottem-shipping-btn checkout-btn mb-4  ">Save
+                    Changes</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 <style>
@@ -203,7 +285,7 @@
                 if (response) {
                     razorpayPayment(response)
                 } else {
-                    alert('error')
+                    window.location.reload()
                 }
             }
 
@@ -222,12 +304,12 @@
             "image": "https://cdn.razorpay.com/logos/I19mkV5YVbyhC3_original.png",
             "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
             "handler": function (response) {
-                  verifyPayment(response, order)
+                verifyPayment(response, order)
             },
             "prefill": {
-                "name": "Gaurav Kumar",
-                "email": "gaurav.kumar@example.com",
-                "contact": "9999999999"
+                "name": "{{user.firstname}}",
+                "email": "{{user.email}}",
+                "contact": "{{user.number}}"
             },
             "notes": {
                 "address": "Razorpay Corporate Office"
@@ -253,7 +335,7 @@
                 if (response.status) {
                     window.location.href = "/order"
                 } else {
-                    alert('Payment Failed')
+                    alert('Payment Failed');
                 }
             }
         })

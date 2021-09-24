@@ -13,9 +13,13 @@ const verifyLogin = (req, res, next) => {
 };
 
 /* GET users listing. */
-router.get('/', function (req, res, next) {
-  console.log(req.session.user);
-  res.render('user/index', { user: req.session.user });
+router.get('/', async function (req, res, next) {
+  if (req.session.loggedIn) {
+    var bagItems = await userHelper.getBagProducts(req.session.user._id);
+    res.render('user/index', { user: req.session.user, bagItems: bagItems });
+  } else {
+    res.render('user/index', { user: req.session.user });
+  }
 
 });
 
@@ -76,9 +80,14 @@ router.post('/signup', (req, res) => {
 })
 
 
-//index page
-router.get('/imac', (req, res) => {
-  res.render('user/imac', { user: req.session.user })
+//imac page
+router.get('/imac', async (req, res) => {
+  if (req.session.loggedIn) {
+    var bagItems = await userHelper.getBagProducts(req.session.user._id);
+    res.render('user/imac', { user: req.session.user, bagItems: bagItems })
+  } else {
+    res.render('user/imac', { user: req.session.user })
+  }
 })
 
 //iphone page 
@@ -131,26 +140,68 @@ router.get('/bag', verifyLogin, async (req, res) => {
 })
 
 router.get('/shipping', verifyLogin, (req, res) => {
-  res.render('user/shipping', { user: req.session.user })
+ userHelper.getUser(req.session.user._id).then((userDetails)=>{
+  res.render('user/shipping', { user: userDetails, addressError: req.session.addressError })
+  req.session.addressError = false
+ })
+ 
 })
 
 router.post('/place-order', verifyLogin, async (req, res) => {
-  let bag = await userHelper.getBag(req.body.userId)
-  let total = await userHelper.getTotalAmound(req.session.user._id)
-  userHelper.placeOrder(req.body, bag, total).then((orderId) => {
-    if (response) {
-      userHelper.generateRazorpay(orderId, total.total).then((response) => {
-        if (response) {
-          console.log(response);
-          res.json(response)
-        } else {
-          res.json(false)
-        }
-      })
-    } else {
-      res.json({ status: false })
-    }
-  })
+  
+  if (req.body.addressOption === 'newAddress') {
+
+    let bag = await userHelper.getBag(req.body.userId);
+    let total = await userHelper.getTotalAmound(req.session.user._id)
+    userHelper.placeOrder(req.body, bag, total).then((orderId) => {
+      if (orderId) {
+        userHelper.generateRazorpay(orderId, total.total).then((response) => {
+          if (response) {
+            res.json(response)
+          } else {
+            res.json(false)
+          }
+        })
+      } else {
+        res.json( {status:true} )
+      }
+    })
+
+
+  } else if (req.body.addressOption === 'defaultAddress') {
+
+    userHelper.getUser(req.body.userId).then( async(defaultAddress) => {
+      if (defaultAddress.address.firstName) {
+
+
+        let bag = await userHelper.getBag(req.body.userId)
+        let total = await userHelper.getTotalAmound(req.session.user._id)
+        userHelper.placeOrder(defaultAddress.address, bag, total).then((orderId) => {
+          if (orderId) {
+            userHelper.generateRazorpay(orderId, total.total).then((response) => {
+              if (response) {
+                console.log(response);
+                res.json(response)
+              } else {
+                res.json(false)
+              }
+            })
+          } else {
+            res.json(false)
+          }
+        })
+
+
+
+      }else{
+        req.session.addressError = true
+        res.json( false )
+      }
+    })
+   
+  }else{
+    res.json( false )
+  }
 })
 
 router.get('/order', verifyLogin, (req, res) => {
@@ -160,7 +211,7 @@ router.get('/order', verifyLogin, (req, res) => {
   })
 })
 
-router.post('/verify-payment',verifyLogin, (req, res) => {
+router.post('/verify-payment', verifyLogin, (req, res) => {
   userHelper.verifyPayment(req.body).then(() => {
     userHelper.chanePaymentStatus(req.body['order[receipt]']).then((response) => {
       res.json({ status: true })
@@ -168,6 +219,16 @@ router.post('/verify-payment',verifyLogin, (req, res) => {
   }).catch((err) => {
     console.log(err);
     res.json({ status: false, errMsg: '' })
+  })
+})
+
+
+router.post('/add-default-address', (req, res) => {
+  userHelper.addDefaultAddress(req.body).then((response) => {
+    console.log(response);
+    if (response) {
+      res.redirect('/shipping')
+    }
   })
 })
 

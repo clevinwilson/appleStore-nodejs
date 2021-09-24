@@ -4,7 +4,8 @@ var bcrypt = require('bcrypt');
 const { response } = require('express');
 const { ObjectId, ObjectID } = require('bson');
 var objectId = require('mongodb').ObjectID
-const Razorpay = require('razorpay')
+const Razorpay = require('razorpay');
+const { resolve } = require('path');
 var instance = new Razorpay({
     key_id: 'rzp_test_deE2E1795zFmxy',
     key_secret: 'zDZ8GFjzaxyncyKYdabslzOE',
@@ -241,7 +242,31 @@ module.exports = {
                     resolve(response)
                 })
         })
-    }
+    },
+    addDefaultAddress: (data) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.USER_COLLECTION)
+            .updateOne({_id:ObjectID(data.userId)},
+            {
+                $set:{
+                    address:data
+                }
+            }).then((response)=>{
+                resolve(response)
+            })
+        })
+    },
+    getUser:(userId)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.USER_COLLECTION).findOne({_id:objectId(userId)}).then((response)=>{
+                if(response){
+                    resolve(response)
+                }else{
+                    response(false)
+                }
+            })
+        })
+    },
 }
 
 
