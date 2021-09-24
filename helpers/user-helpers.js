@@ -3,6 +3,11 @@ var db = require('../config/connection');
 var bcrypt = require('bcrypt');
 const { response } = require('express');
 const { ObjectId, ObjectID } = require('bson');
+const Razorpay = require('razorpay')
+var instance = new Razorpay({
+    key_id: 'rzp_test_deE2E1795zFmxy',
+    key_secret: 'zDZ8GFjzaxyncyKYdabslzOE',
+});
 module.exports = {
 
     doSignup: (signUpDetails) => {
@@ -124,31 +129,31 @@ module.exports = {
                     }
                 ]).toArray()
                 resolve(total[0])
-            }else{
+            } else {
                 resolve(false)
             }
         })
     },
     placeOrder: (order, products, total) => {
-        
+
         return new Promise((resolve, reject) => {
             var orderObj = {
-                user:ObjectID(order.userId),
+                user: ObjectID(order.userId),
                 address: order,
                 product: products.product,
                 total: total.total,
-                date:new Date(),
-                orderplaced:true,
-                shipped:false,
-                delivered:false,
-                cancel:false
+                date: new Date(),
+                orderplaced: true,
+                shipped: false,
+                delivered: false,
+                cancel: false,
+                payment: false,
 
             }
             db.get().collection(collection.ORDER_COLLECTION).insertOne(orderObj).then((response) => {
                 if (response) {
-                    db.get().collection(collection.BAG_COLLECTION).removeOne({ user: ObjectID(order.userId) }).then((response) => {
-                        resolve(response)
-                    })
+                    db.get().collection(collection.BAG_COLLECTION).removeOne({ user: ObjectID(order.userId) })
+                    resolve(response.ops[0]._id)
                 }
             })
         })
@@ -178,12 +183,58 @@ module.exports = {
                 {
                     $project: {
 
-                        cancel:1,orderplaced:1,shipped:1,delivered:1,date:1,address: 1, product: 1, productDetails: { $arrayElemAt: ['$productDetails', 0] },
+                        cancel: 1, orderplaced: 1, shipped: 1, delivered: 1, date: 1, address: 1, product: 1, productDetails: { $arrayElemAt: ['$productDetails', 0] },
                     }
                 }
 
             ]).toArray()
             resolve(orders)
+        })
+    },
+    generateRazorpay: (orderId, total) => {
+        console.log(orderId, total);
+        return new Promise((resolve, reject) => {
+            var options = {
+                amount: total,  // amount in the smallest currency unit
+                currency: "INR",
+                receipt: " " + orderId
+            };
+            instance.orders.create(options, function (err, order) {
+                if (err) {
+                    resolve(false)
+                } else {
+
+                    resolve(order)
+                }
+
+            });
+        })
+    },
+    verifyPayment: (details) => {
+        return new Promise((resolve, reject) => {
+            const crypto = require('crypto');
+            let hmac = crypto.createHmac('sha256', 'zDZ8GFjzaxyncyKYdabslzOE');
+            hmac.update(details['payment[razorpay_order_id]'] + '|' + details['payment[razorpay_payment_id]']);
+            hmac = hmac.digest('hex')
+            if (hmac == details['payment[razorpay_signature]']) {
+                resolve()
+            } else {
+                reject()
+            }
+
+        })
+    },
+    chanePaymentStatus: (orderId) => {
+        console.log(orderId);
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.ORDER_COLLECTION)
+            .updateOne({_id:orderId},{
+                $set:{
+                    payment:true
+                }
+            }).then((response)=>{
+                resolve(response)
+            })
         })
     }
 }
