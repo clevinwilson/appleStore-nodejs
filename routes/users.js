@@ -254,8 +254,28 @@ router.get('/remove-bag-item/:deviceId',verifyLogin,(req,res)=>{
   })
 })
 
-router.get('/favorites',(req,res)=>{
+router.get('/favorites',verifyLogin,(req,res)=>{
   res.render('user/favorites',{user: req.session.user})
+})
+
+router.get('/add-to-favorite/:deviceId',verifyLogin,(req,res)=>{
+  userHelper.addToFavorite(req.params.deviceId,req.session.user._id).then((response)=>{
+    if(response){
+      res.json(true)
+    }else{
+      res.json(false)
+    }
+  })
+})
+
+router.get('/remove-from-favorite/:deviceId',verifyLogin,(req,res)=>{
+  userHelper.removeFromFavorite(req.params.deviceId,req.session.user._id).then((response)=>{
+    if(response){
+      res.json(true)
+    }else{
+      res.json(false)
+    }
+  })
 })
 
 

@@ -1873,7 +1873,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 
 /* order-page */
 
-.order-status {}
+/* .order-status {} */
 
 .order-status-point {
     display: inline;

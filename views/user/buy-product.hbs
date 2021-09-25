@@ -138,7 +138,9 @@
                             <div class="bag-btn-container mt-4 mb-3">
                                 <div class="mt-4">
                                     <button class="col-md-10 col-10 bag-btn btn btn-primary" type="submit">Add to Bag</button>
-                                    <i class="col-md-2 col-2 bi bi-heart"></i>
+                                    <i onclick="addToFavorite('{{productDetails._id}}')" id="favorite-icon" class="col-md-2 col-2 bi bi-heart"></i>
+
+                                    <i  onclick="removeFromFavorite('{{productDetails._id}}')" id="favorite-icon-added" style=" display: none; color: #0066cc;" class="col-md-2 col-2  fas fa-heart "></i>
                                 </div>
                             </div>
                         </div>
@@ -298,5 +300,41 @@ if (screen.width < 735) {
      var imacImage = document.querySelector("#imacImage").src = "/images/hero_imac_24__eq5phrdpwjyq_large.jpg";
 
 }
+  </script>
+
+  <script>
+      function addToFavorite(deviceId){
+           $.ajax({
+            url: '/add-to-favorite/'+deviceId,
+            method: "get",
+            success: function (response) {
+                if (response) {
+                   
+                     document.getElementById('favorite-icon-added').style.display="inline"
+                     document.getElementById('favorite-icon').style.display="none"
+                    
+                } else {
+                  window.location.reload()
+                }
+            }
+
+        })
+      }
+
+      function removeFromFavorite(deviceId){
+           $.ajax({
+            url: '/remove-from-favorite/'+deviceId,
+            method: "get",
+            success: function (response) {
+                if (response) {
+                     document.getElementById('favorite-icon-added').style.display="none"
+                     document.getElementById('favorite-icon').style.display="inline"
+                } else {
+                  window.location.reload()
+                }
+            }
+
+        })
+      }
   </script>
 

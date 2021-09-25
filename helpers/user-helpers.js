@@ -285,6 +285,45 @@ module.exports = {
                 resolve(response)
             })
         })
+    },
+    addToFavorite:(deviceId,userId)=>{
+        console.log(deviceId);
+        return new Promise(async(resolve,reject)=>{
+            let favoriteBag= await db.get().collection(collection.FAVORITE_COLLECTION).findOne({userId:objectId(userId)})
+            if(favoriteBag){
+                let favoriteObj={
+                    deviceId:objectId(deviceId)
+                }
+                db.get().collection(collection.FAVORITE_COLLECTION)
+                .updateOne({userId:objectId(userId)},
+                {
+                    $push: { devices: favoriteObj }
+
+                }).then((response)=>{
+                    resolve(response)
+                })
+            }else{
+                let favoriteObj={
+                    userId:objectId(userId),
+                    devices:[{deviceId:objectId(deviceId)}]
+                }
+
+                db.get().collection(collection.FAVORITE_COLLECTION).insertOne(favoriteObj).then((response)=>{
+                    resolve(response)
+                })
+            }
+        })
+    },
+    removeFromFavorite:(deviceId,userId)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.FAVORITE_COLLECTION)
+            .updateOne({userId:objectId(userId)},
+            {
+                $pull: { devices: { deviceId: objectId(deviceId) } }
+            }).then((response)=>{
+               resolve(response)
+            })
+        })
     }
 
 }
