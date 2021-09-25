@@ -110,18 +110,7 @@
                         <h2 class="model-title  mt-4">Choose your capacity.</h2>
                         <a style="font-size: 14px;" href="#">How much capacity is right for you?</a>
                         <div class="row">
-                            <label class="mt-3 poduct-container text-center col-md-6 col-6 ">
-                                <input type="radio" class="radio-btn" id="storage" name="storage"
-                                    value="{{productDetails.defaultstorage}}" required>
-                                <div style=" padding: 20px;" class="p-4 device-model-select product-model">
-                                    <div class="device-radio">
-                                        <span class="form-selector-title">{{productDetails.defaultstorage}}
-                                            <small>GB</small></span>
-                                        <span class="small-text">₹0</span>
-                                    </div>
-
-                                </div>
-                            </label>
+                           
                             {{#each productDetails.storageOptions}}
                             <label class="mt-3 poduct-container text-center col-md-6  col-6 ">
                                 <input type="radio" class="radio-btn" id="storage" name="storage"
@@ -316,6 +305,7 @@
 
 <script>
     function addToFavorite(deviceId) {
+        {{#if user}}
         $.ajax({
             url: '/add-to-favorite/' + deviceId,
             method: "get",
@@ -331,6 +321,9 @@
             }
 
         })
+        {{else}}
+        location.href="/login"
+        {{/if}}
     }
 
     function removeFromFavorite(deviceId) {
