@@ -247,4 +247,10 @@ router.get('/pay-pending-payment/:orderId',async(req,res)=>{
         res.json( {status:true} )
       }
 })
+
+router.get('/remove-bag-item/:deviceId',verifyLogin,(req,res)=>{
+  userHelper.removeBagItem(req.params.deviceId,req.session.user._id).then((response)=>{
+    res.redirect('/bag')
+  })
+})
 module.exports = router;

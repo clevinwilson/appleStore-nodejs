@@ -6,6 +6,7 @@ const { ObjectId, ObjectID } = require('bson');
 var objectId = require('mongodb').ObjectID
 const Razorpay = require('razorpay');
 const { resolve } = require('path');
+const { resolveSoa } = require('dns');
 var instance = new Razorpay({
     key_id: 'rzp_test_deE2E1795zFmxy',
     key_secret: 'zDZ8GFjzaxyncyKYdabslzOE',
@@ -190,7 +191,7 @@ module.exports = {
                 {
                     $project: {
 
-                        payment:1,cancel: 1, orderplaced: 1, shipped: 1, delivered: 1, date: 1, address: 1, product: 1, productDetails: { $arrayElemAt: ['$productDetails', 0] },
+                        payment: 1, cancel: 1, orderplaced: 1, shipped: 1, delivered: 1, date: 1, address: 1, product: 1, productDetails: { $arrayElemAt: ['$productDetails', 0] },
                     }
                 }
 
@@ -246,35 +247,46 @@ module.exports = {
     addDefaultAddress: (data) => {
         return new Promise((resolve, reject) => {
             db.get().collection(collection.USER_COLLECTION)
-            .updateOne({_id:ObjectID(data.userId)},
-            {
-                $set:{
-                    address:data
-                }
-            }).then((response)=>{
-                resolve(response)
-            })
+                .updateOne({ _id: ObjectID(data.userId) },
+                    {
+                        $set: {
+                            address: data
+                        }
+                    }).then((response) => {
+                        resolve(response)
+                    })
         })
     },
-    getUser:(userId)=>{
-        return new Promise((resolve,reject)=>{
-            db.get().collection(collection.USER_COLLECTION).findOne({_id:objectId(userId)}).then((response)=>{
-                if(response){
+    getUser: (userId) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.USER_COLLECTION).findOne({ _id: objectId(userId) }).then((response) => {
+                if (response) {
                     resolve(response)
-                }else{
+                } else {
                     response(false)
                 }
             })
         })
     },
-    verifyOrder:(orderId)=>{
-        return new Promise((resolve,reject)=>{
-            db.get().collection(collection.ORDER_COLLECTION).findOne({_id:objectId(orderId)}).then((response)=>{
+    verifyOrder: (orderId) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.ORDER_COLLECTION).findOne({ _id: objectId(orderId) }).then((response) => {
                 resolve(response)
             })
         })
     },
-    
+    removeBagItem: (deviceId, userId) => {
+        return new Promise(async (resolve, reject) => {
+            db.get().collection(collection.BAG_COLLECTION)
+            .updateOne({user:objectId(userId)},
+            {
+                $pull: { product: { deviceId: objectId(deviceId) } }
+            }).then((response)=>{
+                resolve(response)
+            })
+        })
+    }
+
 }
 
 
