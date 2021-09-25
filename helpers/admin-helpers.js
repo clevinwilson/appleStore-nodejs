@@ -29,6 +29,9 @@ module.exports={
     getOrders: () => {
         return new Promise(async (resolve, reject) => {
             let orders = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
+                {
+                      $match:{ payment:true}
+                 },
                 { $unwind: '$product' },
                 {
                     $lookup: {
