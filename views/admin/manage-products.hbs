@@ -88,10 +88,10 @@
                                             </td>
 
                                             {{/if}}
-                                            <td>{{this.productprice}} ₹</td>
-                                            <td>{{this.defaultstorage}} ,<br>
+                                            <td> ₹ {{this.productprice}}</td>
+                                            <td>
                                                 {{#each this.storageOptions}}
-                                                {{this.storagesize}} : {{this.storageprice}} ₹ ,<br>
+                                                {{this.storagesize}} : ₹ {{this.storageprice}}  ,<br>
                                                 {{/each}}
                                             </td>
                                             {{!-- <td align="center"><a type="button"
