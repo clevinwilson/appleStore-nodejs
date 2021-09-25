@@ -190,7 +190,7 @@ module.exports = {
                 {
                     $project: {
 
-                        cancel: 1, orderplaced: 1, shipped: 1, delivered: 1, date: 1, address: 1, product: 1, productDetails: { $arrayElemAt: ['$productDetails', 0] },
+                        payment:1,cancel: 1, orderplaced: 1, shipped: 1, delivered: 1, date: 1, address: 1, product: 1, productDetails: { $arrayElemAt: ['$productDetails', 0] },
                     }
                 }
 
@@ -267,6 +267,14 @@ module.exports = {
             })
         })
     },
+    verifyOrder:(orderId)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.ORDER_COLLECTION).findOne({_id:objectId(orderId)}).then((response)=>{
+                resolve(response)
+            })
+        })
+    },
+    
 }
 
 

@@ -54,7 +54,7 @@
                                         class="text-uppercase text-dark order-text">{{this._id}}</span> </h6>
                             </div>
                             <div class="col-md-12 checkout-remove-container">
-                                <h6 class="text-center order-text checkout-price">Order Placed: {{this.date}}</h6>
+                                <h6 class="text-center order-text text-dark checkout-price">Order Placed: {{this.date}}</h6>
                             </div>
                         </div>
                     </div>
@@ -71,6 +71,7 @@
                                     class="bi bi-box"></i> <span style="font-size: 13px;">Ships in 3-5 business
                                     days.</span></h2>
                         </div> --}}
+                        {{#if payment}}
                          {{#if this.orderplaced}}
                         <div style="height: 5px;" class="progress mb-2">
                             <div class="progress-bar bg-success" role="progressbar" style="width: 8%"
@@ -94,7 +95,7 @@
                         {{/if}}
 
                         {{#if  this.cancel}}
-                        <div class="text-center"></div>
+                        <div class="text-center">
                         <li class="   order-status-point mr-4 ml-4">Canceled</li>
                        </div>
                         {{else}}
@@ -102,6 +103,12 @@
                             <li style="float: left;" class="order-status-point ">Order Placed</li>
                         <li class="  order-status-point mr-4 ml-4">Shipped</li>
                         <li style="    float: right;" class="order-status-point  ml-4">Delivered</li>
+                       </div>
+                       {{/if}}
+                       {{else}}
+                        <div class="text-center">
+                            <li style="float: left;" class="order-status-point text-danger ">Order not placed , Payment pending</li>
+                        <a style="float: right;" onclick="payPendingPayment('{{this._id}}')" class="order-status-point btn btn-primary text-white  ml-4">Pay</a>
                        </div>
                        {{/if}}
 
@@ -114,3 +121,75 @@
 
     </div>
 </section>
+
+
+<script>
+
+    function payPendingPayment(orderId) {
+        $.ajax({
+            url: '/pay-pending-payment/'+ orderId,
+            method: "get",
+            success: function (response) {
+                if (response) {
+                    razorpayPayment(response)
+                } else {
+                    window.location.reload()
+                }
+            }
+
+        })
+
+
+    }
+
+    function razorpayPayment(order) {
+        var options = {
+            "key": "rzp_test_deE2E1795zFmxy", // Enter the Key ID generated from the Dashboard
+            "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "Apple",
+            "description": "Test Transaction",
+            "image": "https://cdn.razorpay.com/logos/I19mkV5YVbyhC3_original.png",
+            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
+                verifyPayment(response, order)
+            },
+            "prefill": {
+                "name": "{{user.firstname}}",
+                "email": "{{user.email}}",
+                "contact": "{{user.number}}"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#141414"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    }
+
+
+    function verifyPayment(payment, order) {
+        $.ajax({
+            url: '/verify-payment',
+            data: {
+                payment,
+                order
+            },
+            method: 'post',
+            success: (response) => {
+                if (response.status) {
+                    window.location.href = "/order"
+                } else {
+                    alert('Payment Failed');
+                }
+            }
+        })
+    }
+
+
+
+
+</script>

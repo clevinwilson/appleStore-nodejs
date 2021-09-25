@@ -1860,7 +1860,7 @@ input::-webkit-inner-spin-button {
 
 @media screen and (max-width: 768px) {
     .order-status-point{
-        font-size: 9px; 
+        font-size: 13px; 
      }
      .bag-empty-text{
          font-size: 27px;

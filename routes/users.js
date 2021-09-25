@@ -232,4 +232,19 @@ router.post('/add-default-address', (req, res) => {
   })
 })
 
+router.get('/pay-pending-payment/:orderId',async(req,res)=>{
+ 
+  let order =await userHelper.verifyOrder(req.params.orderId);
+      if (order._id) {
+        userHelper.generateRazorpay(order._id, order.total).then((response) => {
+          if (response) {
+            res.json(response)
+          } else {
+            res.json(false)
+          }
+        })
+      } else {
+        res.json( {status:true} )
+      }
+})
 module.exports = router;
