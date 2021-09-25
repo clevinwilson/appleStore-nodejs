@@ -1,0 +1,56 @@
+<section  style="border-bottom: 1px solid #d2d2d7; margin-top: 60px;" class="bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 " >
+                <div class="bag-header favorites-margin-sm ">
+                      <div class="m-5 p-3 rs-bag-header">
+                        <h2 style="    font-size: 42px;line-height: 1.1; font-weight: 600;" class="checkout-header-text imac-header-text bag-empty-text text-center ">Favourites</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class=" favorites-device-container col-md-6 col-12 ">
+               <div class="row favorites-row-sm ">
+                    <div class="favorites-header col-md-12 col-8 mt-2">
+                    <h4  class=" favorites-text-color favorites-text-sm  favorites-device-name">iPhone 12 </h4>
+                    <span class="favorites-text-color favorites-text-sm text-centerrs-favorites-item-price">₹70900</span>
+                   <div class="favorites-text-sm favorites-show-button">
+                        <a id="rs-favorites-item-toggle" class="text-primary" onclick="showMore()" >Show more</a>
+                   </div>
+                </div>
+                <div class="col-md-12 col-4 favorites-product-image-container">
+                    <img class="favorites-product-image"  src="/device-image/614a1cf073ac6c06649a60e9.jpg" alt="">
+                </div>
+
+                <div  id="continue-btn-container" class="col-md-12 continue-btn-container mt-5">
+                     <a  style="border-radius: 20px; width: 100%;" class="btn btn-primary text-white checkout-btn">Remove</a>
+                </div>
+               </div>
+            </div>
+
+            
+
+            
+        </div>
+    </div>
+</section>
+
+<script>
+    function showMore(){
+        document.getElementById('continue-btn-container').style.display="block"
+        document.getElementById('rs-favorites-item-toggle').innerHTML="Show less"
+        document.getElementById('rs-favorites-item-toggle').onclick=showLess
+        
+    }
+    function showLess(){
+         document.getElementById('continue-btn-container').style.display="none"
+        document.getElementById('rs-favorites-item-toggle').innerHTML="Show More"
+        document.getElementById('rs-favorites-item-toggle').onclick=showMore
+    }
+</script>

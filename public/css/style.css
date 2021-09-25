@@ -1598,12 +1598,13 @@ hr.hamburger-hr {
     background-image: linear-gradient( 0deg, #0171ca, #3f9feb);
     border-color: #0077cc;
 }
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
-.password-notmatch-text{
+
+.password-notmatch-text {
     font-size: 13px;
     padding-top: 10px;
     float: left;
@@ -1611,18 +1612,20 @@ input::-webkit-inner-spin-button {
     letter-spacing: 0.012em;
     display: none;
 }
-.show-password-notmatch-text{
+
+.show-password-notmatch-text {
     display: block !important;
 }
 
-.password-input-box-error{
+.password-input-box-error {
     border-color: red;
     background-color: #f7d4d4;
     color: white;
 }
 
- /* login page css */
-.signin-header-text{
+/* login page css */
+
+.signin-header-text {
     font-size: 40px;
     line-height: 1.1;
     font-weight: 600;
@@ -1631,11 +1634,13 @@ input::-webkit-inner-spin-button {
     padding-bottom: 36px;
     padding-top: 34px;
 }
-.signin-input{
+
+.signin-input {
     border-radius: 10px !important;
     padding: 27px !important;
 }
-.form-itune-text{
+
+.form-itune-text {
     font-size: 14px;
     line-height: 1.42859;
     font-weight: 400;
@@ -1644,7 +1649,8 @@ input::-webkit-inner-spin-button {
     margin-top: 0;
     margin-bottom: 35px;
 }
-.signin-btn{
+
+.signin-btn {
     background: #0071e3;
     color: #fff;
     font-size: 17px;
@@ -1662,61 +1668,69 @@ input::-webkit-inner-spin-button {
     white-space: normal;
     display: inline-block;
 }
+
 @media screen and (max-width: 768px) {
-    .signin-header-text{
+    .signin-header-text {
         font-size: 28px;
         padding: 0px;
-        
     }
-    .form-itune-text{
+    .form-itune-text {
         font-size: 12px;
     }
-    .create-account-text-container{
+    .create-account-text-container {
         font-size: 13px;
     }
-   
 }
-@media screen and (min-width: 768px) {
 
-    .signin-header-text{
+@media screen and (min-width: 768px) {
+    .signin-header-text {
         padding: 0px !important;
         margin-bottom: 60px !important;
     }
-    .signup-form-marginl-lg{
+    .signup-form-marginl-lg {
         margin-left: 50px;
     }
 }
 
 /* bag login animation */
 
-
 .loader {
-  border: 3px solid #f3f3f3;
-  border-radius: 100%;
-  border-top: 3px solid #0071e3;
-  width: 40px;
-  height: 40px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
-  animation: spin 2s linear infinite;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+    border: 3px solid #f3f3f3;
+    border-radius: 100%;
+    border-top: 3px solid #0071e3;
+    width: 40px;
+    height: 40px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Safari */
+
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* bag items style*/
 
-.bag-items-spec{
+.bag-items-spec {
     display: block;
     margin-top: auto;
     margin-bottom: auto;
@@ -1725,7 +1739,7 @@ input::-webkit-inner-spin-button {
     font-family: inherit;
 }
 
-.checkout-btn{
+.checkout-btn {
     background-color: #0071e3 !important;
     border-radius: 8px;
     font-size: 17px;
@@ -1738,12 +1752,14 @@ input::-webkit-inner-spin-button {
     width: 260px;
     color: #fff;
 }
-.checkout-header-text{
+
+.checkout-header-text {
     font-size: 40px;
     line-height: 1.1;
     font-weight: 400;
 }
-.checkout-image{
+
+.checkout-image {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -1751,19 +1767,22 @@ input::-webkit-inner-spin-button {
     width: 100%;
     height: 150px;
 }
-.checkout-product-name{
+
+.checkout-product-name {
     font-size: 24px;
     line-height: 1.16667;
     font-weight: 600;
     width: 84%;
     color: black;
 }
-.checkout-price{
+
+.checkout-price {
     color: black;
     float: right;
     font-weight: 600;
 }
-.checkout-remove{
+
+.checkout-remove {
     float: right;
     background: transparent;
     border: 0;
@@ -1774,6 +1793,7 @@ input::-webkit-inner-spin-button {
     letter-spacing: -.022em;
     font-family: sans-serif;
 }
+
 .checkout-pincode-text {
     font-size: 17px;
     line-height: 1.47059;
@@ -1781,28 +1801,29 @@ input::-webkit-inner-spin-button {
     letter-spacing: -.022em;
     color: black;
 }
-.bottem-checkout-btn{
+
+.bottem-checkout-btn {
     float: right !important;
     padding: 14px !important;
     border-radius: 13px !important;
     width: 330px !important;
 }
+
 @media screen and (max-width: 768px) {
-    .checkout-header-text{
+    .checkout-header-text {
         font-size: 32px;
         line-height: 1.1;
         font-weight: 100 !important;
     }
-    .checkout-product-name{
+    .checkout-product-name {
         font-size: 18px;
     }
-    .checkout-price{
+    .checkout-price {
         font-size: 22px;
     }
-   
 }
 
-.shipping-ribbon-text{
+.shipping-ribbon-text {
     font-size: 24px;
     line-height: 1.16667;
     font-weight: 400;
@@ -1811,61 +1832,127 @@ input::-webkit-inner-spin-button {
     color: black;
 }
 
-.shipping-address-text{
+.shipping-address-text {
     font-size: 24px;
     line-height: 1.19048;
     font-weight: 600;
     letter-spacing: .011em;
-    font-family: Helvetica ,Helvetica,Arial,sans-serif;
+    font-family: Helvetica, Helvetica, Arial, sans-serif;
     color: #000;
 }
-.shipping-message{
+
+.shipping-message {
     font-size: 14px;
     line-height: 1.42859;
     font-weight: 400;
     letter-spacing: -.016em;
     color: black;
 }
-.bottem-shipping-btn{
+
+.bottem-shipping-btn {
     float: right !important;
     padding: 14px !important;
     border-radius: 13px !important;
 }
 
-
 @media screen and (max-width: 768px) {
-    .shipping-header-text{
+    .shipping-header-text {
         font-weight: 600;
         font-size: 28px;
-    } 
-    .shipping-address-text{
+    }
+    .shipping-address-text {
         font-size: 21px;
     }
-    .order-text{
+    .order-text {
         font-size: 15px !important;
     }
-    .order-header-text{
+    .order-header-text {
         font-size: 21px;
     }
 }
 
 /* order-page */
-.order-status{
 
-}
-.order-status-point{
-   display: inline;
-   text-decoration: none; 
+.order-status {}
+
+.order-status-point {
+    display: inline;
+    text-decoration: none;
 }
 
 @media screen and (max-width: 768px) {
-    .order-status-point{
-        font-size: 13px; 
-     }
-     .bag-empty-text{
-         font-size: 27px;
-     }
-  
-    
+    .order-status-point {
+        font-size: 13px;
+    }
+    .bag-empty-text {
+        font-size: 27px;
+    }
 }
 
+/* favorites page */
+
+.favorites-device-name {
+    font-size: 17px;
+    line-height: 1.47059;
+    font-weight: 400;
+}
+
+.favorites-text-color {
+    color: black;
+}
+
+.favorites-device-container {
+    padding: 3rem!important;
+}
+
+.favorites-product-image-container {
+    margin-top: 3rem!important;
+}
+
+.favorites-product-image {
+    object-fit: contain;
+    height: 324px;
+    width: 100%;
+}
+
+.favorites-header {
+    text-align: center;
+}
+
+.favorites-row-sm{
+    margin-top: 25px;
+    margin-bottom: 23px;
+    padding: 20px;
+}
+.favorites-margin-sm{
+    margin-bottom: 3rem!important;
+}
+.continue-btn-container{
+    display: none;
+}
+
+
+@media screen and (max-width: 768px) {
+    .favorites-device-container {
+        text-align: initial !important;
+        padding: 0px !important;
+        border-bottom: 1px solid #d2d2d7;
+    }
+    .favorites-product-image-container {
+        margin-top: 0px !important;
+    }
+    .favorites-product-image {
+        object-fit: contain;
+        height: 90px;
+        width: 100%;
+    }
+    .favorites-text-sm {
+        font-size: 14px;
+    }
+    .favorites-header {
+        text-align: initial;
+    }
+    .favorites-margin-sm{
+        margin-bottom: -32px !important;
+    }
+}

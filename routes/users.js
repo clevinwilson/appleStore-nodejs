@@ -223,7 +223,7 @@ router.post('/verify-payment', verifyLogin, (req, res) => {
 })
 
 
-router.post('/add-default-address', (req, res) => {
+router.post('/add-default-address',verifyLogin, (req, res) => {
   userHelper.addDefaultAddress(req.body).then((response) => {
     console.log(response);
     if (response) {
@@ -232,7 +232,7 @@ router.post('/add-default-address', (req, res) => {
   })
 })
 
-router.get('/pay-pending-payment/:orderId',async(req,res)=>{
+router.get('/pay-pending-payment/:orderId',verifyLogin,async(req,res)=>{
  
   let order =await userHelper.verifyOrder(req.params.orderId);
       if (order._id) {
@@ -253,4 +253,13 @@ router.get('/remove-bag-item/:deviceId',verifyLogin,(req,res)=>{
     res.redirect('/bag')
   })
 })
+
+router.get('/favorites',(req,res)=>{
+  res.render('user/favorites',{user: req.session.user})
+})
+
+
+
+
+
 module.exports = router;
