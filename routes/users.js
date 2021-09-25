@@ -108,14 +108,30 @@ router.get('/iphone-12', (req, res) => {
 })
 
 //buy product page 
-router.get('/buy-product/:productId', (req, res) => {
-  productHelper.getProductDetails(req.params.productId).then((productDetails) => {
-    if (productDetails) {
-      res.render('user/buy-product', { user: req.session.user, productDetails: productDetails });
-    } else {
-      res.redirect('/');
-    }
-  })
+router.get('/buy-product/:productId', async (req, res) => {
+  if (req.session.user) {
+    let favorites = await userHelper.getFavoritedProduct(req.params.productId, req.session.user._id)
+    productHelper.getProductDetails(req.params.productId).then((productDetails) => {
+      if (productDetails) {
+        if (favorites) {
+          res.render('user/buy-product', { user: req.session.user, productDetails: productDetails,inFavorite:true });
+        } else {
+          res.render('user/buy-product', { user: req.session.user, productDetails: productDetails,inFavorite:false });
+        }
+
+      } else {
+        res.redirect('/');
+      }
+    })
+  } else {
+    productHelper.getProductDetails(req.params.productId).then((productDetails) => {
+      if (productDetails) {
+        res.render('user/buy-product', { user: req.session.user, productDetails: productDetails });
+      } else {
+        res.redirect('/');
+      }
+    })
+  }
 })
 
 router.post('/add-to-bag', verifyLogin, (req, res) => {
@@ -140,15 +156,15 @@ router.get('/bag', verifyLogin, async (req, res) => {
 })
 
 router.get('/shipping', verifyLogin, (req, res) => {
- userHelper.getUser(req.session.user._id).then((userDetails)=>{
-  res.render('user/shipping', { user: userDetails, addressError: req.session.addressError })
-  req.session.addressError = false
- })
- 
+  userHelper.getUser(req.session.user._id).then((userDetails) => {
+    res.render('user/shipping', { user: userDetails, addressError: req.session.addressError })
+    req.session.addressError = false
+  })
+
 })
 
 router.post('/place-order', verifyLogin, async (req, res) => {
-  
+
   if (req.body.addressOption === 'newAddress') {
 
     let bag = await userHelper.getBag(req.body.userId);
@@ -163,14 +179,14 @@ router.post('/place-order', verifyLogin, async (req, res) => {
           }
         })
       } else {
-        res.json( {status:true} )
+        res.json({ status: true })
       }
     })
 
 
   } else if (req.body.addressOption === 'defaultAddress') {
 
-    userHelper.getUser(req.body.userId).then( async(defaultAddress) => {
+    userHelper.getUser(req.body.userId).then(async (defaultAddress) => {
       if (defaultAddress.address.firstName) {
 
 
@@ -193,14 +209,14 @@ router.post('/place-order', verifyLogin, async (req, res) => {
 
 
 
-      }else{
+      } else {
         req.session.addressError = true
-        res.json( false )
+        res.json(false)
       }
     })
-   
-  }else{
-    res.json( false )
+
+  } else {
+    res.json(false)
   }
 })
 
@@ -223,7 +239,7 @@ router.post('/verify-payment', verifyLogin, (req, res) => {
 })
 
 
-router.post('/add-default-address',verifyLogin, (req, res) => {
+router.post('/add-default-address', verifyLogin, (req, res) => {
   userHelper.addDefaultAddress(req.body).then((response) => {
     console.log(response);
     if (response) {
@@ -232,47 +248,47 @@ router.post('/add-default-address',verifyLogin, (req, res) => {
   })
 })
 
-router.get('/pay-pending-payment/:orderId',verifyLogin,async(req,res)=>{
- 
-  let order =await userHelper.verifyOrder(req.params.orderId);
-      if (order._id) {
-        userHelper.generateRazorpay(order._id, order.total).then((response) => {
-          if (response) {
-            res.json(response)
-          } else {
-            res.json(false)
-          }
-        })
+router.get('/pay-pending-payment/:orderId', verifyLogin, async (req, res) => {
+
+  let order = await userHelper.verifyOrder(req.params.orderId);
+  if (order._id) {
+    userHelper.generateRazorpay(order._id, order.total).then((response) => {
+      if (response) {
+        res.json(response)
       } else {
-        res.json( {status:true} )
+        res.json(false)
       }
+    })
+  } else {
+    res.json({ status: true })
+  }
 })
 
-router.get('/remove-bag-item/:deviceId',verifyLogin,(req,res)=>{
-  userHelper.removeBagItem(req.params.deviceId,req.session.user._id).then((response)=>{
+router.get('/remove-bag-item/:deviceId', verifyLogin, (req, res) => {
+  userHelper.removeBagItem(req.params.deviceId, req.session.user._id).then((response) => {
     res.redirect('/bag')
   })
 })
 
-router.get('/favorites',verifyLogin,(req,res)=>{
-  res.render('user/favorites',{user: req.session.user})
+router.get('/favorites', verifyLogin, (req, res) => {
+  res.render('user/favorites', { user: req.session.user })
 })
 
-router.get('/add-to-favorite/:deviceId',verifyLogin,(req,res)=>{
-  userHelper.addToFavorite(req.params.deviceId,req.session.user._id).then((response)=>{
-    if(response){
+router.get('/add-to-favorite/:deviceId', verifyLogin, (req, res) => {
+  userHelper.addToFavorite(req.params.deviceId, req.session.user._id).then((response) => {
+    if (response) {
       res.json(true)
-    }else{
+    } else {
       res.json(false)
     }
   })
 })
 
-router.get('/remove-from-favorite/:deviceId',verifyLogin,(req,res)=>{
-  userHelper.removeFromFavorite(req.params.deviceId,req.session.user._id).then((response)=>{
-    if(response){
+router.get('/remove-from-favorite/:deviceId', verifyLogin, (req, res) => {
+  userHelper.removeFromFavorite(req.params.deviceId, req.session.user._id).then((response) => {
+    if (response) {
       res.json(true)
-    }else{
+    } else {
       res.json(false)
     }
   })

@@ -324,6 +324,16 @@ module.exports = {
                resolve(response)
             })
         })
+    },
+    getFavoritedProduct:(productId,userId)=>{
+        return new Promise(async(resolve,reject)=>{
+            let favorites=await db.get().collection(collection.FAVORITE_COLLECTION).find( { devices: { $elemMatch: { deviceId: objectId(productId) } } }).toArray()
+            if(favorites[0]){
+                resolve(true)
+            }else{
+                resolve(false)
+            }
+        })
     }
 
 }

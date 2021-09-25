@@ -1,248 +1,290 @@
-   <!-- title price listing -->
-    <section style="border-bottom: 1px solid #c5c5c5;" class="title-price-nav ribbon">
-        <div class="bg-light title-containers p-1 ml-5 mr-5">
-            <div style="padding: 2px;background-color: white;" class="row   ">
-                <div class=" title-divider col-md-6 col-6">
-                    <h2 class="text-center product-title-name">{{productDetails.productname}}</h2>
-                </div>
-                <div class="p-2 text-center product-title-price col-md-6 col-6">
-                    <span>From ₹14111/mo. with EMI,** or ₹{{productDetails.productprice}}</span>
-                </div>
+<!-- title price listing -->
+<section style="border-bottom: 1px solid #c5c5c5;" class="title-price-nav ribbon">
+    <div class="bg-light title-containers p-1 ml-5 mr-5">
+        <div style="padding: 2px;background-color: white;" class="row   ">
+            <div class=" title-divider col-md-6 col-6">
+                <h2 class="text-center product-title-name">{{productDetails.productname}}</h2>
+            </div>
+            <div class="p-2 text-center product-title-price col-md-6 col-6">
+                <span>From ₹14111/mo. with EMI,** or ₹{{productDetails.productprice}}</span>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- ribborn -->
-    <section class="m-0 ribbon">
-        <div class="bg-light container">
-            <div class="row ">
-                <div class="pt-3 ribbon-covid-19 col-md-12">
-                    <p style="font-size: 14px;" class="text-center ribbon-text">See all the flexible ways to pay and
-                        save on your new iPhone. <a href="#"> Learn more <i class="fas fa-chevron-right"></i></a></p>
-                </div>
+<!-- ribborn -->
+<section class="m-0 ribbon">
+    <div class="bg-light container">
+        <div class="row ">
+            <div class="pt-3 ribbon-covid-19 col-md-12">
+                <p style="font-size: 14px;" class="text-center ribbon-text">See all the flexible ways to pay and
+                    save on your new iPhone. <a href="#"> Learn more <i class="fas fa-chevron-right"></i></a></p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-7  ">
-                    <div class="text-center p-3 mt-3 product-header-sm">
-                        <h3 class="violator-frameless">New</h3>
-                        <h2 class="product-name">Buy {{productDetails.productname}}</h2>
-                        <div class="product-offer">
-                            <p>Get 10% on your Apple devices</p>
-                        </div>
-                    </div>
-                    <div class=" product-image-cotainer">
-                        <img class="product-spc-image" src="/device-image/{{productDetails._id}}.jpg" alt="">
-                        <div class="text-center buystrip">
-                            <p class="product-sm-name" style="font-size: 14px;">{{productDetails.productname}}</p>
-                            <hr class="produc-hr">
-                            <p class="need-help-tag"> Need some help? </p>
-                        </div>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7  ">
+                <div class="text-center p-3 mt-3 product-header-sm">
+                    <h3 class="violator-frameless">New</h3>
+                    <h2 class="product-name">Buy {{productDetails.productname}}</h2>
+                    <div class="product-offer">
+                        <p>Get 10% on your Apple devices</p>
                     </div>
                 </div>
-
-                <div class="col-md-5 p-3 mt-4">
-                    <div class="product-header">
-                        <h3 class="violator-frameless">New</h3>
-                        <h2 class="product-name">Buy {{productDetails.productname}}</h2>
-                        <div class="product-offer">
-                            <p>Get 10% on your Apple devices</p>
-                        </div>
+                <div class=" product-image-cotainer">
+                    <img class="product-spc-image" src="/device-image/{{productDetails._id}}.jpg" alt="">
+                    <div class="text-center buystrip">
+                        <p class="product-sm-name" style="font-size: 14px;">{{productDetails.productname}}</p>
+                        <hr class="produc-hr">
+                        <p class="need-help-tag"> Need some help? </p>
                     </div>
-                    <form  id="device-details" action="/add-to-bag" method="POST">
-                        <div onclick="divScroll('device-color')" id="model" class="mt-4 model">
-                            <h2 class="model-title">Choose your model.</h2>
-                            <a style="font-size: 14px;" href="#">Which model is right for you?</a>
-                            <label class="mt-3 poduct-container col-md-12 p-0 ">
-                                <input type="radio" class="radio-btn" id="device" name="deviceId" value="{{productDetails._id}}" required>
-                                <div class="device-model-select product-model">
+                </div>
+            </div>
+
+            <div class="col-md-5 p-3 mt-4">
+                <div class="product-header">
+                    <h3 class="violator-frameless">New</h3>
+                    <h2 class="product-name">Buy {{productDetails.productname}}</h2>
+                    <div class="product-offer">
+                        <p>Get 10% on your Apple devices</p>
+                    </div>
+                </div>
+                <form id="device-details" action="/add-to-bag" method="POST">
+                    <div onclick="divScroll('device-color')" id="model" class="mt-4 model">
+                        <h2 class="model-title">Choose your model.</h2>
+                        <a style="font-size: 14px;" href="#">Which model is right for you?</a>
+                        <label class="mt-3 poduct-container col-md-12 p-0 ">
+                            <input type="radio" class="radio-btn" id="device" name="deviceId"
+                                value="{{productDetails._id}}" required>
+                            <div class="device-model-select product-model">
+                                <div class="device-radio">
+                                    <span class="model-title">{{productDetails.productname}}</span>
+                                    <span class="screen-size">{{productDetails.display}}</span>
+                                    <span class="device-price-right">From ₹{{productDetails.productprice}}</span>
+                                </div>
+                            </div>
+                        </label>
+                        {{!-- <label class="mt-3 poduct-container col-md-12 p-0 ">
+                            <input type="radio" class="radio-btn" id="device" name="device">
+                            <div class="device-model-select product-model">
+                                <div class="device-radio">
+                                    <span class="model-title">iPhone 12 Pro</span>
+                                    <span class="screen-size">15.5 cm (6.1-inch) display¹</span>
+                                    <span class="device-price-right">From ₹119900</span>
+                                </div>
+                            </div>
+                        </label> --}}
+                    </div>
+                    <script>
+                        var colorIndex = 0;
+                    </script>
+                    <div style="pointer-events: none; opacity: 0.4;" onclick="divScroll('device-storage')"
+                        id="device-color" class="mt-4 border-size model">
+                        <h2 class="model-title  mt-4">Choose your finish.</h2>
+                        <div class="row">
+                            {{#each productDetails.color}}
+                            <label class="mt-3 poduct-container text-center col-md-6 col-6 ">
+                                <input type="radio" class="radio-btn" id="color" name="color" value="{{this}}" required>
+                                <div style=" padding: 20px;" class="device-model-select product-model">
                                     <div class="device-radio">
-                                        <span class="model-title">{{productDetails.productname}}</span>
-                                        <span class="screen-size">{{productDetails.display}}</span>
-                                        <span class="device-price-right">From ₹{{productDetails.productprice}}</span>
+                                        <img class="product-color"
+                                            src="/device-colors/{{../productDetails._id}}{{this}}.jpg" alt="">
+                                        <span class="form-label-small m-1">{{this}}</span>
+                                    </div>
+
+                                </div>
+                            </label>
+                            {{/each}}
+
+
+                        </div>
+                    </div>
+
+                    <!-- device storage -->
+                    <div style="pointer-events: none; opacity: 0.4;" onclick="divScroll('total-price-section')"
+                        id="device-storage" class="mt-4 border-size model">
+                        <h2 class="model-title  mt-4">Choose your capacity.</h2>
+                        <a style="font-size: 14px;" href="#">How much capacity is right for you?</a>
+                        <div class="row">
+                            <label class="mt-3 poduct-container text-center col-md-6 col-6 ">
+                                <input type="radio" class="radio-btn" id="storage" name="storage"
+                                    value="{{productDetails.defaultstorage}}" required>
+                                <div style=" padding: 20px;" class="p-4 device-model-select product-model">
+                                    <div class="device-radio">
+                                        <span class="form-selector-title">{{productDetails.defaultstorage}}
+                                            <small>GB</small></span>
+                                        <span class="small-text">₹0</span>
+                                    </div>
+
+                                </div>
+                            </label>
+                            {{#each productDetails.storageOptions}}
+                            <label class="mt-3 poduct-container text-center col-md-6  col-6 ">
+                                <input type="radio" class="radio-btn" id="storage" name="storage"
+                                    value="{{this.storagesize}}">
+                                <div style=" padding: 20px;" class="p-4 device-model-select product-model">
+                                    <div class="device-radio">
+                                        <span class="form-selector-title">{{this.storagesize}} <small>GB</small></span>
+                                        <span class="small-text">₹{{this.storageprice}}</span>
                                     </div>
                                 </div>
                             </label>
-                            {{!-- <label class="mt-3 poduct-container col-md-12 p-0 ">
-                                <input type="radio" class="radio-btn" id="device" name="device">
-                                <div class="device-model-select product-model">
-                                    <div class="device-radio">
-                                        <span class="model-title">iPhone 12 Pro</span>
-                                        <span class="screen-size">15.5 cm (6.1-inch) display¹</span>
-                                        <span class="device-price-right">From ₹119900</span>
-                                    </div>
-                                </div>
-                            </label> --}}
+                            {{/each}}
                         </div>
-                        <script>
-                            var colorIndex=0;
-                        </script>
-                        <div style="pointer-events: none; opacity: 0.4;" onclick="divScroll('device-storage')" id="device-color" class="mt-4 border-size model">
-                            <h2 class="model-title  mt-4">Choose your finish.</h2>
-                            <div class="row">
-                               {{#each productDetails.color}}
-                                <label class="mt-3 poduct-container text-center col-md-6 col-6 ">
-                                    <input type="radio" class="radio-btn" id="color" name="color" value="{{this}}" required>
-                                    <div style=" padding: 20px;" class="device-model-select product-model">
-                                        <div class="device-radio">
-                                            <img class="product-color" src="/device-colors/{{../productDetails._id}}{{this}}.jpg"
-                                                alt="">
-                                            <span class="form-label-small m-1">{{this}}</span>
-                                        </div>
+                    </div>
 
-                                    </div>
-                                </label>
-                               {{/each}}
-                               
-                               
+                    <div style="pointer-events: none; opacity: 0.4;" id="total-price-section" class="footer-section">
+                        <div class="total-price  mt-5">
+                            <h2 style="font-size: 32px; font-weight: 100;" class="mt-5 price  product-name">Toal Price :
+                                ₹129900</h2>
+                        </div>
+                        <div class="bag-btn-container mt-4 mb-3">
+                            <div class="mt-4">
+                                <button class="col-md-10 col-10 bag-btn btn btn-primary" type="submit">Add to
+                                    Bag</button>
+                                <i onclick="addToFavorite('{{productDetails._id}}')" id="favorite-icon"
+                                    class="col-md-2 col-2 bi bi-heart"></i>
+
+                                <i onclick="removeFromFavorite('{{productDetails._id}}')" id="favorite-icon-added"
+                                    style=" display: none; color: #0066cc;" class="col-md-2 col-2  fas fa-heart "></i>
                             </div>
                         </div>
-                       
-                        <!-- device storage -->
-                        <div style="pointer-events: none; opacity: 0.4;" onclick="divScroll('total-price-section')" id="device-storage" class="mt-4 border-size model">
-                            <h2 class="model-title  mt-4">Choose your capacity.</h2>
-                            <a style="font-size: 14px;" href="#">How much capacity is right for you?</a>
-                            <div class="row">
-                                <label class="mt-3 poduct-container text-center col-md-6 col-6 ">
-                                    <input type="radio" class="radio-btn" id="storage" name="storage" value="{{productDetails.defaultstorage}}" required>
-                                    <div style=" padding: 20px;" class="p-4 device-model-select product-model">
-                                        <div class="device-radio">
-                                            <span class="form-selector-title">{{productDetails.defaultstorage}} <small>GB</small></span>
-                                            <span class="small-text">₹0</span>
-                                        </div>
-
-                                    </div>
-                                </label>
-                               {{#each productDetails.storageOptions}}
-                                <label class="mt-3 poduct-container text-center col-md-6  col-6 ">
-                                    <input type="radio" class="radio-btn" id="storage" name="storage" value="{{this.storagesize}}">
-                                    <div style=" padding: 20px;" class="p-4 device-model-select product-model">
-                                        <div class="device-radio">
-                                            <span class="form-selector-title">{{this.storagesize}} <small>GB</small></span>
-                                            <span class="small-text">₹{{this.storageprice}}</span>
-                                        </div>
-                                    </div>
-                                </label>
-                               {{/each}}
-                            </div>
-                        </div>
-
-                        <div style="pointer-events: none; opacity: 0.4;" id="total-price-section" class="footer-section">
-                            <div class="total-price  mt-5">
-                                <h2 style="font-size: 32px; font-weight: 100;" class="mt-5 price  product-name">Toal Price : ₹129900</h2>
-                            </div>
-                            <div class="bag-btn-container mt-4 mb-3">
-                                <div class="mt-4">
-                                    <button class="col-md-10 col-10 bag-btn btn btn-primary" type="submit">Add to Bag</button>
-                                    <i onclick="addToFavorite('{{productDetails._id}}')" id="favorite-icon" class="col-md-2 col-2 bi bi-heart"></i>
-
-                                    <i  onclick="removeFromFavorite('{{productDetails._id}}')" id="favorite-icon-added" style=" display: none; color: #0066cc;" class="col-md-2 col-2  fas fa-heart "></i>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </section>
-
-
-      <!-- ipad banner -->
-  <section class="pt-4 banner">
-    <div class="row">
-      <div class="pt-2 col-md-12">
-        <div class="text-center text-light text">
-          <h2 class="banner-header-text">iPad Pro</h2>
-          <h3 class="banner-text">Supercharged by the Apple M1 chip.</h3>
-          <div class="mt-1 banner-links">
-            <a href="/iphone-12">Learn more <i class="banner-links-icons font-weight-normal fas fa-chevron-right"></i></a>
-            <a class=" pl-2" href="">Buy <i class="banner-links-icons font-weight-normal fas fa-chevron-right"></i></a>
-          </div>
-          <div class="banner-image-box">
-            <img style="    height: 446px; width: 1070px;" id="myImg" class="banner-image" src="/images/hero_ipad_pro_non_avail__fcrsmhs4b7ma_small_2x.jpg" alt="">
-          </div>
-        </div>
-      </div>
     </div>
-  </section>
+</section>
 
-    <section style="background-color: #fafafa;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5 m-3">
-                    <img src="/images/iphone-compare-models-202010_GEO_EMEA.jpg" alt="">
+
+<!-- ipad banner -->
+<section class="pt-4 banner">
+    <div class="row">
+        <div class="pt-2 col-md-12">
+            <div class="text-center text-light text">
+                <h2 class="banner-header-text">iPad Pro</h2>
+                <h3 class="banner-text">Supercharged by the Apple M1 chip.</h3>
+                <div class="mt-1 banner-links">
+                    <a href="/iphone-12">Learn more <i
+                            class="banner-links-icons font-weight-normal fas fa-chevron-right"></i></a>
+                    <a class=" pl-2" href="">Buy <i
+                            class="banner-links-icons font-weight-normal fas fa-chevron-right"></i></a>
                 </div>
-                <div class="col-md-5 banner-right-section  text-center">
-                    <h2 class="product-name">Blast past fast.</h2>
+                <div class="banner-image-box">
+                    <img style="    height: 446px; width: 1070px;" id="myImg" class="banner-image"
+                        src="/images/hero_ipad_pro_non_avail__fcrsmhs4b7ma_small_2x.jpg" alt="">
                 </div>
             </div>
         </div>
-    </section>
- <!-- imac banner -->
-    <section class="pt-5 bg-white">
+    </div>
+</section>
+
+<section style="background-color: #fafafa;">
+    <div class="container">
         <div class="row">
-            <div class="pt-2 col-md-12">
-                <div class="text-center text-light text">
-                    <h4 class="imac-promo-title">New</h4>
-                    <h2 class="imac-header-text ">iMac</h2>
-                    
-                    <div class="mt-1 banner-links">
-                        <a href="">Learn more <i
-                                class="banner-links-icons font-weight-normal fas fa-chevron-right"></i></a>
-                    </div>
-                    <div class="p-5 banner-image-box imac-banner">
-                        <img id="imacImage" class="imac-image" src="/images/hero_imac_24__eq5phrdpwjyq_large.jpg" alt="">
-                    </div>
+            <div class="col-md-5 m-3">
+                <img src="/images/iphone-compare-models-202010_GEO_EMEA.jpg" alt="">
+            </div>
+            <div class="col-md-5 banner-right-section  text-center">
+                <h2 class="product-name">Blast past fast.</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- imac banner -->
+<section class="pt-5 bg-white">
+    <div class="row">
+        <div class="pt-2 col-md-12">
+            <div class="text-center text-light text">
+                <h4 class="imac-promo-title">New</h4>
+                <h2 class="imac-header-text ">iMac</h2>
+
+                <div class="mt-1 banner-links">
+                    <a href="">Learn more <i class="banner-links-icons font-weight-normal fas fa-chevron-right"></i></a>
+                </div>
+                <div class="p-5 banner-image-box imac-banner">
+                    <img id="imacImage" class="imac-image" src="/images/hero_imac_24__eq5phrdpwjyq_large.jpg" alt="">
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 
-    <style>
-        .poduct-container input:checked~.device-model-select {
-            border-color: #2196F3;
-            border-width: 2px;
-        }
+<style>
+    .poduct-container input:checked~.device-model-select {
+        border-color: #2196F3;
+        border-width: 2px;
+    }
 
-        #navbar.mySidenav {
-            position: absolute !important;
-        }
+    #navbar.mySidenav {
+        position: absolute !important;
+    }
 
-        .radio-btn {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-        }
-    </style>
-
-        
-    <!-- form scrolling section -->
-    <script>
-        function divScroll(divId) {
-            var dev = document.getElementById(divId)
-         
-                dev.scrollIntoView(({
-                    behavior: "smooth",
-                    block: "end" 
+    .radio-btn {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+</style>
 
 
+<!-- form scrolling section -->
+<script>
+    function divScroll(divId) {
+        var dev = document.getElementById(divId)
 
-                }));
-            document.getElementById(divId).style.pointerEvents="all"
-            document.getElementById(divId).style.opacity=1
-           
-        }
-    </script>
+        dev.scrollIntoView(({
+            behavior: "smooth",
+            block: "end"
 
-      <script>
+
+
+        }));
+        document.getElementById(divId).style.pointerEvents = "all"
+        document.getElementById(divId).style.opacity = 1
+
+    }
+</script>
+
+<script>
     function screenSize() {
+        if (screen.width < 735) {
+
+            document.getElementById("myImg").src = "/images/hero_ipad_pro_non_avail__fcrsmhs4b7ma_small_2x.jpg";
+            var image = document.getElementById("myImg")
+            image.style.objectFit = "cover";
+            image.style.width = '324px';
+            image.style.height = '365px';
+
+            var image = document.getElementById("banner-two")
+            image.src = "/images/iphone_12_updated__jepm2xpxncuy_small_2x.jpg";
+
+            var image = document.getElementById("banner-three").src = "/images/hero_imac__dqh65mwjj04m_small_2x.jpg";
+            var imacImage = document.querySelector("#imacImage").src = "/images/hero_imac_24__eq5phrdpwjyq_small_2x.jpg";
+
+        } else {
+            document.getElementById("dropdown-content-sm").style.display = "none";
+            var image = document.getElementById("myImg")
+            image.src = "/images/index-banner.jpg";
+            image.style.objectFit = "cover";
+            image.style.width = '847px';
+            image.style.height = '394px';
+
+
+            var image = document.getElementById("banner-two")
+            image.src = "/images/iphone_12_updated__jepm2xpxncuy_large_2x.jpg";
+
+            var image = document.getElementById("banner-three").src = "/images/hero_imac__dqh65mwjj04m_large.jpg";
+            var imacImage = document.querySelector("#imacImage").src = "/images/hero_imac_24__eq5phrdpwjyq_large.jpg";
+
+        }
+    }
     if (screen.width < 735) {
-       
         document.getElementById("myImg").src = "/images/hero_ipad_pro_non_avail__fcrsmhs4b7ma_small_2x.jpg";
         var image = document.getElementById("myImg")
         image.style.objectFit = "cover";
@@ -253,12 +295,11 @@
         image.src = "/images/iphone_12_updated__jepm2xpxncuy_small_2x.jpg";
 
         var image = document.getElementById("banner-three").src = "/images/hero_imac__dqh65mwjj04m_small_2x.jpg";
-         var imacImage = document.querySelector("#imacImage").src = "/images/hero_imac_24__eq5phrdpwjyq_small_2x.jpg";
+        var imacImage = document.querySelector("#imacImage").src = "/images/hero_imac_24__eq5phrdpwjyq_small_2x.jpg";
 
     } else {
-        document.getElementById("dropdown-content-sm").style.display = "none";
         var image = document.getElementById("myImg")
-        image.src = "/images/index-banner.jpg";
+        document.getElementById("myImg").src = "/images/index-banner.jpg";
         image.style.objectFit = "cover";
         image.style.width = '847px';
         image.style.height = '394px';
@@ -268,73 +309,55 @@
         image.src = "/images/iphone_12_updated__jepm2xpxncuy_large_2x.jpg";
 
         var image = document.getElementById("banner-three").src = "/images/hero_imac__dqh65mwjj04m_large.jpg";
-         var imacImage = document.querySelector("#imacImage").src = "/images/hero_imac_24__eq5phrdpwjyq_large.jpg";
+        var imacImage = document.querySelector("#imacImage").src = "/images/hero_imac_24__eq5phrdpwjyq_large.jpg";
 
     }
-}
-if (screen.width < 735) {
-    document.getElementById("myImg").src = "/images/hero_ipad_pro_non_avail__fcrsmhs4b7ma_small_2x.jpg";
-    var image = document.getElementById("myImg")
-    image.style.objectFit = "cover";
-    image.style.width = '324px';
-    image.style.height = '365px';
+</script>
 
-    var image = document.getElementById("banner-two")
-    image.src = "/images/iphone_12_updated__jepm2xpxncuy_small_2x.jpg";
-
-    var image = document.getElementById("banner-three").src = "/images/hero_imac__dqh65mwjj04m_small_2x.jpg";
-      var imacImage = document.querySelector("#imacImage").src = "/images/hero_imac_24__eq5phrdpwjyq_small_2x.jpg";
-
-} else {
-    var image = document.getElementById("myImg")
-    document.getElementById("myImg").src = "/images/index-banner.jpg";
-    image.style.objectFit = "cover";
-    image.style.width = '847px';
-    image.style.height = '394px';
-
-
-    var image = document.getElementById("banner-two")
-    image.src = "/images/iphone_12_updated__jepm2xpxncuy_large_2x.jpg";
-
-    var image = document.getElementById("banner-three").src = "/images/hero_imac__dqh65mwjj04m_large.jpg";
-     var imacImage = document.querySelector("#imacImage").src = "/images/hero_imac_24__eq5phrdpwjyq_large.jpg";
-
-}
-  </script>
-
-  <script>
-      function addToFavorite(deviceId){
-           $.ajax({
-            url: '/add-to-favorite/'+deviceId,
+<script>
+    function addToFavorite(deviceId) {
+        $.ajax({
+            url: '/add-to-favorite/' + deviceId,
             method: "get",
             success: function (response) {
                 if (response) {
-                   
-                     document.getElementById('favorite-icon-added').style.display="inline"
-                     document.getElementById('favorite-icon').style.display="none"
-                    
+
+                    document.getElementById('favorite-icon-added').style.display = "inline"
+                    document.getElementById('favorite-icon').style.display = "none"
+
                 } else {
-                  window.location.reload()
+                    window.location.reload()
                 }
             }
 
         })
-      }
+    }
 
-      function removeFromFavorite(deviceId){
-           $.ajax({
-            url: '/remove-from-favorite/'+deviceId,
+    function removeFromFavorite(deviceId) {
+        $.ajax({
+            url: '/remove-from-favorite/' + deviceId,
             method: "get",
             success: function (response) {
                 if (response) {
-                     document.getElementById('favorite-icon-added').style.display="none"
-                     document.getElementById('favorite-icon').style.display="inline"
+                    document.getElementById('favorite-icon-added').style.display = "none"
+                    document.getElementById('favorite-icon').style.display = "inline"
                 } else {
-                  window.location.reload()
+                    window.location.reload()
                 }
             }
 
         })
-      }
-  </script>
+    }
+</script>
 
+{{#if inFavorite}}
+<script>
+    document.getElementById('favorite-icon-added').style.display = "inline"
+    document.getElementById('favorite-icon').style.display = "none"
+</script>
+{{else}}
+<script>
+    document.getElementById('favorite-icon-added').style.display = "none"
+    document.getElementById('favorite-icon').style.display = "inline"
+</script>
+{{/if}}
