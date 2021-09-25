@@ -81,7 +81,7 @@
                         <script>
                             var colorIndex=0;
                         </script>
-                        <div onclick="divScroll('device-storage')" id="device-color" class="mt-4 border-size model">
+                        <div style="pointer-events: none; opacity: 0.4;" onclick="divScroll('device-storage')" id="device-color" class="mt-4 border-size model">
                             <h2 class="model-title  mt-4">Choose your finish.</h2>
                             <div class="row">
                                {{#each productDetails.color}}
@@ -103,7 +103,7 @@
                         </div>
                        
                         <!-- device storage -->
-                        <div onclick="divScroll('total-price-section')" id="device-storage" class="mt-4 border-size model">
+                        <div style="pointer-events: none; opacity: 0.4;" onclick="divScroll('total-price-section')" id="device-storage" class="mt-4 border-size model">
                             <h2 class="model-title  mt-4">Choose your capacity.</h2>
                             <a style="font-size: 14px;" href="#">How much capacity is right for you?</a>
                             <div class="row">
@@ -131,7 +131,7 @@
                             </div>
                         </div>
 
-                        <div id="total-price-section" class="footer-section">
+                        <div style="pointer-events: none; opacity: 0.4;" id="total-price-section" class="footer-section">
                             <div class="total-price  mt-5">
                                 <h2 style="font-size: 32px; font-weight: 100;" class="mt-5 price  product-name">Toal Price : ₹129900</h2>
                             </div>
@@ -231,6 +231,8 @@
 
 
                 }));
+            document.getElementById(divId).style.pointerEvents="all"
+            document.getElementById(divId).style.opacity=1
            
         }
     </script>
