@@ -134,6 +134,7 @@ router.get('/buy-product/:productId', async (req, res) => {
   }
 })
 
+//bag
 router.post('/add-to-bag', verifyLogin, (req, res) => {
   userHelper.addToBag(req.body, req.session.user._id).then((response) => {
     if (response.status) {
@@ -155,6 +156,7 @@ router.get('/bag', verifyLogin, async (req, res) => {
   }
 })
 
+//shipping page
 router.get('/shipping', verifyLogin, (req, res) => {
   userHelper.getUser(req.session.user._id).then((userDetails) => {
     res.render('user/shipping', { user: userDetails, addressError: req.session.addressError })
@@ -163,6 +165,7 @@ router.get('/shipping', verifyLogin, (req, res) => {
 
 })
 
+//place order
 router.post('/place-order', verifyLogin, async (req, res) => {
 
   if (req.body.addressOption === 'newAddress') {
@@ -238,7 +241,7 @@ router.post('/verify-payment', verifyLogin, (req, res) => {
   })
 })
 
-
+//add default address
 router.post('/add-default-address', verifyLogin, (req, res) => {
   userHelper.addDefaultAddress(req.body).then((response) => {
     console.log(response);
@@ -248,6 +251,7 @@ router.post('/add-default-address', verifyLogin, (req, res) => {
   })
 })
 
+//pay-pending-payment
 router.get('/pay-pending-payment/:orderId', verifyLogin, async (req, res) => {
 
   let order = await userHelper.verifyOrder(req.params.orderId);
@@ -264,6 +268,8 @@ router.get('/pay-pending-payment/:orderId', verifyLogin, async (req, res) => {
   }
 })
 
+
+//favorites page
 router.get('/remove-bag-item/:deviceId', verifyLogin, (req, res) => {
   userHelper.removeBagItem(req.params.deviceId, req.session.user._id).then((response) => {
     res.redirect('/bag')
@@ -271,10 +277,15 @@ router.get('/remove-bag-item/:deviceId', verifyLogin, (req, res) => {
 })
 
 router.get('/favorites', verifyLogin, (req, res) => {
-  res.render('user/favorites', { user: req.session.user })
+  userHelper.getFavoriteProducts(req.session.user._id).then((favoriteProduct)=>{
+    console.log(favoriteProduct);
+    res.render('user/favorites', { user: req.session.user ,favoriteProduct:favoriteProduct})
+  })
 })
 
 router.get('/add-to-favorite/:deviceId', verifyLogin, (req, res) => {
+  console.log(req.params.deviceId);
+  
   userHelper.addToFavorite(req.params.deviceId, req.session.user._id).then((response) => {
     if (response) {
       res.json(true)
@@ -293,6 +304,8 @@ router.get('/remove-from-favorite/:deviceId', verifyLogin, (req, res) => {
     }
   })
 })
+
+
 
 
 

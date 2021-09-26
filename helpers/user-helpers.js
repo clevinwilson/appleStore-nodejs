@@ -334,6 +334,33 @@ module.exports = {
                 resolve(false)
             }
         })
+    },
+    getFavoriteProducts:(userId)=>{
+        return new Promise(async(resolve,reject)=>{
+            let products=await db.get().collection(collection.FAVORITE_COLLECTION).aggregate([
+                {
+                    $match:{userId:objectId(userId)}
+                },
+                {
+                    $unwind:'$devices'
+                },
+                {
+                    $lookup: {
+                        from: collection.PRODUCT_COLLECTION,
+                        localField: 'devices.deviceId',
+                        foreignField: '_id',
+                        as: 'products'
+                    }
+                },
+                {
+                    $project: {
+
+                        _id:1, products: { $arrayElemAt: ['$products', 0] },
+                    }
+                }
+            ]).toArray();
+            resolve(products)
+        })
     }
 
 }
