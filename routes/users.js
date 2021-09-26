@@ -329,6 +329,11 @@ router.get('/remove-from-favorite/:deviceId', verifyLogin, (req, res) => {
   })
 })
 
+//ipad
+router.get('/ipad',(req,res)=>{
+  res.render('user/ipad')
+})
+
 
 
 
