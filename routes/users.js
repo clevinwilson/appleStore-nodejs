@@ -201,7 +201,7 @@ router.post('/place-order', verifyLogin, async (req, res) => {
   } else if (req.body.addressOption === 'defaultAddress') {
 
     userHelper.getUser(req.body.userId).then(async (defaultAddress) => {
-      if (defaultAddress.address.firstName) {
+      if (defaultAddress.address) {
 
 
         let bag = await userHelper.getBag(req.body.userId)
