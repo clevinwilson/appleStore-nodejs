@@ -134,7 +134,7 @@
                     <h2 class="imac-header-text ">iMac</h2>
                     <h3 class="imac-sub-text text-dark"> Say hello.</h3>
                     <h4 class="imac-price">From ₹119900*</h4>
-                    <p><a href="" class="buy-btn btn btn-primary">Buy</a> </p>
+                    <p><a href="#computer-section" class="buy-btn btn btn-primary">Buy</a> </p>
                     <div class="mt-1 banner-links">
                         <a href="">Learn more <i
                                 class="banner-links-icons font-weight-normal fas fa-chevron-right"></i></a>
@@ -148,9 +148,10 @@
     </section>
 
     <!-- product listing trigger -->
+   
     <section style="background-color: #fafafa;">
         <div class="container">
-            <div class="row">
+            <div id="computer-section" class="row">
                 <div class="col-md-12 product-listing">
                     <div class="heading text-center ">
                         <h2 class="typography-headline">Which Mac is right for you?</h2>
@@ -176,27 +177,28 @@
 
             <!-- notebook -->
 
-
+            
             <div id="notebook-section" class="row m-1">
+                 {{#each notebooks}}
                 <div class="col-md-4 col-6 p-0 ">
                     <div class="product-image-outer text-center">
-                        <img class="product-image" src="images/compare_mba__gdncw5gbxoq6_large.png" alt="Product image">
+                        <img class="product-image" src="/device-image/{{this._id}}.jpg" alt="Product image">
                         <div class="device-title">
-                            <h3 class="device-name">MacBook Air</h3>
-                            <p class="device-price ">From ₹92900*</p>
+                            <h3 class="device-name">{{this.productname}}</h3>
+                            <p class="device-price ">{{this.productprice}}*</p>
                             <img class="device-colors"
-                                src="images/compare_swatches_three_colors__e2hki8qb5cia_large.png" alt="">
+                                src="/device-all-colors/{{this._id}}.jpg" alt="">
                             <div class="product-buy">
-                                <a href="" class="device-buy-btn  btn btn-primary">Buy</a>
+                                <a href="/buy-product/{{this._id}}" class="device-buy-btn  btn btn-primary">Buy</a>
                             </div>
                         </div>
                         <div class="mt-5 device-details">
-                            <h4 class="device-details-head">33.74 cm</h4>
-                            <p class="device-details-text">(13.3″) Retina display1</p>
+                            <h4 class="device-details-head">{{this.display}}</h4>
+                            <p class="device-details-text">Retina display1</p>
                         </div>
                         <div class="device-memory mt-5">
-                            <img src="images/compare_icon_m1__fz8nzgohw2ai_large.png" alt="">
-                            <p class="mt-2 device-details-text">Apple M1 chip</p>
+                            <img src="/device-processor/{{this._id}}.jpg" alt="">
+                            <p class="mt-2 device-details-text">{{this.processor}}</p>
                         </div>
                         <div class="device-chip mt-5 ">
                             <img src="images/compare_icon_unified_memory__buw4hhhvj4uq_large.png" alt="">
@@ -209,7 +211,7 @@
                         </div>
                         <div class="device-memory mt-5">
                             <img src="images/compare_icon_battery__gbh9jzw6c7u6_large.png" alt="">
-                            <p class="mt-2 device-details-text">Up to 18 hours battery life3</p>
+                            <p class="mt-2 device-details-text">{{this.battery}}</p>
                         </div>
                         <div class="device-chip mt-5 ">
                             <img src="images/compare_icon_camera__ejp1p20yq1me_large.png" alt="">
@@ -218,7 +220,7 @@
                                 performance</p>
                         </div>
                         <div class="mt-5 device-details">
-                            <h4 class="device-details-head">33.74 cm</h4>
+                            <h4 class="device-details-head">{{this.weight}}</h4>
                             <p class="device-details-text">Weight</p>
                         </div>
                         <div class="device-memory mt-5">
@@ -232,140 +234,36 @@
 
                     </div>
                 </div>
-                <div class="col-md-4 col-6 p-0">
-                    <div class="product-image-outer text-center">
-                        <img class="product-image" src="images/compare_mbp13__geounnnz6oa6_large.png"
-                            alt="Product image">
-                        <div class="device-title">
-                            <h3 class="device-name">MacBook Pro 13″</h3>
-                            <p class="device-price ">From ₹110000*</p>
-                            <img class="device-colors"
-                                src="images/compare_swatches_three_colors__e2hki8qb5cia_large.png" alt="">
-                            <div class="product-buy">
-                                <a href="" class="device-buy-btn  btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-                        <div class="mt-5 device-details">
-                            <h4 class="device-details-head">33.74 cm</h4>
-                            <p class="device-details-text">(13.3″) Retina display1</p>
-                        </div>
-                        <div class="device-memory mt-5">
-                            <img src="images/compare_icon_m1__fz8nzgohw2ai_large.png" alt="">
-                            <p class="mt-2 device-details-text">Apple M1 chip</p>
-                        </div>
-                        <div class="device-chip mt-5 ">
-                            <img src="images/compare_icon_unified_memory__buw4hhhvj4uq_large.png" alt="">
-                            <p class="mt-2 device-details-text">Up to 16GB unified memory</p>
-                            <p class="device-subtext">For increased performance and power efficiency</p>
-                        </div>
-                        <div class="mt-5 device-details">
-                            <h4 class="device-details-head">2TB</h4>
-                            <p class="device-details-text">Maximum configurable storage2</p>
-                        </div>
-                        <div class="device-memory mt-5">
-                            <img src="images/compare_icon_battery__gbh9jzw6c7u6_large.png" alt="">
-                            <p class="mt-2 device-details-text">Up to 18 hours battery life3</p>
-                        </div>
-                        <div class="device-chip mt-5 ">
-                            <img src="images/compare_icon_camera__ejp1p20yq1me_large.png" alt="">
-                            <p class="mt-2 device-details-text">1.29 kg</p>
-                            <p class="device-subtext">With the image signal processor of M1 for drastically improved
-                                performance</p>
-                        </div>
-                        <div class="mt-5 device-details">
-                            <h4 class="device-details-head">33.74 cm</h4>
-                            <p class="device-details-text">Weight</p>
-                        </div>
-                        <div class="device-memory mt-5">
-                            <img src="images/compare_icon_touchid__e9878ag21q6i_large.png" alt="">
-                            <p class="mt-2 device-details-text">Touch ID</p>
-                        </div>
-                        <div class="product-link">
-                            <a style="font-size: 14px; letter-spacing: 0.02em;" href=""> Learn more <span
-                                    style="font-size: 9px;" class="fas fa-chevron-right"></span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-6 p-0">
-                    <div class="product-image-outer text-center">
-                        <img class="product-image" src="images/compare_mbp16__fykfvftfaeuu_large.png"
-                            alt="Product image">
-                        <div class="device-title">
-                            <h3 class="device-name">MacBook Pro 16”</h3>
-                            <p class="device-price ">From ₹199900*</p>
-                            <img class="device-colors" src="images/compare_swatches_two_colors__02sdegyq25eq_large.png"
-                                alt="">
-                            <div class="product-buy">
-                                <a href="" class="device-buy-btn  btn btn-primary">Buy</a>
-                            </div>
-                        </div>
-                        <div class="mt-5 device-details">
-                            <h4 class="device-details-head">33.74 cm</h4>
-                            <p class="device-details-text">(13.3″) Retina display1</p>
-                        </div>
-                        <div class="device-memory mt-5">
-                            <img src="images/compare_icon_m1__fz8nzgohw2ai_large.png" alt="">
-                            <p class="mt-2 device-details-text">Apple M1 chip</p>
-                        </div>
-                        <div class="device-chip mt-5 ">
-                            <img src="images/compare_icon_unified_memory__buw4hhhvj4uq_large.png" alt="">
-                            <p class="mt-2 device-details-text">Up to 16GB unified memory</p>
-                            <p class="device-subtext">For increased performance and power efficiency</p>
-                        </div>
-                        <div class="mt-5 device-details">
-                            <h4 class="device-details-head">2TB</h4>
-                            <p class="device-details-text">Maximum configurable storage2</p>
-                        </div>
-                        <div class="device-memory mt-5">
-                            <img src="images/compare_icon_battery__gbh9jzw6c7u6_large.png" alt="">
-                            <p class="mt-2 device-details-text">Up to 18 hours battery life3</p>
-                        </div>
-                        <div class="device-chip mt-5 ">
-                            <img src="images/compare_icon_camera__ejp1p20yq1me_large.png" alt="">
-                            <p class="mt-2 device-details-text">1.29 kg</p>
-                            <p class="device-subtext">With the image signal processor of M1 for drastically improved
-                                performance</p>
-                        </div>
-                        <div class="mt-5 device-details">
-                            <h4 class="device-details-head">33.74 cm</h4>
-                            <p class="device-details-text">Weight</p>
-                        </div>
-                        <div class="device-memory mt-5">
-                            <img src="images/compare_icon_touchid__e9878ag21q6i_large.png" alt="">
-                            <p class="mt-2 device-details-text">Touch ID</p>
-                        </div>
-                        <div class="product-link">
-                            <a style="font-size: 14px; letter-spacing: 0.02em;" href=""> Learn more <span
-                                    style="font-size: 9px;" class="fas fa-chevron-right"></span></a>
-                        </div>
-                    </div>
-                </div>
+                 {{/each}}
+                
             </div>
+           
 
             <!-- desktop -->
 
 
             <div id="desktop-section" class="row m-1">
+                {{#each desktop}}
                 <div class="col-md-3 col-6 p-0 ">
                     <div class="product-image-outer text-center">
-                        <img class="product-image" src="images/compare_imac24__5aryzjnxeki2_large_2x.png"
+                        <img class="product-image" src="/device-image/{{this._id}}.jpg"
                             alt="Product image">
                         <div class="device-title">
-                            <h3 class="device-name">iMac 24″</h3>
-                            <p class="device-price ">From ₹119900*</p>
+                            <h3 class="device-name">{{this.productname}}</h3>
+                            <p class="device-price ">{{this.productprice}}*</p>
                             <img class="device-colors" style="    object-fit: cover;width: 165px;height: 100%;"
-                                src="images/compare_swatches_multicolor__gj5za8k7kbyq_large_2x.png" alt="">
+                                src="/device-all-colors/{{this._id}}.jpg" alt="">
                             <div class="product-buy">
-                                <a href="" class="device-buy-btn  btn btn-primary">Buy</a>
+                                <a href="/buy-product/{{this._id}}" class="device-buy-btn  btn btn-primary">Buy</a>
                             </div>
                         </div>
                         <div class="mt-5 device-details">
-                            <h4 class="device-details-head">33.74 cm</h4>
-                            <p class="device-details-text">(13.3″) Retina display1</p>
+                            <h4 class="device-details-head">{{this.display}}</h4>
+                            <p class="device-details-text"> Retina display1</p>
                         </div>
                         <div class="device-memory mt-5">
-                            <img src="images/compare_icon_m1__fz8nzgohw2ai_large.png" alt="">
-                            <p class="mt-2 device-details-text">Apple M1 chip</p>
+                            <img src="/device-processor/{{this._id}}.jpg" alt="">
+                            <p class="mt-2 device-details-text">{{this.processor}}</p>
                         </div>
                         <div class="device-chip mt-5 ">
                             <img src="images/compare_icon_unified_memory__buw4hhhvj4uq_large.png" alt="">
@@ -376,22 +274,16 @@
                             <h4 class="device-details-head">2TB</h4>
                             <p class="device-details-text">Maximum configurable storage2</p>
                         </div>
-                        <div class="device-memory mt-5">
-                            <img src="images/compare_icon_battery__gbh9jzw6c7u6_large.png" alt="">
-                            <p class="mt-2 device-details-text">Up to 18 hours battery life3</p>
-                        </div>
+                       
                         <div class="device-chip mt-5 ">
                             <img src="images/compare_icon_camera__ejp1p20yq1me_large.png" alt="">
-                            <p class="mt-2 device-details-text">1.29 kg</p>
+                            <p class="mt-2 device-details-text">{{this.camera}}</p>
                             <p class="device-subtext">With the image signal processor of M1 for drastically improved
                                 performance</p>
                         </div>
-                        <div class="mt-5 device-details">
-                            <h4 class="device-details-head">33.74 cm</h4>
-                            <p class="device-details-text">Weight</p>
-                        </div>
+                       
                         <div class="device-memory mt-5">
-                            <img src="images/compare_icon_touchid__e9878ag21q6i_large.png" alt="">
+                            <img src="images/compare_icon_imac24_keyboard__dsxbi715owuq_large.png" alt="">
                             <p class="mt-2 device-details-text">Touch ID</p>
                         </div>
                         <div class="product-link">
@@ -401,6 +293,7 @@
 
                     </div>
                 </div>
+                {{/each}}
 
 
             </div>

@@ -84,9 +84,14 @@ router.post('/signup', (req, res) => {
 router.get('/imac', async (req, res) => {
   if (req.session.loggedIn) {
     var bagItems = await userHelper.getBagProducts(req.session.user._id);
-    res.render('user/imac', { user: req.session.user, bagItems: bagItems })
+    let notebooks =await userHelper.getNotebooks()
+    let desktop =await userHelper.getDesktop()
+    res.render('user/imac', { user: req.session.user, bagItems: bagItems,notebooks:notebooks,desktop:desktop })
   } else {
-    res.render('user/imac', { user: req.session.user })
+    let notebooks =await userHelper.getNotebooks()
+    console.log(notebooks);
+    let desktop =await userHelper.getDesktop()
+    res.render('user/imac', { user: req.session.user,notebooks:notebooks,desktop:desktop })
   }
 })
 

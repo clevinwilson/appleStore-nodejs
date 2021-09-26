@@ -361,6 +361,30 @@ module.exports = {
             ]).toArray();
             resolve(products)
         })
+    },
+    getNotebooks:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let category =await db.get().collection(collection.CATEGORY_COLLECTION).findOne({category:'notebook'});
+            if(category){
+                db.get().collection(collection.PRODUCT_COLLECTION).find({category:ObjectID(category._id),status:true}).toArray().then((products)=>{
+                    resolve(products)
+                })
+            }else{
+                resolve({status:false})
+            }
+        })
+    },
+    getDesktop:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let category =await db.get().collection(collection.CATEGORY_COLLECTION).findOne({category:'desktop'});
+            if(category){
+                db.get().collection(collection.PRODUCT_COLLECTION).find({category:ObjectID(category._id),status:true}).toArray().then((products)=>{
+                    resolve(products)
+                })
+            }else{
+                resolve({status:false})
+            }
+        })
     }
 
 }
