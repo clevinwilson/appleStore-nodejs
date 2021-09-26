@@ -1955,4 +1955,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     .favorites-margin-sm{
         margin-bottom: -32px !important;
     }
+    .iphone13pro-index-image{
+        width: 130%;
+    }
 }
