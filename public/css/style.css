@@ -1959,3 +1959,15 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
         width: 130%;
     }
 }
+
+/* //ipad page */
+
+
+@media screen and (max-width: 768px) {
+    .ipadmini-image{
+        object-fit: cover;
+        height: 100%;
+        width: 180px;
+    }
+}
+
