@@ -117,4 +117,17 @@ module.exports = {
             })
         })
     },
+    getIpads:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let category =await db.get().collection(collection.CATEGORY_COLLECTION).findOne({category:'iPad'});
+            if(category){
+                db.get().collection(collection.PRODUCT_COLLECTION).find({category:ObjectID(category._id),status:true}).toArray().then((products)=>{
+                    resolve(products)
+                })
+            }else{
+                resolve({status:false})
+            }
+           
+        })
+    }
 }

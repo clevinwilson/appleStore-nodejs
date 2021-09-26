@@ -331,7 +331,15 @@ router.get('/remove-from-favorite/:deviceId', verifyLogin, (req, res) => {
 
 //ipad
 router.get('/ipad',(req,res)=>{
-  res.render('user/ipad')
+  productHelper.getIpads().then(async (products) => {
+    console.log(products);
+    if (req.session.loggedIn) {
+      var bagItems = await userHelper.getBagProducts(req.session.user._id);
+      res.render('user/ipad', { products: products, user: req.session.user, bagItems: bagItems })
+    } else {
+      res.render('user/ipad', { products: products, user: req.session.user })
+    }
+  })
 })
 
 

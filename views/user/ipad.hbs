@@ -155,6 +155,75 @@
     </section>
 
 
+    <!-- product listing trigger -->
+<section id="iphonelist" style="background-color: #ffffff;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 product-listing">
+                <div class="heading text-center ">
+                    <h2 style="color: black;" class="typography-headline">Which iPad is right for you?</h2>
+                    <div style="font-size: 19px;" class="m-4 banner-links text-center  ">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="iphones" class="row m-1">
+              {{#each products}}
+            <div class="col-md-3 col-6 p-0 ">
+                <div class="product-image-outer text-center">
+                    <img class="product-image image-compare-iphone-12-pro"
+                       style="object-fit: contain;"  src="/device-image/{{this._id}}.jpg" alt="Product image">
+                    <div class="device-title ">
+                        <h3 class="device-name">{{this.productname}}</h3>
+                        <p class="device-price-spec  ">{{this.productprice}}*</p>
+                        <img style="width: 100%; height: 16px; object-fit: contain;" class="device-colors" src="/device-all-colors/{{this._id}}.jpg"
+                            alt="">
+                        <div class="product-buy">
+                            <a href="/buy-product/{{this._id}}" class="device-buy-btn  btn btn-primary">Buy</a>
+                        </div>
+                    </div>
+                    <div class="mt-5 device-details">
+                        <h4 style="font-size: 17px;" class="device-details-head">{{this.display}}</h4>
+                        <p class="device-details-text">Liquid Retina display1</p>
+                    </div>
+                    <div class="device-memory mt-5">
+                        <img src="images/icon_5g__ew2qs88wie4i_large.png" alt="">
+                        <p class="mt-2 device-details-text">5G capable</p>
+                    </div>
+                    <div class="device-chip mt-5 ">
+                        <img src="/device-processor/{{this._id}}.jpg" alt="">
+                        <p class="mt-2 device-details-text">{{this.processor}}</p>
+                        <p class="device-subtext">Fastest chip in a smartphone</p>
+                    </div>
+                    <div class="device-memory mt-5">
+                        <img src="images/icon_triple_camera__e6vgz42wpwom_large.png" alt="">
+                        <p class="mt-2 device-details-text">Pro camera system</p>
+                        <p class="device-subtext">Ultra Wide, Wide, Telephoto
+
+                        </p>
+                    </div>
+                    
+                    <div class="device-memory mt-5">
+                        <img src="images/compare_pencil__2ii95qsgy0y6_large.png" alt="">
+                        <p class="device-subtext">Works with Apple Pencil </p>
+                    </div>
+                    <div class="product-link">
+                        <a style="font-size: 14px; letter-spacing: 0.02em;" href="/iphone-12"> Learn more <span
+                                style="font-size: 9px;" class="fas fa-chevron-right"></span></a>
+                    </div>
+
+                </div>
+            </div>
+   {{/each}}
+
+        </div>
+     
+    </div>
+</section>
+
+
+
 
 
 <style>
