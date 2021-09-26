@@ -10,7 +10,7 @@ const productHelpers = require('../helpers/product-helpers');
 // verifyLogin
 
 const verifyLogin = (req, res, next) => {
-    if (req.session.loggedIn) {
+    if (req.session.adminLoggedIn) {
         next();
     } else {
         res.redirect("/admin");
@@ -28,7 +28,7 @@ router.post('/login', (req, res) => {
             if (response.status) {
                 console.log(response.admin);
                 req.session.admin = response.admin;
-                req.session.loggedIn = true;
+                req.session.adminLoggedIn = true;
                 console.log(req.session.admin);
                 res.render("admin/dashboard", { admin: req.session.admin });
             } else {
@@ -177,15 +177,40 @@ router.post('/add-category',verifyLogin,(req,res)=>{
 })
 
 router.get('/manage-category',verifyLogin,(req,res)=>{
-    productHelpers.getCategory().then((response)=>{
-        res.render('admin/manage-category',{admin:req.session.admin,category:response});
+    productHelpers.getCategorys().then((response)=>{
+        res.render('admin/manage-category',{admin:req.session.admin,category:response,editCategoryError:req.session.editCategoryError});
+        req.session.editCategoryError=false
     })
 })
+
+router.get('/edit-category/:categoryId',(req,res)=>{
+    productHelpers.getCategory(req.params.categoryId).then((response)=>{
+        res.render('admin/edit-category',{admin:req.session.admin,category:response})
+       
+    })
+})
+
+router.post('/edit-category/:categoryId',(req,res)=>{
+    productHelpers.editCategory(req.params.categoryId,req.body).then((response)=>{
+        console.log(response);
+       if(response){
+        res.redirect('/admin/manage-category')
+       }else{
+        req.session.editCategoryError='Something went wrong try again or Category already exists .'
+        res.redirect('/admin/manage-category')
+        
+       }
+    })
+})
+
+
 
 router.get('/delete-category/:id',verifyLogin,(req,res)=>{
     productHelpers.deleteCategory(req.params.id).then((response)=>{
         if(response){
             res.json({status:true})
+        }else{
+            res.json({status:false})
         }
     })
 })
