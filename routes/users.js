@@ -351,6 +351,10 @@ router.get('/watch',(req,res)=>{
   res.render('user/watch',{user:req.session.user})
 })
 
+//account
+router.get('/account',verifyLogin,(req,res)=>{
+  res.render('user/account',{user:req.session.user})
+})
 
 
 

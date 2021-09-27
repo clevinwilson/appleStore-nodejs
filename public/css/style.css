@@ -1971,3 +1971,43 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     }
 }
 
+/* account page */
+
+.rs-header-welcome-text{
+    font-size: 32px;
+    line-height: 1.125;
+    font-weight: 600;
+    letter-spacing: .004em;
+    font-family: sans-serif;
+    padding-top: 59px;
+    color: black;
+}
+.rs-account-link-tile-title{
+    font-size: 32px;
+    line-height: 1.125;
+    font-weight: 600;
+    letter-spacing: .004em;
+    font-family: sans-serif;
+    color: black;
+}
+.rs-account-link-tile-description{
+    font-size: 19px;
+    color: black;
+}
+
+@media screen and (max-width: 768px) {
+    .rs-account-link-tile-title{
+        font-size: 24px;
+    }
+    .rs-account-link-tile-description{
+        font-size: 17px;
+    }
+    .rs-header-welcome-text{
+        font-size: 24px;
+    }
+
+    /* login page error allert */
+    .login-error{
+        font-size: 13px;
+    }
+}
