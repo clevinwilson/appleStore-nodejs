@@ -193,7 +193,8 @@ module.exports = {
 
                         payment: 1, cancel: 1, orderplaced: 1, shipped: 1, delivered: 1, date: 1, address: 1, product: 1, productDetails: { $arrayElemAt: ['$productDetails', 0] },
                     }
-                }
+                },
+                { $sort : { _id : -1 } }
 
             ]).toArray()
             resolve(orders)
