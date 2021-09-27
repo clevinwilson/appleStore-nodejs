@@ -143,6 +143,20 @@ module.exports={
                 resolve({status:false,"message":"Something Went Wrong"})
             }
         })
+    },
+    getDashboardCounts:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let dashboardData={};
+            let users=await db.get().collection(collection.USER_COLLECTION).count()
+            let orders=await db.get().collection(collection.ORDER_COLLECTION).count();
+            let products=await db.get().collection(collection.PRODUCT_COLLECTION).count();
+            let category =await db.get().collection(collection.CATEGORY_COLLECTION).count();
+            dashboardData.users=users;
+            dashboardData.orders=orders;
+            dashboardData.products=products;
+            dashboardData.category=category;
+            resolve(dashboardData)
+        })
     }
  
 }

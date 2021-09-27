@@ -23,14 +23,15 @@ router.get('/', (req, res) => {
     req.session.adminLoginError = false;
 })
 router.post('/login', (req, res) => {
-    adminHelpers.doLogin(req.body).then((response) => {
+    adminHelpers.doLogin(req.body).then(async(response) => {
         if (response.status) {
             if (response.status) {
                 console.log(response.admin);
                 req.session.admin = response.admin;
                 req.session.adminLoggedIn = true;
                 console.log(req.session.admin);
-                res.render("admin/dashboard", { admin: req.session.admin });
+                let counts=await adminHelpers.getDashboardCounts()
+                res.render("admin/dashboard", { admin: req.session.admin,counts:counts });
             } else {
                 req.session.adminLoginError = "Incorrect username or password ";
                 res.redirect("/admin");
@@ -46,7 +47,9 @@ router.post('/login', (req, res) => {
 //dashboard
 
 router.get('/dashboard', verifyLogin, (req, res) => {
-    res.render('admin/dashboard', { admin: req.session.admin })
+    adminHelpers.getDashboardCounts().then((response)=>{
+        res.render('admin/dashboard', { admin: req.session.admin,counts:response })
+    })
 })
 
 //logout
