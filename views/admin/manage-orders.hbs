@@ -47,6 +47,7 @@
                                             <th>Storage</th>
                                             <th>Colors</th>
                                             <th>Price</th>
+                                            <th>User</th>
                                             <th>Address</th>
                                             <th>Status</th>
                                             <th>Actions</th>
@@ -60,6 +61,7 @@
                                             <th>Storage</th>
                                             <th>Colors</th>
                                             <th>Price</th>
+                                            <th>User</th>
                                             <th>Address</th>
                                             <th>Status</th>
                                             <th>Actions</th>
@@ -83,9 +85,13 @@
                                             </td>
                                             
                                             <td>₹ {{this.product.price}} </td>
-                                            <td>{{this.address.addressLine1}} ,{{this.address.addressLine2}},<br>
-                                                {{this.address.addressLine3}},{{this.address.postalCode}},<br>
-                                               {{this.address.cityState}} ,{{this.address.country}}
+                                            <th>{{this.address.firstName}} {{this.address.lastName}},<br>
+                                                {{this.address.email}}, <br>
+                                                {{this.address.number}}
+                                             </th>
+                                            <td>{{this.address.street}}, {{this.address.street2}},<br>
+                                                {{this.address.street3}}, {{this.address.postalCode}},<br>
+                                               {{this.address.state}} ,{{this.address.country}}
                                                 
                                             </td>
                                             {{#if this.orderplaced}}

@@ -1,3 +1,10 @@
+
+ <script type="text/javascript">
+        window.history.forward();
+        function noBack() {
+            window.history.forward();
+        }
+    </script>
 <!-- ribborn -->
 <section class="bg-white ribbon">
     <div class="bg-white container">
@@ -285,7 +292,7 @@
                 if (response) {
                     razorpayPayment(response)
                 } else {
-                    window.location.reload()
+                    location.href='/order'
                 }
             }
 
@@ -304,6 +311,7 @@
             "image": "https://cdn.razorpay.com/logos/I19mkV5YVbyhC3_original.png",
             "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
             "handler": function (response) {
+               
                 verifyPayment(response, order)
             },
             "prefill": {

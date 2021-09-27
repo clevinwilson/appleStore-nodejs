@@ -385,6 +385,18 @@ module.exports = {
                 resolve({status:false})
             }
         })
+    },
+    verifyBag:(userId)=>{
+        console.log(userId);
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.BAG_COLLECTION).findOne({user:objectId(userId)}).then((response)=>{
+                if(response){
+                    resolve(true)
+                }else{
+                    resolve(false)
+                }
+            })
+        })
     }
 
 }

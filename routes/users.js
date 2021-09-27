@@ -178,7 +178,8 @@ router.get('/shipping', verifyLogin, (req, res) => {
 
 //place order
 router.post('/place-order', verifyLogin, async (req, res) => {
-
+  let verigybag=await userHelper.verifyBag(req.session.user._id)
+  if(verigybag){
   if (req.body.addressOption === 'newAddress') {
 
     let bag = await userHelper.getBag(req.body.userId);
@@ -202,8 +203,8 @@ router.post('/place-order', verifyLogin, async (req, res) => {
 
     userHelper.getUser(req.body.userId).then(async (defaultAddress) => {
       if (defaultAddress.address) {
-
-
+        defaultAddress.address.email=req.body.email;
+        defaultAddress.address.number=req.body.number;
         let bag = await userHelper.getBag(req.body.userId)
         let total = await userHelper.getTotalAmound(req.session.user._id)
         userHelper.placeOrder(defaultAddress.address, bag, total).then((orderId) => {
@@ -230,6 +231,9 @@ router.post('/place-order', verifyLogin, async (req, res) => {
     })
 
   } else {
+    res.json(false)
+  }
+  }else{
     res.json(false)
   }
 })
