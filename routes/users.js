@@ -346,6 +346,11 @@ router.get('/ipad',(req,res)=>{
   })
 })
 
+//watch
+router.get('/watch',(req,res)=>{
+  res.render('user/watch',{user:req.session.user})
+})
+
 
 
 
