@@ -398,6 +398,19 @@ module.exports = {
                 }
             })
         })
+    },
+    updateAddress: (data) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.USER_COLLECTION)
+                .updateOne({ _id: ObjectID(data.userId) },
+                    {
+                        $set: {
+                            address: data
+                        }
+                    }).then((response) => {
+                        resolve(response)
+                    })
+        })
     }
 
 }

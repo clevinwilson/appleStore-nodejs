@@ -347,13 +347,31 @@ router.get('/ipad',(req,res)=>{
 })
 
 //watch
-router.get('/watch',(req,res)=>{
-  res.render('user/watch',{user:req.session.user})
+router.get('/watch',async(req,res)=>{
+  if (req.session.loggedIn) {
+    var bagItems = await userHelper.getBagProducts(req.session.user._id);
+    res.render('user/watch',{user:req.session.user,bagItems:bagItems})
+  }else{
+    res.render('user/watch',{user:req.session.user})
+  }
+ 
 })
 
 //account
-router.get('/account',verifyLogin,(req,res)=>{
-  res.render('user/account',{user:req.session.user})
+router.get('/account', verifyLogin, async(req,res)=>{
+    var bagItems = await userHelper.getBagProducts(req.session.user._id);
+    var user =await userHelper.getUser(req.session.user._id);
+    res.render('user/account',{user:user,bagItems:bagItems})
+})
+
+//update  address
+router.post('/update-address', verifyLogin, (req, res) => {
+  console.log(req.body);
+  userHelper.updateAddress(req.body).then((response) => {
+    if (response) {
+      res.redirect('/account')
+    }
+  })
 })
 
 
