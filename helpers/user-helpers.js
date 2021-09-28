@@ -194,7 +194,7 @@ module.exports = {
                         payment: 1, cancel: 1, orderplaced: 1, shipped: 1, delivered: 1, date: 1, address: 1, product: 1, productDetails: { $arrayElemAt: ['$productDetails', 0] },
                     }
                 },
-                { $sort : { _id : -1 } }
+                { $sort: { _id: -1 } }
 
             ]).toArray()
             resolve(orders)
@@ -279,71 +279,71 @@ module.exports = {
     removeBagItem: (deviceId, userId) => {
         return new Promise(async (resolve, reject) => {
             db.get().collection(collection.BAG_COLLECTION)
-            .updateOne({user:objectId(userId)},
-            {
-                $pull: { product: { deviceId: objectId(deviceId) } }
-            }).then((response)=>{
-                resolve(response)
-            })
+                .updateOne({ user: objectId(userId) },
+                    {
+                        $pull: { product: { deviceId: objectId(deviceId) } }
+                    }).then((response) => {
+                        resolve(response)
+                    })
         })
     },
-    addToFavorite:(deviceId,userId)=>{
+    addToFavorite: (deviceId, userId) => {
         console.log(deviceId);
-        return new Promise(async(resolve,reject)=>{
-            let favoriteBag= await db.get().collection(collection.FAVORITE_COLLECTION).findOne({userId:objectId(userId)})
-            if(favoriteBag){
-                let favoriteObj={
-                    deviceId:objectId(deviceId)
+        return new Promise(async (resolve, reject) => {
+            let favoriteBag = await db.get().collection(collection.FAVORITE_COLLECTION).findOne({ userId: objectId(userId) })
+            if (favoriteBag) {
+                let favoriteObj = {
+                    deviceId: objectId(deviceId)
                 }
                 db.get().collection(collection.FAVORITE_COLLECTION)
-                .updateOne({userId:objectId(userId)},
-                {
-                    $push: { devices: favoriteObj }
+                    .updateOne({ userId: objectId(userId) },
+                        {
+                            $push: { devices: favoriteObj }
 
-                }).then((response)=>{
-                    resolve(response)
-                })
-            }else{
-                let favoriteObj={
-                    userId:objectId(userId),
-                    devices:[{deviceId:objectId(deviceId)}]
+                        }).then((response) => {
+                            resolve(response)
+                        })
+            } else {
+                let favoriteObj = {
+                    userId: objectId(userId),
+                    devices: [{ deviceId: objectId(deviceId) }]
                 }
 
-                db.get().collection(collection.FAVORITE_COLLECTION).insertOne(favoriteObj).then((response)=>{
+                db.get().collection(collection.FAVORITE_COLLECTION).insertOne(favoriteObj).then((response) => {
                     resolve(response)
                 })
             }
         })
     },
-    removeFromFavorite:(deviceId,userId)=>{
-        return new Promise((resolve,reject)=>{
+    removeFromFavorite: (deviceId, userId) => {
+        return new Promise((resolve, reject) => {
             db.get().collection(collection.FAVORITE_COLLECTION)
-            .updateOne({userId:objectId(userId)},
-            {
-                $pull: { devices: { deviceId: objectId(deviceId) } }
-            }).then((response)=>{
-               resolve(response)
-            })
+                .updateOne({ userId: objectId(userId) },
+                    {
+                        $pull: { devices: { deviceId: objectId(deviceId) } }
+                    }).then((response) => {
+                        resolve(response)
+                    })
         })
     },
-    getFavoritedProduct:(productId,userId)=>{
-        return new Promise(async(resolve,reject)=>{
-            let favorites=await db.get().collection(collection.FAVORITE_COLLECTION).find( { devices: { $elemMatch: { deviceId: objectId(productId) } } }).toArray()
-            if(favorites[0]){
+    getFavoritedProduct: (productId, userId) => {
+        return new Promise(async (resolve, reject) => {
+            let favorites = await db.get().collection(collection.FAVORITE_COLLECTION).find({ devices: { $elemMatch: { deviceId: objectId(productId) } } }).toArray()
+            if (favorites[0]) {
                 resolve(true)
-            }else{
+            } else {
                 resolve(false)
             }
         })
     },
-    getFavoriteProducts:(userId)=>{
-        return new Promise(async(resolve,reject)=>{
-            let products=await db.get().collection(collection.FAVORITE_COLLECTION).aggregate([
+    getFavoriteProducts: (userId) => {
+        return new Promise(async (resolve, reject) => {
+            let products = await db.get().collection(collection.FAVORITE_COLLECTION).aggregate([
                 {
-                    $match:{userId:objectId(userId)}
+                    $match: { userId: objectId(userId) }
                 },
                 {
-                    $unwind:'$devices'
+                    $unwind: '$devices'
                 },
                 {
                     $lookup: {
@@ -356,44 +356,44 @@ module.exports = {
                 {
                     $project: {
 
-                        _id:1, products: { $arrayElemAt: ['$products', 0] },
+                        _id: 1, products: { $arrayElemAt: ['$products', 0] },
                     }
                 }
             ]).toArray();
             resolve(products)
         })
     },
-    getNotebooks:()=>{
-        return new Promise(async(resolve,reject)=>{
-            let category =await db.get().collection(collection.CATEGORY_COLLECTION).findOne({category:'notebook'});
-            if(category){
-                db.get().collection(collection.PRODUCT_COLLECTION).find({category:ObjectID(category._id),status:true}).toArray().then((products)=>{
+    getNotebooks: () => {
+        return new Promise(async (resolve, reject) => {
+            let category = await db.get().collection(collection.CATEGORY_COLLECTION).findOne({ category: 'notebook' });
+            if (category) {
+                db.get().collection(collection.PRODUCT_COLLECTION).find({ category: ObjectID(category._id), status: true }).toArray().then((products) => {
                     resolve(products)
                 })
-            }else{
-                resolve({status:false})
+            } else {
+                resolve({ status: false })
             }
         })
     },
-    getDesktop:()=>{
-        return new Promise(async(resolve,reject)=>{
-            let category =await db.get().collection(collection.CATEGORY_COLLECTION).findOne({category:'desktop'});
-            if(category){
-                db.get().collection(collection.PRODUCT_COLLECTION).find({category:ObjectID(category._id),status:true}).toArray().then((products)=>{
+    getDesktop: () => {
+        return new Promise(async (resolve, reject) => {
+            let category = await db.get().collection(collection.CATEGORY_COLLECTION).findOne({ category: 'desktop' });
+            if (category) {
+                db.get().collection(collection.PRODUCT_COLLECTION).find({ category: ObjectID(category._id), status: true }).toArray().then((products) => {
                     resolve(products)
                 })
-            }else{
-                resolve({status:false})
+            } else {
+                resolve({ status: false })
             }
         })
     },
-    verifyBag:(userId)=>{
+    verifyBag: (userId) => {
         console.log(userId);
-        return new Promise((resolve,reject)=>{
-            db.get().collection(collection.BAG_COLLECTION).findOne({user:objectId(userId)}).then((response)=>{
-                if(response){
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.BAG_COLLECTION).findOne({ user: objectId(userId) }).then((response) => {
+                if (response) {
                     resolve(true)
-                }else{
+                } else {
                     resolve(false)
                 }
             })
@@ -410,6 +410,53 @@ module.exports = {
                     }).then((response) => {
                         resolve(response)
                     })
+        })
+    },
+    changeUsername: (userData) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.USER_COLLECTION)
+                .updateOne({ _id: objectId(userData.userId) },
+                    {
+                        $set: {
+                            firstname: userData.firstname,
+                            lastname: userData.lastname
+                        }
+                    }).then((response) => {
+                        resolve(response)
+                    })
+        })
+    },
+    changePassword: (data) => {
+        return new Promise(async (resolve, reject) => {
+            let user = await db.get().collection(collection.USER_COLLECTION).findOne({ _id: objectId(data.userId) })
+            if (user) {
+                bcrypt.compare(data.currentpassword, user.password).then(async (status) => {
+                    if (status) {
+                        db.get().collection(collection.USER_COLLECTION)
+                            .updateOne({ _id: objectId(data.userId) },
+                                {
+                                    $set: {
+                                        password: await bcrypt.hash(data.confirmpassword, 10)
+                                    }
+                                }).then((response) => {
+                                    if (response) {
+                                        resolve(true)
+                                    } else {
+                                        resolve(false)
+                                    }
+                                })
+                    } else {
+
+                        resolve(false)
+
+                    }
+                })
+            } else {
+
+                resolve(false)
+
+            }
+
         })
     }
 
