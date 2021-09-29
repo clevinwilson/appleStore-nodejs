@@ -375,20 +375,21 @@ router.post('/update-address', verifyLogin, (req, res) => {
 })
 
 //privacy-control
-router.get('/privacy-control',async(req,res)=>{
+router.get('/privacy-control',verifyLogin, async(req,res)=>{
+  var bagItems = await userHelper.getBagProducts(req.session.user._id);
   var user =await userHelper.getUser(req.session.user._id);
-  res.render('user/privacy',{user:user,changePasswordSucc:req.session.changePasswordSucc,changePasswordError:req.session.changePasswordError})
+  res.render('user/privacy',{user:user,changePasswordSucc:req.session.changePasswordSucc,changePasswordError:req.session.changePasswordError,bagItems:bagItems})
   req.session.changePasswordSucc=false
   req.session.changePasswordError=false
 })
 
-router.post('/change-username',(req,res)=>{
+router.post('/change-username',verifyLogin,(req,res)=>{
   userHelper.changeUsername(req.body).then((response)=>{
     res.redirect('/privacy-control')
   })
 })
 
-router.post('/change-password',(req,res)=>{
+router.post('/change-password',verifyLogin, (req,res)=>{
   userHelper.changePassword(req.body).then((response)=>{
     if(response){
       req.session.changePasswordSucc="Password Changed Successfully"

@@ -6,6 +6,7 @@ var logger = require('morgan');
 var hbs = require('express-handlebars');
 var session = require('express-session');
 var fileUpload = require('express-fileupload');
+var MongoDBStore = require('connect-mongodb-session')(session);
 
 
 var usersRouter = require('./routes/users');
@@ -28,7 +29,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: "Key", cookie: { maxAge: 600000 },
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie:{maxAge:60000000},store:new MongoDBStore({mongoConnection:db.connection,databaseName:"moviebooking"})
 }))
 //db
 db.connect((err) => {
