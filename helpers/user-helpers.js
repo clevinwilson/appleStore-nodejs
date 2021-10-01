@@ -51,15 +51,29 @@ module.exports = {
         })
     },
     addToBag: (data, userId) => {
+        console.log(data);
         return new Promise(async (resolve, reject) => {
             data.deviceId = ObjectID(data.deviceId);
-            var product = await db.get().collection(collection.PRODUCT_COLLECTION).find({ _id: ObjectId(data.deviceId) }, { storageOptions: { $elemMatch: { storagesize: data.storage } } }).toArray()
+            // var product = await db.get().collection(collection.PRODUCT_COLLECTION).find({ _id: ObjectId(data.deviceId) }, { storageOptions: { $elemMatch: { storagesize: data.storage } } }).toArray()
+           
+            var product = await db.get().collection(collection.PRODUCT_COLLECTION).aggregate([
+                {
+                    $match:{_id:objectId(data.deviceId)}
+                },
+                {
+                    $unwind:'$storageOptions'
+                },
+                {
+                    $match:{"storageOptions.storagesize":data.storage}
+                },
+                
+
+            ]).toArray()
+
+            console.log(product);
             if (product) {
 
-                let productLength = product[0].storageOptions.length;
-                for (let i = 0; i < productLength; i++) {
-                    if (product[0].storageOptions[i].storagesize == data.storage) {
-                        data.price = parseInt(product[0].storageOptions[i].storageprice) + parseInt(product[0].productprice);
+                data.price = parseInt(product[0].storageOptions.storageprice) + parseInt(product[0].productprice);
 
                         let bag = await db.get().collection(collection.BAG_COLLECTION).findOne({ user: ObjectId(userId) });
                         if (bag) {
@@ -80,8 +94,6 @@ module.exports = {
                                 resolve({ status: true });
                             })
                         }
-                    }
-                }
             } else {
                 resolve({ statu: false })
             }
