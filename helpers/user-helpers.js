@@ -69,8 +69,6 @@ module.exports = {
                 
 
             ]).toArray()
-
-            console.log(product);
             if (product) {
 
                 data.price = parseInt(product[0].storageOptions.storageprice) + parseInt(product[0].productprice);
