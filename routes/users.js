@@ -226,12 +226,12 @@ router.post('/place-order', verifyLogin, async (req, res) => {
 
       } else {
         req.session.addressError = true
-        res.json(false)
+        res.json({defaultddressError:true})
       }
     })
 
   } else {
-    res.json(false)
+    res.json({addressError:true})
   }
   }else{
     res.json(false)
