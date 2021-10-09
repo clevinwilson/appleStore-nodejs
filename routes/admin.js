@@ -331,6 +331,14 @@ router.get("/change-password", verifyLogin, (req, res) => {
   });
 
 
+  //edit product page
+  router.get('/edit-product/:productId',(req,res)=>{
+      adminHelpers.getProduct(req.params.productId).then((response)=>{
+        res.render("admin/edit-product",{product:response});
+      })
+      
+  })
+
 
 
 

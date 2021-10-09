@@ -157,6 +157,13 @@ module.exports={
             dashboardData.category=category;
             resolve(dashboardData)
         })
+    },
+    getProduct:(productId)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.PRODUCT_COLLECTION).findOne({_id:objectId(productId)}).then((response)=>{
+                resolve(response)
+            })
+        })
     }
  
 }
